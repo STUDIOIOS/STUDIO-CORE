@@ -1,19 +1,24 @@
 {
   "2026-05-05": [
     {
-      "lead_id": "demo:t2-bjjbrand",
+      "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 1,
       "tier": "T2"
     },
     {
-      "lead_id": "demo:t2-grappler",
+      "lead_id": "research:t2-inverted-witt",
       "step": 1,
       "tier": "T2"
     },
     {
-      "lead_id": "demo:t3-academy",
+      "lead_id": "research:t2-scramble-benyon",
       "step": 1,
-      "tier": "T3"
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
+      "step": 1,
+      "tier": "T2"
     },
     {
       "lead_id": "demo:t1-acme",
@@ -23,53 +28,173 @@
   ],
   "2026-05-08": [
     {
-      "lead_id": "demo:t2-bjjbrand",
+      "lead_id": "research:t2-93brand",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hyperfly",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-moya-brand",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-engage-industries",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-gaidama",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 2,
       "tier": "T2"
     },
     {
-      "lead_id": "demo:t2-grappler",
+      "lead_id": "research:t2-inverted-witt",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-benyon",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
       "step": 2,
       "tier": "T2"
     }
   ],
   "2026-05-14": [
     {
-      "lead_id": "demo:t2-bjjbrand",
+      "lead_id": "research:t2-war-tribe",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 3,
       "tier": "T2"
     },
     {
-      "lead_id": "demo:t2-grappler",
+      "lead_id": "research:t2-inverted-witt",
       "step": 3,
       "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-benyon",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-raine-malhi",
+      "step": 2,
+      "tier": "T3"
     }
   ],
   "2026-05-21": [
     {
-      "lead_id": "demo:t2-bjjbrand",
+      "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 4,
       "tier": "T2"
     },
     {
-      "lead_id": "demo:t2-grappler",
+      "lead_id": "research:t2-inverted-witt",
       "step": 4,
       "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-benyon",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-raine-malhi",
+      "step": 3,
+      "tier": "T3"
     }
   ],
   "2026-06-01": [
     {
-      "lead_id": "demo:t2-bjjbrand",
+      "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 5,
       "tier": "T2"
     },
     {
-      "lead_id": "demo:t2-grappler",
+      "lead_id": "research:t2-inverted-witt",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-benyon",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
       "step": 5,
       "tier": "T2"
     }
   ],
   "2026-05-26": [
+    {
+      "lead_id": "research:t2-tatami-jones",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-kingz-munduruca",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-ken",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-savg-tknq",
+      "step": 3,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-nogi-industries",
+      "step": 3,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-askari",
+      "step": 3,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-continuous-flow",
+      "step": 3,
+      "tier": "T3"
+    },
     {
       "lead_id": "demo:t1-acme",
       "step": 2,
@@ -97,30 +222,458 @@
       "tier": "T1"
     }
   ],
-  "2026-05-12": [
+  "2026-05-06": [
     {
-      "lead_id": "demo:t3-academy",
+      "lead_id": "research:t2-inverted-puentes",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-origin-roberts",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-craig",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-quadrant-norris",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-tong",
+      "step": 1,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-11": [
+    {
+      "lead_id": "research:t2-war-tribe",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-inverted-puentes",
       "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-origin-roberts",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-craig",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-quadrant-norris",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-tong",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-savg-tknq",
+      "step": 1,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-nogi-industries",
+      "step": 1,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-askari",
+      "step": 1,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-continuous-flow",
+      "step": 1,
       "tier": "T3"
     }
   ],
-  "2026-05-19": [
+  "2026-05-15": [
     {
-      "lead_id": "demo:t3-academy",
+      "lead_id": "research:t2-inverted-puentes",
       "step": 3,
-      "tier": "T3"
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-origin-roberts",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-craig",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-quadrant-norris",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-tong",
+      "step": 3,
+      "tier": "T2"
     }
   ],
-  "2026-05-29": [
+  "2026-05-22": [
     {
-      "lead_id": "demo:t3-academy",
+      "lead_id": "research:t2-inverted-puentes",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-origin-roberts",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-craig",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-quadrant-norris",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-tong",
+      "step": 4,
+      "tier": "T2"
+    }
+  ],
+  "2026-06-02": [
+    {
+      "lead_id": "research:t2-inverted-puentes",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-origin-roberts",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-craig",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-quadrant-norris",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-scramble-tong",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-raine-malhi",
       "step": 4,
       "tier": "T3"
     }
   ],
-  "2026-06-09": [
+  "2026-05-07": [
     {
-      "lead_id": "demo:t3-academy",
+      "lead_id": "research:t2-tatami-jones",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-kingz-munduruca",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-ken",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-raine-malhi",
+      "step": 1,
+      "tier": "T3"
+    }
+  ],
+  "2026-06-11": [
+    {
+      "lead_id": "research:t3-raine-malhi",
+      "step": 5,
+      "tier": "T3"
+    }
+  ],
+  "2026-05-12": [
+    {
+      "lead_id": "research:t2-tatami-jones",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-kingz-munduruca",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-ken",
+      "step": 2,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-18": [
+    {
+      "lead_id": "research:t2-tatami-jones",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-kingz-munduruca",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-ken",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-savg-tknq",
+      "step": 2,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-nogi-industries",
+      "step": 2,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-askari",
+      "step": 2,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-continuous-flow",
+      "step": 2,
+      "tier": "T3"
+    }
+  ],
+  "2026-06-03": [
+    {
+      "lead_id": "research:t2-tatami-jones",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-kingz-munduruca",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-ken",
+      "step": 5,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-13": [
+    {
+      "lead_id": "research:t2-93brand",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hyperfly",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-moya-brand",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-engage-industries",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-gaidama",
+      "step": 2,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-19": [
+    {
+      "lead_id": "research:t2-93brand",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hyperfly",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-moya-brand",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-engage-industries",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-gaidama",
+      "step": 3,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-27": [
+    {
+      "lead_id": "research:t2-93brand",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hyperfly",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-moya-brand",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-engage-industries",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-gaidama",
+      "step": 4,
+      "tier": "T2"
+    }
+  ],
+  "2026-06-04": [
+    {
+      "lead_id": "research:t2-93brand",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-hyperfly",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-moya-brand",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-engage-industries",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-gaidama",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-savg-tknq",
+      "step": 4,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-nogi-industries",
+      "step": 4,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-askari",
+      "step": 4,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-continuous-flow",
+      "step": 4,
+      "tier": "T3"
+    }
+  ],
+  "2026-05-20": [
+    {
+      "lead_id": "research:t2-war-tribe",
+      "step": 3,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-28": [
+    {
+      "lead_id": "research:t2-war-tribe",
+      "step": 4,
+      "tier": "T2"
+    }
+  ],
+  "2026-06-05": [
+    {
+      "lead_id": "research:t2-war-tribe",
+      "step": 5,
+      "tier": "T2"
+    }
+  ],
+  "2026-06-15": [
+    {
+      "lead_id": "research:t3-savg-tknq",
+      "step": 5,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-nogi-industries",
+      "step": 5,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-askari",
+      "step": 5,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "research:t3-continuous-flow",
       "step": 5,
       "tier": "T3"
     }
