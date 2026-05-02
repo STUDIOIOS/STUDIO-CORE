@@ -1,0 +1,53 @@
+{
+  "studio": {
+    "name": "Studio IOS",
+    "founder": "Tom Hidderley",
+    "founder_role": "Creative Director & Founder",
+    "city": "Bristol, UK",
+    "site": "https://studioios.com"
+  },
+  "sender": {
+    "name": "Tom Hidderley",
+    "email": "tom@studioios.com",
+    "signature": "Tom Hidderley\nCreative Director & Founder, Studio IOS\nstudioios.com"
+  },
+  "gdrive_links": {
+    "T1": "https://drive.google.com/REPLACE_WITH_TIER1_LICENSING_PORTFOLIO",
+    "T2": "https://drive.google.com/REPLACE_WITH_TIER2_DTC_CASE_STUDIES",
+    "T3": "https://drive.google.com/REPLACE_WITH_TIER3_FOUNDER_STARTER_PACK"
+  },
+  "tier_proof": {
+    "T1": "We've built the apparel direction and graphic language behind FUJI Sports' competition and lifestyle programmes and Phalanx's combat-sports ranges — both running at retail with style-guide-grade consistency.",
+    "T2": "We helped FUJI and Phalanx hit 15–18% seasonal revenue uplifts by getting trend direction in before the brief, not after. Phalanx's last preorder window covered inventory and our fees before launch day.",
+    "T3": "We've worked with the brands you'd recognise in the BJJ space — FUJI and Phalanx among them. We know the culture, and we know what moves units in it."
+  },
+  "cadence_business_days": {
+    "T1": [0, 14, 30, 60, 90],
+    "T2": [0, 3, 7, 12, 18],
+    "T3": [0, 5, 10, 17, 24]
+  },
+  "tier_targets": {
+    "T1": 50,
+    "T2": 300,
+    "T3": 150
+  },
+  "daily_target_min": 5,
+  "daily_target_max": 10,
+  "daily_target_peak": 14,
+  "campaign_start_date": "2026-05-04",
+  "timezone": "Europe/London",
+  "uk_bank_holidays_2026": [
+    "2026-01-01", "2026-04-03", "2026-04-06",
+    "2026-05-04", "2026-05-25", "2026-08-31",
+    "2026-12-25", "2026-12-28"
+  ],
+  "uk_bank_holidays_2027": [
+    "2027-01-01", "2027-04-02", "2027-04-05",
+    "2027-05-03", "2027-05-31", "2027-08-30",
+    "2027-12-27", "2027-12-28"
+  ],
+  "push": {
+    "cron_utc": "0 7 * * 1-5",
+    "deep_link_base": "https://studioios.github.io/studio-core/"
+  }
+}

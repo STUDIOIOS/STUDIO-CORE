@@ -1,0 +1,36 @@
+name: Signals refresh
+
+on:
+  schedule:
+    # Every Monday 06:00 UTC, before the morning push
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Refresh signals
+        env:
+          APOLLO_API_KEY: ${{ secrets.APOLLO_API_KEY }}
+        run: node scripts/detect_signals.mjs
+      - name: Rebuild schedule
+        run: node scripts/build_schedule.mjs
+      - name: Commit
+        run: |
+          git config user.name 'studio-ios-bot'
+          git config user.email 'bot@studioios.com'
+          if ! git diff --quiet data/leads.json data/schedule.json; then
+            git add data/leads.json data/schedule.json
+            git commit -m "signals: weekly refresh"
+            git push
+          fi

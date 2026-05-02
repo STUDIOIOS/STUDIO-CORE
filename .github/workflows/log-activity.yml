@@ -1,0 +1,35 @@
+name: Log activity
+
+on:
+  repository_dispatch:
+    types: [lead_sent]
+
+permissions:
+  contents: write
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: log-activity
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Append event
+        env:
+          EVENT_PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+        run: node scripts/log_activity.mjs
+      - name: Commit
+        run: |
+          git config user.name 'studio-ios-bot'
+          git config user.email 'bot@studioios.com'
+          if ! git diff --quiet data/activity.json; then
+            git add data/activity.json
+            git commit -m "log: lead sent — ${{ github.event.client_payload.lead_id }} step ${{ github.event.client_payload.step }}"
+            git push
+          fi

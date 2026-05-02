@@ -1,0 +1,128 @@
+{
+  "2026-05-05": [
+    {
+      "lead_id": "demo:t2-bjjbrand",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "demo:t2-grappler",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "demo:t3-academy",
+      "step": 1,
+      "tier": "T3"
+    },
+    {
+      "lead_id": "demo:t1-acme",
+      "step": 1,
+      "tier": "T1"
+    }
+  ],
+  "2026-05-08": [
+    {
+      "lead_id": "demo:t2-bjjbrand",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "demo:t2-grappler",
+      "step": 2,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-14": [
+    {
+      "lead_id": "demo:t2-bjjbrand",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "demo:t2-grappler",
+      "step": 3,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-21": [
+    {
+      "lead_id": "demo:t2-bjjbrand",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "demo:t2-grappler",
+      "step": 4,
+      "tier": "T2"
+    }
+  ],
+  "2026-06-01": [
+    {
+      "lead_id": "demo:t2-bjjbrand",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "demo:t2-grappler",
+      "step": 5,
+      "tier": "T2"
+    }
+  ],
+  "2026-05-26": [
+    {
+      "lead_id": "demo:t1-acme",
+      "step": 2,
+      "tier": "T1"
+    }
+  ],
+  "2026-06-17": [
+    {
+      "lead_id": "demo:t1-acme",
+      "step": 3,
+      "tier": "T1"
+    }
+  ],
+  "2026-07-29": [
+    {
+      "lead_id": "demo:t1-acme",
+      "step": 4,
+      "tier": "T1"
+    }
+  ],
+  "2026-09-10": [
+    {
+      "lead_id": "demo:t1-acme",
+      "step": 5,
+      "tier": "T1"
+    }
+  ],
+  "2026-05-12": [
+    {
+      "lead_id": "demo:t3-academy",
+      "step": 2,
+      "tier": "T3"
+    }
+  ],
+  "2026-05-19": [
+    {
+      "lead_id": "demo:t3-academy",
+      "step": 3,
+      "tier": "T3"
+    }
+  ],
+  "2026-05-29": [
+    {
+      "lead_id": "demo:t3-academy",
+      "step": 4,
+      "tier": "T3"
+    }
+  ],
+  "2026-06-09": [
+    {
+      "lead_id": "demo:t3-academy",
+      "step": 5,
+      "tier": "T3"
+    }
+  ]
+}

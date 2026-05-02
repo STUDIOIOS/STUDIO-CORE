@@ -1,0 +1,21 @@
+{
+  "name": "studio-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Studio IOS lead outreach system — 500-lead campaign with tier-aware email sequences, daily Pushover reminders, and a static PWA mini-CRM.",
+  "scripts": {
+    "source": "node scripts/source_leads.mjs",
+    "import": "node scripts/import_csv.mjs",
+    "signals": "node scripts/detect_signals.mjs",
+    "hooks": "node scripts/generate_hooks.mjs",
+    "schedule": "node scripts/build_schedule.mjs",
+    "push": "node scripts/morning_push.mjs",
+    "log": "node scripts/log_activity.mjs",
+    "build": "npm run signals && npm run hooks && npm run schedule",
+    "serve": "mkdir -p web/data && cp data/*.json web/data/ && python3 -m http.server -d web 8000"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

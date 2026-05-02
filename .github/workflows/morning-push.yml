@@ -1,0 +1,25 @@
+name: Morning push
+
+on:
+  schedule:
+    # 07:00 UTC, Monday-Friday
+    - cron: '0 7 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: 'YYYY-MM-DD (defaults to today UTC)'
+        required: false
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Send Pushover notification
+        env:
+          PUSHOVER_USER_KEY: ${{ secrets.PUSHOVER_USER_KEY }}
+          PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
+          TARGET_DATE: ${{ github.event.inputs.target_date }}
+        run: node scripts/morning_push.mjs
