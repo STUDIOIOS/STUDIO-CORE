@@ -7,98 +7,132 @@
 <style>
   :root {
     --bg: #0a0a0a;
-    --surface: #141414;
-    --border: #1e1e1e;
-    --text: #f0f0f0;
-    --muted: #666;
+    --bg-elev: #161616;
+    --bg-elev-2: #1f1f1f;
+    --border: #2a2a2a;
+    --text: #f5f5f5;
+    --text-dim: #999;
+    --text-faint: #666;
     --accent: #ff5b1a;
     --t1: #c9a961;
     --t2: #ff5b1a;
     --t3: #4dd0e1;
+    --success: #4caf50;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --font-sans: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif; min-height: 100vh; max-width: 430px; margin: 0 auto; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-sans); min-height: 100vh; max-width: 460px; margin: 0 auto; padding-bottom: 90px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
 
-  /* Header */
-  .header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 16px 20px 12px; z-index: 10; }
-  .header-top { display: flex; align-items: center; justify-content: space-between; }
-  .logo { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-  .date-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  .header-meta { text-align: right; }
-  .progress-label { font-size: 12px; color: var(--muted); }
+  .demo-banner { background: #1a1200; border-bottom: 1px solid #332600; padding: 8px 18px; font-size: 12px; color: #c9a961; text-align: center; }
 
-  /* Back button */
-  .back-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 14px; background: none; border: none; cursor: pointer; padding: 0; margin-bottom: 4px; }
-  .back-btn svg { width: 16px; height: 16px; }
+  .app-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px 12px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10; }
+  .app-header h1 { font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono); }
+  .app-header .date { font-size: 13px; color: var(--text-dim); font-family: var(--font-mono); }
+  .back-btn { background: none; border: none; color: var(--text-dim); cursor: pointer; font-size: 14px; padding: 4px 0; }
 
-  /* Progress ring */
-  .ring-wrap { display: flex; align-items: center; gap: 16px; padding: 16px 20px; }
-  .ring-text { font-size: 28px; font-weight: 700; color: var(--text); }
-  .ring-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  svg.ring { width: 64px; height: 64px; transform: rotate(-90deg); }
-  svg.ring circle { transition: stroke-dashoffset 0.5s ease; }
+  main { padding: 18px; }
+  section { margin-bottom: 28px; }
+  h2 { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 12px; font-family: var(--font-mono); }
 
-  /* Section label */
-  .section-label { padding: 8px 20px 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  /* Progress card */
+  .progress-card { background: var(--bg-elev); border-radius: var(--radius); padding: 22px; display: flex; align-items: center; gap: 22px; margin-bottom: 20px; }
+  .ring { width: 92px; height: 92px; flex-shrink: 0; position: relative; }
+  .ring svg { transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 8; stroke-linecap: round; }
+  .ring .track { stroke: var(--bg-elev-2); }
+  .ring .fill { stroke: var(--accent); transition: stroke-dasharray 0.5s ease; }
+  .ring .lbl { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; font-family: var(--font-mono); }
+  .progress-summary .count { font-size: 28px; font-weight: 700; letter-spacing: -1px; }
+  .progress-summary .meta { color: var(--text-dim); font-size: 13px; margin-top: 4px; }
+  .progress-summary .breakdown { display: flex; gap: 12px; margin-top: 10px; font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); }
 
   /* Lead list */
-  .lead-item { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.12s; }
-  .lead-item:active, .lead-item:hover { background: var(--surface); }
-  .tier-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .dot-T1 { background: var(--t1); }
-  .dot-T2 { background: var(--t2); }
-  .dot-T3 { background: var(--t3); }
-  .lead-info { flex: 1; min-width: 0; }
-  .lead-name { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .lead-company { font-size: 13px; color: var(--muted); margin-top: 1px; }
-  .lead-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
-  .tier-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 2px 6px; border-radius: 4px; }
-  .badge-T1 { color: var(--t1); border: 1px solid var(--t1); }
-  .badge-T2 { color: var(--t2); border: 1px solid var(--t2); }
-  .badge-T3 { color: var(--t3); border: 1px solid var(--t3); }
-  .signal-pill { font-size: 10px; background: #1a1a1a; color: var(--muted); border-radius: 4px; padding: 2px 6px; white-space: nowrap; max-width: 120px; overflow: hidden; text-overflow: ellipsis; }
-  .priority-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  .step-num { font-size: 10px; color: var(--muted); }
+  .lead-list { display: flex; flex-direction: column; gap: 8px; }
+  .lead-row { background: var(--bg-elev); border-radius: var(--radius); padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background 0.1s; }
+  .lead-row:hover { background: var(--bg-elev-2); }
+  .lead-row.sent { opacity: 0.45; }
+  .lead-row.boosted { position: relative; }
+  .lead-row.boosted::before { content: ''; position: absolute; top: 6px; left: 4px; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; border: 2px solid var(--bg-elev); }
+  .tier-bar { width: 4px; height: 38px; border-radius: 2px; flex-shrink: 0; }
+  .tier-bar.t1 { background: var(--t1); }
+  .tier-bar.t2 { background: var(--t2); }
+  .tier-bar.t3 { background: var(--t3); }
+  .lead-content { flex: 1; min-width: 0; }
+  .lead-name { font-weight: 600; font-size: 15px; display: flex; align-items: baseline; gap: 6px; }
+  .lead-name .lead-company { color: var(--text-dim); font-weight: 400; font-size: 13px; }
+  .lead-meta { font-size: 12px; color: var(--text-faint); margin-top: 2px; font-family: var(--font-mono); display: flex; gap: 8px; align-items: center; }
+  .step-pill { background: var(--bg-elev-2); color: var(--text-dim); font-family: var(--font-mono); font-size: 11px; padding: 3px 8px; border-radius: 999px; flex-shrink: 0; }
+  .step-pill.boost { background: rgba(255, 91, 26, 0.18); color: var(--accent); border: 1px solid rgba(255, 91, 26, 0.4); }
+  .signal-pill { background: rgba(255, 91, 26, 0.12); color: var(--accent); border: 1px solid rgba(255, 91, 26, 0.3); font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.5px; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
 
-  /* Lead detail view */
-  .lead-detail { padding: 0 0 100px; }
-  .lead-card { padding: 20px; border-bottom: 1px solid var(--border); }
-  .lead-card-name { font-size: 22px; font-weight: 700; }
-  .lead-card-title { font-size: 14px; color: var(--muted); margin-top: 2px; }
-  .lead-card-company { font-size: 16px; font-weight: 600; margin-top: 6px; }
-  .lead-card-badges { display: flex; gap: 8px; margin-top: 10px; align-items: center; flex-wrap: wrap; }
-  .step-dots { display: flex; gap: 6px; padding: 14px 20px; border-bottom: 1px solid var(--border); }
-  .step-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; border: 2px solid var(--border); color: var(--muted); cursor: pointer; transition: all 0.15s; }
-  .step-dot.active { border-color: var(--accent); color: var(--accent); }
+  /* Pipeline boost button */
+  .lead-row-wrap { display: flex; align-items: stretch; background: var(--bg-elev); border-radius: var(--radius); overflow: hidden; }
+  .lead-row-wrap .lead-row { flex: 1; background: transparent; border-radius: 0; }
+  .boost-btn { width: 56px; flex-shrink: 0; background: transparent; border: none; border-left: 1px solid var(--border); color: var(--text-faint); font-size: 22px; font-family: var(--font-mono); cursor: pointer; transition: background 0.12s, color 0.12s; display: flex; align-items: center; justify-content: center; }
+  .boost-btn:hover { background: var(--bg-elev-2); color: var(--text); }
+  .boost-btn.active { background: var(--accent); color: #fff; font-size: 18px; }
+  .boost-btn.active:hover { background: #e64a0d; }
 
-  /* Email card */
-  .email-section { padding: 16px 20px 0; }
-  .email-subject-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .email-subject { font-size: 15px; font-weight: 600; margin-bottom: 16px; line-height: 1.4; }
-  .email-body { font-size: 14px; line-height: 1.7; color: #d0d0d0; white-space: pre-wrap; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; font-family: inherit; }
+  /* Week ahead */
+  .week-ahead { display: flex; flex-direction: column; gap: 8px; }
+  .day-card { background: var(--bg-elev); border-radius: var(--radius); overflow: hidden; border: 1px solid transparent; }
+  .day-card.expanded { border-color: var(--border); }
+  .day-card-header { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; gap: 12px; }
+  .day-card-header:hover { background: var(--bg-elev-2); }
+  .day-card-date { font-weight: 600; font-size: 14px; }
+  .day-card-count { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 2px; }
+  .day-card-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .day-tiers { display: flex; gap: 4px; }
+  .tier-mini { font-size: 10px; font-family: var(--font-mono); padding: 2px 5px; border-radius: 3px; font-weight: 600; }
+  .tier-mini.t1 { background: rgba(201, 169, 97, 0.15); color: var(--t1); border: 1px solid rgba(201, 169, 97, 0.3); }
+  .tier-mini.t2 { background: rgba(255, 91, 26, 0.15); color: var(--t2); border: 1px solid rgba(255, 91, 26, 0.3); }
+  .tier-mini.t3 { background: rgba(77, 208, 225, 0.15); color: var(--t3); border: 1px solid rgba(77, 208, 225, 0.3); }
+  .day-card-toggle { color: var(--text-faint); font-size: 14px; transition: transform 0.2s; }
+  .day-card.expanded .day-card-toggle { transform: rotate(180deg); }
+  .day-card-leads { display: none; padding: 0 8px 10px; flex-direction: column; gap: 4px; }
+  .day-card.expanded .day-card-leads { display: flex; }
+  .day-card-leads .lead-row { background: var(--bg-elev-2); }
 
-  /* Action buttons */
-  .actions { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: var(--bg); border-top: 1px solid var(--border); padding: 12px 16px 28px; display: flex; gap: 10px; }
-  .btn { flex: 1; padding: 13px 10px; border-radius: 10px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: opacity 0.15s; }
-  .btn:active { opacity: 0.7; }
-  .btn-primary { background: var(--accent); color: white; }
-  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-  .btn-sent { background: #1a2a1a; color: #4caf50; border: 1px solid #4caf50; }
+  /* Pipeline filter chips */
+  .filter-bar { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px; }
+  .chip { background: var(--bg-elev); border: 1px solid var(--border); color: var(--text-dim); padding: 6px 12px; border-radius: 999px; font-size: 12px; font-family: var(--font-mono); cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+  .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .search-input { width: 100%; background: var(--bg-elev); border: 1px solid var(--border); color: var(--text); padding: 12px 14px; border-radius: var(--radius-sm); font-size: 14px; margin-bottom: 12px; }
+  .list-meta { font-size: 12px; color: var(--text-faint); font-family: var(--font-mono); margin-bottom: 8px; }
+  .kbd { display: inline-block; background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--text); padding: 1px 6px; border-radius: 4px; font-family: var(--font-mono); font-size: 11px; margin: 0 2px; }
 
-  /* Toast */
-  .toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px); background: #222; color: var(--text); padding: 10px 20px; border-radius: 8px; font-size: 14px; opacity: 0; transition: all 0.25s; pointer-events: none; white-space: nowrap; z-index: 100; }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  /* Lead detail */
+  .summary { background: var(--bg-elev); border-radius: var(--radius); padding: 18px; margin-bottom: 18px; border-left: 3px solid var(--accent); }
+  .summary.t1 { border-left-color: var(--t1); }
+  .summary.t2 { border-left-color: var(--t2); }
+  .summary.t3 { border-left-color: var(--t3); }
+  .summary .name { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .summary .title { color: var(--text-dim); font-size: 14px; margin-top: 2px; }
+  .summary .company { margin-top: 10px; font-size: 14px; font-family: var(--font-mono); }
+  .summary .hook { margin-top: 14px; padding: 10px 12px; background: var(--bg-elev-2); border-radius: var(--radius-sm); font-size: 13px; font-style: italic; line-height: 1.55; }
+  .email-card { background: var(--bg-elev); border-radius: var(--radius); overflow: hidden; margin-bottom: 18px; }
+  .email-meta { padding: 14px 18px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 13px; }
+  .email-meta .row { display: flex; gap: 8px; padding: 2px 0; }
+  .email-meta .label { color: var(--text-faint); width: 60px; }
+  .email-body { padding: 18px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.65; white-space: pre-wrap; }
+  .actions { display: grid; gap: 8px; }
+  .btn { display: flex; align-items: center; justify-content: center; padding: 14px 16px; border-radius: var(--radius-sm); border: none; font-family: var(--font-sans); font-size: 15px; font-weight: 600; cursor: pointer; background: var(--bg-elev); color: var(--text); transition: background 0.1s; text-decoration: none; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-success { background: var(--success); color: #fff; }
 
   /* Bottom nav */
-  .bottom-nav { display: flex; border-top: 1px solid var(--border); background: var(--bg); }
-  .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 0 18px; font-size: 10px; color: var(--muted); gap: 4px; cursor: pointer; }
+  .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 460px; background: var(--bg); border-top: 1px solid var(--border); display: flex; padding: 8px 0 18px; z-index: 20; }
+  .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--text-faint); font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; padding: 6px 0; cursor: pointer; }
   .nav-item.active { color: var(--accent); }
-  .nav-item svg { width: 22px; height: 22px; }
+  .nav-icon { font-size: 18px; }
 
-  /* Today nav bar (fixed at bottom when on list view) */
-  .list-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: var(--bg); border-top: 1px solid var(--border); display: flex; }
-
-  .demo-banner { background: #1a1200; border-bottom: 1px solid #332600; padding: 8px 20px; font-size: 12px; color: #c9a961; text-align: center; }
+  /* Toast */
+  .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.2s ease; z-index: 100; white-space: nowrap; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
@@ -107,247 +141,353 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── Baked-in data ──────────────────────────────────────────────────────────
-const TODAY = '2026-05-05';
+// ── Baked data ────────────────────────────────────────────────────────────
+const TODAY_ISO = '2026-05-05';
 
 const LEADS = [
-  { id:'research:t2-progress-jiu-jitsu', first_name:'James', last_name:'Tighe', email:'', title:'Founder', company:'Progress Jiu Jitsu', tier:'T2', priority:3, signals:{ category_expansion:'international growth into US/Europe', season_launch:true }, custom_hook:'The Manchester-to-Trafford-Park trajectory — and the doubling to £2.4M — reads like a brand ready for a more deliberate seasonal graphic system. The Brit-meets-BJJ mix in the recent collections has a real point of view; what we\'d want to do is amplify that into a graphic language that travels at retail.', signal_phrase:'Progress\'s growth through £2.4M and the international push' },
-  { id:'research:t2-inverted-witt', first_name:'Hillary', last_name:'Witt', email:'', title:'Creative Director', company:'Inverted Gear', tier:'T2', priority:3, signals:{}, custom_hook:'Hillary — wrote to Nelson too, but most of what I\'d say is properly addressed to you. The graphic discipline behind Inverted\'s range — the panda equity, the colour restraint, the way the seasonal drops still feel like the same brand — is what most of our prospective clients are trying to learn how to do. Would love a 20 minutes on how we\'d structure that into a system you could brief external manufacturers off.', signal_phrase:'the graphic discipline behind Inverted\'s seasonal drops' },
-  { id:'research:t2-scramble-benyon', first_name:'Matt', last_name:'Benyon', email:'', title:'Co-Founder', company:'Scramble', tier:'T2', priority:2, signals:{ category_expansion:true }, custom_hook:'Scramble has the cleanest east-meets-west aesthetic in the BJJ space — there\'s no other UK brand that\'s actually earned the Japanese design vocabulary the way you have. Reaching out because the next layer up from where Scramble sits is consistent trend direction across categories — not just the gis but the rashguards, casuals, and Polaris-adjacent merchandise — and that\'s the work we\'d want to bring.', signal_phrase:'Scramble\'s expanding category mix' },
-  { id:'research:t2-tatami-dummer', first_name:'Gareth', last_name:'Dummer', email:'', title:'Co-Founder', company:'Tatami Fightwear', tier:'T2', priority:2, signals:{ category_expansion:'expanding apparel + casual line' }, custom_hook:'Tatami\'s volume-and-value play has set the floor for the whole UK BJJ market for over a decade — what\'s interesting now is the casual / lifestyle layer above the competition kit, where the graphic language is starting to do real lifting. That\'s the layer Studio IOS spends most of its time on for brands at your stage.', signal_phrase:'the lifestyle layer Tatami is building above the competition line' },
-  { id:'demo:t1-acme', first_name:'Alex', last_name:'Reed', email:'alex@example.com', title:'VP Licensing', company:'ACME Promotions', tier:'T1', priority:2, signals:{ leadership_change:'new CMO appointed Q1' }, custom_hook:'Saw the Q1 CMO appointment at ACME — usually the moment a licensing programme gets a fresh look at apparel direction at the category level, which is why I thought it was worth a note.', signal_phrase:'with the new CMO settling in' }
+  { id:'research:t2-progress-jiu-jitsu', first_name:'James', last_name:'Tighe', email:'', title:'Founder', company:'Progress Jiu Jitsu', tier:'T2', priority:3, signals:{ category_expansion:true, season_launch:true }, custom_hook:'The Manchester-to-Trafford-Park trajectory — and the doubling to £2.4M — reads like a brand ready for a more deliberate seasonal graphic system.', signal_phrase:"Progress's growth through £2.4M and the international push" },
+  { id:'research:t2-inverted-witt', first_name:'Hillary', last_name:'Witt', email:'', title:'Creative Director', company:'Inverted Gear', tier:'T2', priority:3, signals:{}, custom_hook:'Hillary — the graphic discipline behind Inverted\'s range is what most of our prospective clients are trying to learn how to do.', signal_phrase:"the graphic discipline behind Inverted's seasonal drops" },
+  { id:'research:t2-scramble-benyon', first_name:'Matt', last_name:'Benyon', email:'', title:'Co-Founder', company:'Scramble', tier:'T2', priority:2, signals:{ category_expansion:true }, custom_hook:'Scramble has the cleanest east-meets-west aesthetic in the BJJ space.', signal_phrase:"Scramble's expanding category mix" },
+  { id:'research:t2-tatami-dummer', first_name:'Gareth', last_name:'Dummer', email:'', title:'Co-Founder', company:'Tatami Fightwear', tier:'T2', priority:2, signals:{ category_expansion:true }, custom_hook:'Tatami\'s volume-and-value play has set the floor for the whole UK BJJ market for over a decade.', signal_phrase:"the lifestyle layer Tatami is building" },
+  { id:'demo:t1-acme', first_name:'Alex', last_name:'Reed', email:'alex@example.com', title:'VP Licensing', company:'ACME Promotions', tier:'T1', priority:2, signals:{ leadership_change:true }, custom_hook:'Saw the Q1 CMO appointment at ACME — usually the moment a licensing programme gets a fresh look at apparel direction.', signal_phrase:'with the new CMO settling in' },
+  { id:'research:t2-origin-roberts', first_name:'Pete', last_name:'Roberts', email:'', title:'Founder', company:'Origin USA', tier:'T2', priority:2, signals:{ category_expansion:true }, custom_hook:'The American-made-from-the-loom story is the one piece of brand equity nobody else in BJJ apparel can claim.', signal_phrase:"Origin's expansion beyond the gi line" },
+  { id:'research:t2-hayabusa-clement-craig', first_name:'Craig', last_name:'Clement', email:'', title:'Co-Founder', company:'Hayabusa Fight', tier:'T2', priority:2, signals:{ leadership_change:true }, custom_hook:'The UFC BJJ partnership materially changes the apparel side of Hayabusa.', signal_phrase:'the UFC BJJ partnership' },
+  { id:'research:t2-quadrant-norris', first_name:'Lando', last_name:'Norris', email:'', title:'Founder', company:'Quadrant', tier:'T2', priority:2, signals:{ category_expansion:true }, custom_hook:"Quadrant's evolution from gaming-led into motorsport-and-lifestyle is the most interesting brand expansion in the F1-adjacent space right now.", signal_phrase:"Quadrant's expansion into motorsport apparel" },
+  { id:'research:t2-93brand', first_name:'', last_name:'', email:'', title:'Founder', company:'93brand', tier:'T2', priority:1, signals:{}, custom_hook:'93brand has built one of the most distinct cult followings in BJJ.', signal_phrase:'' },
+  { id:'research:t2-hyperfly', first_name:'', last_name:'', email:'', title:'Founder', company:'Hyperfly', tier:'T2', priority:1, signals:{}, custom_hook:"Hyperfly's California aesthetic has been one of the most consistently-styled brands in the space.", signal_phrase:'' },
+  { id:'research:t3-raine-malhi', first_name:'', last_name:'Malhi', email:'', title:'Founder', company:'Raine Clothing', tier:'T3', priority:1, signals:{ category_expansion:true }, custom_hook:'Sustainable BJJ apparel is a position almost nobody else in the category is genuinely earning.', signal_phrase:"Raine's sustainability positioning" },
+  { id:'research:t3-savg-tknq', first_name:'', last_name:'', email:'', title:'Founder', company:'Savg Tknq', tier:'T3', priority:0, signals:{}, custom_hook:'Savg Tknq has the kind of unfiltered community voice that\'s almost impossible to manufacture once a brand scales.', signal_phrase:'' },
+  { id:'research:t3-nogi-industries', first_name:'', last_name:'', email:'', title:'Founder', company:'NoGi Industries', tier:'T3', priority:0, signals:{}, custom_hook:'Owning the nogi.com domain alone is a real category-naming asset.', signal_phrase:'' },
+  { id:'research:t3-askari', first_name:'', last_name:'', email:'', title:'Founder', company:'Askari Fight Wear', tier:'T3', priority:0, signals:{}, custom_hook:'The Muay Thai / MMA / boxing crossover is a difficult brand position to hold.', signal_phrase:'' },
 ];
+
+// Schedule (server-side data) — keyed by date
+const SCHEDULE = {
+  '2026-05-05': [
+    { lead_id:'research:t2-progress-jiu-jitsu', step:1, tier:'T2' },
+    { lead_id:'research:t2-inverted-witt', step:1, tier:'T2' },
+    { lead_id:'research:t2-scramble-benyon', step:1, tier:'T2' },
+    { lead_id:'research:t2-tatami-dummer', step:1, tier:'T2' },
+    { lead_id:'demo:t1-acme', step:1, tier:'T1' },
+  ],
+  '2026-05-06': [
+    { lead_id:'research:t2-origin-roberts', step:1, tier:'T2' },
+    { lead_id:'research:t2-hayabusa-clement-craig', step:1, tier:'T2' },
+    { lead_id:'research:t2-quadrant-norris', step:1, tier:'T2' },
+  ],
+  '2026-05-07': [
+    { lead_id:'research:t3-raine-malhi', step:1, tier:'T3' },
+  ],
+  '2026-05-08': [
+    { lead_id:'research:t2-93brand', step:1, tier:'T2' },
+    { lead_id:'research:t2-hyperfly', step:1, tier:'T2' },
+    { lead_id:'research:t2-progress-jiu-jitsu', step:2, tier:'T2' },
+    { lead_id:'research:t2-inverted-witt', step:2, tier:'T2' },
+    { lead_id:'research:t2-scramble-benyon', step:2, tier:'T2' },
+    { lead_id:'research:t2-tatami-dummer', step:2, tier:'T2' },
+  ],
+  '2026-05-11': [
+    { lead_id:'research:t3-savg-tknq', step:1, tier:'T3' },
+    { lead_id:'research:t3-nogi-industries', step:1, tier:'T3' },
+    { lead_id:'research:t3-askari', step:1, tier:'T3' },
+  ],
+  '2026-05-12': [],
+};
 
 const SEQUENCES = {
-  T1: { steps: [
-    { step:1, subject:"A note from Bristol — {{company}}'s licensed product programme", body:"Hi {{first_name}},\n\nI run a small creative studio in Bristol — Studio IOS — built specifically around apparel direction, graphic language and trend intelligence for sports and entertainment licensing programmes. We're embedded inside the combat-sports apparel space (FUJI Sports, Phalanx) and the work that comes out of those engagements has been used to set retail-grade graphic standards across multiple licensee categories.\n\n{{custom_hook}}\n\nI've put together a short read on where retail-grade graphic language is heading inside {{company}}'s category over the next 18 months — drawn from what we're seeing across the licensees we work with. Happy to send it over if you'd find it useful. No agenda, no follow-up sales process.\n\n{{signature}}" },
-    { step:2, subject:"{{company}} — the trend brief I mentioned", body:"Hi {{first_name}},\n\nFollowing up on my note from a fortnight ago. Whether or not the trend brief itself is useful, the wider point I'd flag is this: the gap we keep seeing between licensing organisations and their licensees is creative direction at the category level — particularly apparel. Style guides and licensee packs are often produced as compliance documents rather than as tools that genuinely inspire great product, and the result is range inconsistency at retail.\n\nThat's the gap Studio IOS specialises in closing.\n\nIf trend direction or category-level apparel guidance is on your radar for {{company}}'s programme — current or upcoming season — I'd be glad to share what we've put together for similar mandates.\n\n{{signature}}" },
-    { step:3, subject:"How we structured FUJI's apparel direction", body:"Hi {{first_name}},\n\nA short follow-up — no agenda.\n\nWhen FUJI re-set their apparel programme we built the graphic language, trend framework and seasonal direction together with their commercial team. Two specifics that may be relevant to {{company}}:\n\n1. The style-guide function shifted from compliance document to commercial tool. Licensees started using it as creative input, not just brand-protection input. Range coherence improved measurably across categories.\n2. Trend intelligence was sequenced 9 months ahead of the buying cycle, which let category leads brief manufacturers off a single source of truth.\n\nIf either of those would be useful inside {{company}}'s programme — happy to walk through how we structured it. {{gdrive_link}} has the case study and the artefacts we shared with their team.\n\n{{signature}}" },
-    { step:4, subject:"{{company}} — worth a 30-min call?", body:"Hi {{first_name}},\n\nI'll keep this brief. Two months in, and I've not pushed for a conversation because I don't think Tier-1 licensing relationships start that way.\n\nBut if any of the trend direction, style-guide architecture, or apparel-programme work I've sent over has resonated, I'd value 30 minutes of your time to introduce Studio IOS properly and understand what {{company}}'s creative roadmap looks like over the next two seasons.\n\n{{signal_phrase}}\n\nIf now isn't the moment, I'll respect that and keep my touches sector-relevant rather than promotional.\n\n{{signature}}" },
-    { step:5, subject:"Closing the loop — Studio IOS", body:"Hi {{first_name}},\n\nClosing this thread cleanly. If trend intelligence, apparel direction or style-guide capability becomes relevant for {{company}} in the future — whether that's a category expansion, a leadership change, or a programme refresh — my line is open.\n\nStudio IOS sits in an unusually narrow niche: specialist creative direction for licensed apparel, with combat-sports and motorsport credibility most generalist agencies can't match. We're not for every programme, but we're a clean fit for the ones we are.\n\nI'll come back if I see a reason that's specific to {{company}}. If you'd ever like to revisit before then, the door is open.\n\n{{signature}}" }
-  ]},
   T2: { steps: [
-    { step:1, subject:"{{first_name}} — saw {{signal_phrase}}", body:"{{first_name}},\n\nStudio IOS — Bristol-based creative direction studio. We sit inside the combat-sports and action-sports world: FUJI, Phalanx, and a stack of brands you'd recognise.\n\n{{custom_hook}}\n\nReason for the note: founders in the £1M–£10M range often get caught between manufacturer capacity and trend intelligence. Manufacturers can produce; they can't art-direct. The result is collections that ship on time but feel reactive instead of anticipatory.\n\n{{tier_proof}}\n\nWorth a 20-minute call before {{company}}'s next collection window?\n\n{{signature}}" },
-    { step:2, subject:"Trend deck for {{company}} — no strings", body:"{{first_name}},\n\nFollowing up. I can offer something useful regardless: the seasonal trend signals deck we're sharing with our Tier-2 brands this month — graphic language, colour, silhouette and category-momentum data drawn from what we're seeing land at retail.\n\nIt's the kind of thing most brands at your scale don't have access to. Free, no follow-up obligation. Reply with \"send\" and I'll fire it over.\n\n{{signature}}" },
-    { step:3, subject:"FUJI 17%, Phalanx preorder covered fees — same playbook", body:"{{first_name}},\n\nSpecifics:\n\n— FUJI Sports: 17% YoY uplift on the season we directed. Trend signals locked 4 months ahead of the brief; collection structured around 3 graphic anchors instead of 9 disconnected ones.\n— Phalanx: preorder revenue covered inventory + studio fees before launch. Achieved by tightening the graphic language to a single \"buyable identity\" the audience recognised instantly.\n\nSame playbook works for {{company}} if {{custom_hook}}\n\n20-min call to walk through what we'd build for your next collection? {{gdrive_link}} has both case studies in detail.\n\n{{signature}}" },
-    { step:4, subject:"{{company}}'s next collection window", body:"{{first_name}},\n\nDirect ask: when's your next collection briefing window?\n\nIf it's in the next 8 weeks, that's enough lead time for us to slot trend direction in before the brief lands at the manufacturer — which is where the seasonal uplift is unlocked.\n\nIf it's further out, no rush — drop me a note when it's on your radar and I'll prioritise the conversation.\n\n{{signature}}" },
-    { step:5, subject:"Last note from me — Studio IOS", body:"{{first_name}},\n\nLast touch from me — I won't keep nudging.\n\nTwo things on the way out:\n\n1. If you do want the trend deck I mentioned, the offer stands indefinitely. Reply \"send\" any time.\n2. If a season underperforms, or you find yourself reaching for trend intelligence you don't have, my line is open.\n\nBest of luck with what's next at {{company}}.\n\n{{signature}}" }
+    { step:1, subject:"{{first_name}} — saw {{signal_phrase}}", body:"{{first_name}},\n\nStudio IOS — Bristol-based creative direction studio. We sit inside the combat-sports and action-sports world: FUJI, Phalanx, and a stack of brands you'd recognise.\n\n{{custom_hook}}\n\nWe helped FUJI and Phalanx hit 15–18% seasonal revenue uplifts by getting trend direction in before the brief, not after.\n\nWorth a 20-minute call before {{company}}'s next collection window?\n\nTom Hidderley\nStudio IOS" },
+  ]},
+  T1: { steps: [
+    { step:1, subject:"A note from Bristol — {{company}}'s licensed product programme", body:"Hi {{first_name}},\n\nI run a small creative studio in Bristol — Studio IOS — built specifically around apparel direction and graphic language for sports and entertainment licensing programmes.\n\n{{custom_hook}}\n\nHappy to send a short read on where retail-grade graphic language is heading inside {{company}}'s category — no agenda.\n\nTom Hidderley\nStudio IOS" },
   ]},
   T3: { steps: [
-    { step:1, subject:"{{company}} graphics — quick thought", body:"{{first_name}},\n\nBristol-based studio that lives in the BJJ / combat-sports space. I run Studio IOS — small team, deep in the culture. We've worked on FUJI and Phalanx, and a stack of independent brands across BJJ academies and athlete labels.\n\n{{custom_hook}}\n\nMost early-stage brands in our world hit the same wall: cheap creative makes the product impossible to price up. Distinctive creative is the only thing that lets a £55 rashguard actually sell at £55.\n\nWe run a starter graphic package specifically for brands at your stage — accessible price point, fast turnaround, designed to do one job: build product that travels beyond your immediate community.\n\nWorth a chat?\n\n{{signature}}" }
-  ]}
+    { step:1, subject:"{{company}} graphics — quick thought", body:"{{first_name}},\n\n{{custom_hook}}\n\nWe run a starter graphic package specifically for brands at your stage. Worth a chat?\n\nTom Hidderley\nStudio IOS" },
+  ]},
 };
 
-const CONFIG = {
-  sender: { name:'Tom Hidderley', email:'tom@studioios.com', signature:'Tom Hidderley\nCreative Director & Founder, Studio IOS\nstudioios.com' },
-  gdrive_links: { T1:'https://drive.google.com/REPLACE_WITH_TIER1_LICENSING_PORTFOLIO', T2:'https://drive.google.com/REPLACE_WITH_TIER2_DTC_CASE_STUDIES', T3:'https://drive.google.com/REPLACE_WITH_TIER3_FOUNDER_STARTER_PACK' },
-  tier_proof: { T1:'We\'ve built the apparel direction and graphic language behind FUJI Sports\' competition and lifestyle programmes and Phalanx\'s combat-sports ranges — both running at retail with style-guide-grade consistency.', T2:'We helped FUJI and Phalanx hit 15–18% seasonal revenue uplifts by getting trend direction in before the brief, not after. Phalanx\'s last preorder window covered inventory and our fees before launch day.', T3:'We\'ve worked with the brands you\'d recognise in the BJJ space — FUJI and Phalanx among them. We know the culture, and we know what moves units in it.' }
-};
+const HOLIDAYS = ['2026-05-04','2026-05-25','2026-08-31','2026-12-25','2026-12-28'];
 
-const SCHEDULE_TODAY = [
-  { lead_id:'research:t2-progress-jiu-jitsu', step:1, tier:'T2' },
-  { lead_id:'research:t2-inverted-witt', step:1, tier:'T2' },
-  { lead_id:'research:t2-scramble-benyon', step:1, tier:'T2' },
-  { lead_id:'research:t2-tatami-dummer', step:1, tier:'T2' },
-  { lead_id:'demo:t1-acme', step:1, tier:'T1' }
-];
+// ── State ─────────────────────────────────────────────────────────────────
+let view = 'today';
+let activeLead = null, activeStep = 1;
+let prevView = 'today';
+let pipelineFilter = { tier:'all', status:'all', q:'' };
+let expandedDays = new Set();
 
-// ── Token substitution ─────────────────────────────────────────────────────
+let sentSet = new Set(JSON.parse(localStorage.getItem('preview.sent') || '[]'));
+let boosted = JSON.parse(localStorage.getItem('preview.boosted') || '{}');
+
+function persist() {
+  localStorage.setItem('preview.sent', JSON.stringify([...sentSet]));
+  localStorage.setItem('preview.boosted', JSON.stringify(boosted));
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function isWeekend(iso) { const d = new Date(iso+'T00:00:00Z'); return d.getUTCDay()===0||d.getUTCDay()===6; }
+function nextBusiness(iso) {
+  let d = new Date(iso+'T00:00:00Z'); d.setUTCDate(d.getUTCDate()+1);
+  while (true) { const s = d.toISOString().slice(0,10); if (!isWeekend(s)&&!HOLIDAYS.includes(s)) return s; d.setUTCDate(d.getUTCDate()+1); }
+}
+function addBusiness(iso, n) {
+  let d = new Date(iso+'T00:00:00Z');
+  while (isWeekend(d.toISOString().slice(0,10))||HOLIDAYS.includes(d.toISOString().slice(0,10))) d.setUTCDate(d.getUTCDate()+1);
+  let added = 0;
+  while (added < n) { d.setUTCDate(d.getUTCDate()+1); const s = d.toISOString().slice(0,10); if (!isWeekend(s)&&!HOLIDAYS.includes(s)) added++; }
+  return d.toISOString().slice(0,10);
+}
+function nextNBusiness(iso, n) {
+  const out = []; let cur = iso;
+  if (isWeekend(cur)||HOLIDAYS.includes(cur)) cur = nextBusiness(cur);
+  while (out.length < n) { out.push(cur); cur = nextBusiness(cur); }
+  return out;
+}
+function fmtShort(iso) { const d=new Date(iso+'T00:00:00'); return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}); }
+function fmtLong(iso) { const d=new Date(iso+'T00:00:00'); return d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}); }
+
+const CADENCE = { T1:[0,14,30,60,90], T2:[0,3,7,12,18], T3:[0,5,10,17,24] };
+
+function boostLead(id) {
+  const lead = LEADS.find(l => l.id === id); if (!lead) return;
+  CADENCE[lead.tier].forEach((offset, i) => {
+    const date = addBusiness(TODAY_ISO, offset);
+    boosted[date] = boosted[date] || [];
+    if (!boosted[date].some(b => b.lead_id === id && b.step === i+1)) {
+      boosted[date].push({ lead_id:id, step:i+1, tier:lead.tier });
+    }
+  });
+  persist();
+}
+function unboostLead(id) {
+  for (const date of Object.keys(boosted)) {
+    boosted[date] = boosted[date].filter(b => b.lead_id !== id);
+    if (boosted[date].length === 0) delete boosted[date];
+  }
+  persist();
+}
+function isBoosted(id) { return Object.values(boosted).some(arr => arr.some(b => b.lead_id === id)); }
+function combinedFor(date) {
+  const sched = (SCHEDULE[date]||[]).map(s=>({...s,source:'scheduled'}));
+  const bst = (boosted[date]||[]).map(b=>({...b,source:'boosted'}));
+  const seen = new Set(sched.map(s=>`${s.lead_id}::${s.step}`));
+  return [...sched, ...bst.filter(b=>!seen.has(`${b.lead_id}::${b.step}`))];
+}
+
+function isSent(id, step) { return sentSet.has(`${id}::${step}`); }
+function markSent(id, step) { sentSet.add(`${id}::${step}`); persist(); }
+
 function renderEmail(lead, step) {
-  const seq = SEQUENCES[lead.tier];
-  const tpl = seq.steps.find(s => s.step === step) || seq.steps[0];
-  const replace = s => s
+  const tpl = (SEQUENCES[lead.tier]?.steps || []).find(s => s.step === step) || SEQUENCES[lead.tier]?.steps?.[0];
+  if (!tpl) return { subject:'(no template)', body:'' };
+  const r = s => s
     .replace(/\{\{first_name\}\}/g, lead.first_name || lead.company)
     .replace(/\{\{company\}\}/g, lead.company)
     .replace(/\{\{custom_hook\}\}/g, lead.custom_hook || '')
-    .replace(/\{\{signal_phrase\}\}/g, lead.signal_phrase || 'your recent activity')
-    .replace(/\{\{tier_proof\}\}/g, CONFIG.tier_proof[lead.tier] || '')
-    .replace(/\{\{gdrive_link\}\}/g, CONFIG.gdrive_links[lead.tier])
-    .replace(/\{\{sender_name\}\}/g, CONFIG.sender.name)
-    .replace(/\{\{signature\}\}/g, CONFIG.sender.signature);
-  return { subject: replace(tpl.subject), body: replace(tpl.body) };
+    .replace(/\{\{signal_phrase\}\}/g, lead.signal_phrase || 'your recent activity');
+  return { subject: r(tpl.subject), body: r(tpl.body) };
 }
 
-// ── State ──────────────────────────────────────────────────────────────────
-let view = 'today'; // 'today' | 'lead'
-let activeLead = null;
-let activeStep = 1;
-let sentSet = new Set(JSON.parse(localStorage.getItem('sent_preview') || '[]'));
-
-function markSent(id, step) {
-  const key = id + ':' + step;
-  sentSet.add(key);
-  localStorage.setItem('sent_preview', JSON.stringify([...sentSet]));
-}
-function isSent(id, step) { return sentSet.has(id + ':' + step); }
-
-// ── Toast ──────────────────────────────────────────────────────────────────
 function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2000);
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
 }
 
-// ── Copy ──────────────────────────────────────────────────────────────────
-function copyText(text) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(() => toast('Copied to clipboard'));
-  } else {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    toast('Copied to clipboard');
-  }
+function copy(text) {
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => toast('Copied'));
+  else { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast('Copied'); }
 }
 
-// ── Render ─────────────────────────────────────────────────────────────────
+// ── Render ────────────────────────────────────────────────────────────────
 function render() {
-  document.getElementById('app').innerHTML = view === 'today' ? renderToday() : renderLead();
+  document.getElementById('app').innerHTML =
+    view === 'today' ? renderToday() :
+    view === 'pipeline' ? renderPipeline() :
+    view === 'lead' ? renderLead() :
+    renderToday();
+}
+
+function navHTML(active) {
+  return `<div class="bottom-nav">
+    <div class="nav-item ${active==='today'?'active':''}" onclick="goView('today')"><span class="nav-icon">●</span>Today</div>
+    <div class="nav-item ${active==='pipeline'?'active':''}" onclick="goView('pipeline')"><span class="nav-icon">▦</span>Pipeline</div>
+    <div class="nav-item"><span class="nav-icon">⚙</span>Settings</div>
+  </div>`;
+}
+
+function leadRowHTML(lead, step, opts={}) {
+  const sent = isSent(lead.id, step);
+  const cls = ['lead-row']; if (sent) cls.push('sent'); if (opts.boosted) cls.push('boosted');
+  const name = ((lead.first_name||'') + (lead.last_name?' '+lead.last_name:'')).trim() || lead.company;
+  const showCo = ((lead.first_name||'') + (lead.last_name?' '+lead.last_name:'')).trim();
+  const sigKey = Object.keys(lead.signals||{}).find(k => lead.signals[k]);
+  const sigLbl = sigKey ? sigKey.replace(/_/g,' ') : '';
+  return `<div class="${cls.join(' ')}" onclick="openLead('${lead.id}',${step})">
+    <div class="tier-bar ${lead.tier.toLowerCase()}"></div>
+    <div class="lead-content">
+      <div class="lead-name">${name}${showCo ? `<span class="lead-company">${lead.company}</span>` : ''}</div>
+      <div class="lead-meta">${lead.title||''}${sigLbl ? `<span class="signal-pill">${sigLbl}</span>`:''}</div>
+    </div>
+    <span class="step-pill ${opts.boosted?'boost':''}">${opts.boosted?'boost · ':'step '}${step}</span>
+  </div>`;
 }
 
 function renderToday() {
-  const done = SCHEDULE_TODAY.filter(s => isSent(s.lead_id, s.step)).length;
-  const total = SCHEDULE_TODAY.length;
-  const pct = total > 0 ? done / total : 0;
-  const r = 26, circ = 2 * Math.PI * r;
-  const offset = circ * (1 - pct);
+  const items = combinedFor(TODAY_ISO).map(s => ({...s, lead: LEADS.find(l=>l.id===s.lead_id)})).filter(s=>s.lead).sort((a,b)=>(b.lead.priority||0)-(a.lead.priority||0));
+  const sent = items.filter(i => isSent(i.lead_id, i.step)).length;
+  const boostedN = items.filter(i => i.source === 'boosted').length;
+  const tier = { T1:0,T2:0,T3:0 }; items.forEach(i => tier[i.lead.tier]++);
+  const r = 36, c = 2*Math.PI*r, pct = items.length > 0 ? sent/items.length : 0;
 
-  const items = SCHEDULE_TODAY.map(s => {
-    const lead = LEADS.find(l => l.id === s.lead_id);
-    if (!lead) return '';
-    const sent = isSent(s.lead_id, s.step);
-    const sig = Object.values(lead.signals || {})[0];
-    const sigLabel = typeof sig === 'string' ? sig : (sig ? 'Signal' : '');
-    return `<div class="lead-item" onclick="openLead('${lead.id}',${s.step})" style="${sent ? 'opacity:0.45' : ''}">
-      <div class="tier-dot dot-${lead.tier}"></div>
-      <div class="lead-info">
-        <div class="lead-name">${lead.first_name ? lead.first_name + ' ' + lead.last_name : lead.company}</div>
-        <div class="lead-company">${lead.company}</div>
+  const future = nextNBusiness(nextBusiness(TODAY_ISO), 5);
+  const weekHTML = future.map(iso => {
+    const dayItems = combinedFor(iso).map(s => ({...s, lead:LEADS.find(l=>l.id===s.lead_id)})).filter(s=>s.lead).sort((a,b)=>(b.lead.priority||0)-(a.lead.priority||0));
+    const dayTier = {T1:0,T2:0,T3:0}; dayItems.forEach(i => dayTier[i.lead.tier]++);
+    const dayBoosted = dayItems.filter(i => i.source==='boosted').length;
+    const exp = expandedDays.has(iso);
+    const tierBadges = [['T1','t1'],['T2','t2'],['T3','t3']].map(([k,c]) => dayTier[k] ? `<span class="tier-mini ${c}">${k}·${dayTier[k]}</span>` : '').filter(Boolean).join('');
+    return `<div class="day-card ${exp?'expanded':''}">
+      <div class="day-card-header" onclick="toggleDay('${iso}')">
+        <div>
+          <div class="day-card-date">${fmtShort(iso)}</div>
+          <div class="day-card-count">${dayItems.length===0?'no touches':`${dayItems.length} ${dayItems.length===1?'touch':'touches'}${dayBoosted?` · ${dayBoosted} boosted`:''}`}</div>
+        </div>
+        <div class="day-card-right">
+          <div class="day-tiers">${tierBadges}</div>
+          ${dayItems.length ? `<span class="day-card-toggle">▾</span>` : ''}
+        </div>
       </div>
-      <div class="lead-right">
-        <span class="tier-badge badge-${lead.tier}">${lead.tier} · E${s.step}</span>
-        ${sigLabel ? `<span class="signal-pill" title="${sigLabel}">⚡ ${sigLabel.slice(0,22)}${sigLabel.length>22?'…':''}</span>` : ''}
-        ${sent ? `<span style="font-size:11px;color:#4caf50">✓ sent</span>` : lead.priority >= 3 ? `<div class="priority-pip"></div>` : ''}
-      </div>
+      ${dayItems.length ? `<div class="day-card-leads">${dayItems.map(i => leadRowHTML(i.lead, i.step, {boosted:i.source==='boosted'})).join('')}</div>`:''}
     </div>`;
   }).join('');
 
   return `
-    <div class="demo-banner">Preview build — 2026-05-05 · 5 leads today</div>
-    <div class="header">
-      <div class="header-top">
-        <div>
-          <div class="logo">Studio IOS</div>
-          <div class="date-label">Tuesday 5 May 2026</div>
-        </div>
-        <div class="header-meta">
-          <div class="progress-label">${done} / ${total} sent</div>
-        </div>
-      </div>
+    <div class="demo-banner">Preview · 5 May 2026 · localStorage state persists in your browser</div>
+    <div class="app-header">
+      <h1>STUDIO IOS</h1>
+      <span class="date">${fmtLong(TODAY_ISO)}</span>
     </div>
-    <div class="ring-wrap">
-      <svg class="ring" viewBox="0 0 64 64">
-        <circle cx="32" cy="32" r="${r}" fill="none" stroke="#1e1e1e" stroke-width="6"/>
-        <circle cx="32" cy="32" r="${r}" fill="none" stroke="#ff5b1a" stroke-width="6"
-          stroke-linecap="round"
-          stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/>
-      </svg>
-      <div>
-        <div class="ring-text">${done}<span style="font-size:16px;color:#666"> / ${total}</span></div>
-        <div class="ring-sub">emails sent today</div>
+    <main>
+      <div class="progress-card">
+        <div class="ring">
+          <svg width="92" height="92" viewBox="0 0 92 92">
+            <circle class="track" cx="46" cy="46" r="${r}"/>
+            <circle class="fill" cx="46" cy="46" r="${r}" stroke-dasharray="${c*pct} ${c}"/>
+          </svg>
+          <div class="lbl">${sent}/${items.length}</div>
+        </div>
+        <div class="progress-summary">
+          <div class="count">${items.length} ${items.length===1?'touch':'touches'}</div>
+          <div class="meta">${sent} sent · ${items.length-sent} to go${boostedN?` · ${boostedN} boosted`:''}</div>
+          <div class="breakdown">
+            ${tier.T1?`<span>T1·${tier.T1}</span>`:''}
+            ${tier.T2?`<span>T2·${tier.T2}</span>`:''}
+            ${tier.T3?`<span>T3·${tier.T3}</span>`:''}
+          </div>
+        </div>
       </div>
+      <section>
+        <h2>Today</h2>
+        ${items.length === 0 ? `<div style="background:var(--bg-elev);border-radius:14px;padding:32px;text-align:center;color:var(--text-dim)">Nothing scheduled. <a onclick="goView('pipeline')" style="cursor:pointer">Boost from pipeline →</a></div>` : `<div class="lead-list">${items.map(i => leadRowHTML(i.lead, i.step, {boosted:i.source==='boosted'})).join('')}</div>`}
+      </section>
+      <section>
+        <h2>Week ahead</h2>
+        <div class="week-ahead">${weekHTML}</div>
+      </section>
+    </main>
+    ${navHTML('today')}`;
+}
+
+function renderPipeline() {
+  const merged = LEADS.filter(l => {
+    if (pipelineFilter.tier !== 'all' && l.tier !== pipelineFilter.tier) return false;
+    const sentAny = [...sentSet].some(k => k.startsWith(l.id+'::'));
+    const boostedL = isBoosted(l.id);
+    if (pipelineFilter.status === 'pending' && sentAny) return false;
+    if (pipelineFilter.status === 'sent' && !sentAny) return false;
+    if (pipelineFilter.status === 'boosted' && !boostedL) return false;
+    if (pipelineFilter.q) {
+      const hay = `${l.first_name} ${l.last_name} ${l.company} ${l.title}`.toLowerCase();
+      if (!hay.includes(pipelineFilter.q.toLowerCase())) return false;
+    }
+    return true;
+  });
+
+  const tierChips = ['all','T1','T2','T3'].map(t => `<button class="chip ${pipelineFilter.tier===t?'active':''}" onclick="setFilter('tier','${t}')">${t==='all'?'All tiers':t}</button>`).join('');
+  const statusChips = ['all','pending','sent','boosted'].map(s => `<button class="chip ${pipelineFilter.status===s?'active':''}" onclick="setFilter('status','${s}')">${s}</button>`).join('');
+
+  const rows = merged.map(l => {
+    const inner = leadRowHTML(l, 1);
+    const active = isBoosted(l.id);
+    return `<div class="lead-row-wrap">${inner}<button class="boost-btn ${active?'active':''}" onclick="event.stopPropagation();toggleBoost('${l.id}')" title="${active?'Remove from today':'Add to today + auto-schedule'}">${active?'✓':'+'}</button></div>`;
+  }).join('');
+
+  return `
+    <div class="demo-banner">Preview · Pipeline · Tap + to add a lead to today and schedule its sequence</div>
+    <div class="app-header">
+      <h1>PIPELINE</h1>
+      <span class="date">${LEADS.length} leads</span>
     </div>
-    <div class="section-label">Today's leads — priority order</div>
-    ${items}
-    <div style="height:70px"></div>
-    <div class="list-nav">
-      <div class="nav-item active">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-        Today
-      </div>
-      <div class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-        Pipeline
-      </div>
-      <div class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        Settings
-      </div>
-    </div>`;
+    <main>
+      <div class="filter-bar">${tierChips}${statusChips}</div>
+      <input class="search-input" type="search" placeholder="Search name, company, title…" value="${pipelineFilter.q}" oninput="setFilter('q',this.value)">
+      <div class="list-meta">Tap <span class="kbd">+</span> to add to today and auto-schedule the 5-step sequence on the tier cadence. Tap <span class="kbd">✓</span> to remove.</div>
+      <div class="list-meta">${merged.length} of ${LEADS.length}</div>
+      <div class="lead-list">${rows}</div>
+    </main>
+    ${navHTML('pipeline')}`;
 }
 
 function renderLead() {
-  const lead = LEADS.find(l => l.id === activeLead);
-  if (!lead) return renderToday();
+  const lead = LEADS.find(l => l.id === activeLead); if (!lead) return renderToday();
   const { subject, body } = renderEmail(lead, activeStep);
   const sent = isSent(lead.id, activeStep);
-  const steps = SEQUENCES[lead.tier].steps.length;
-
-  const stepDots = Array.from({length: steps}, (_,i) => {
-    const n = i+1;
-    const s = isSent(lead.id, n);
-    return `<div class="step-dot ${n === activeStep ? 'active' : ''} ${s ? 'sent' : ''}"
-      onclick="changeStep(${n})"
-      style="${s ? 'border-color:#4caf50;color:#4caf50' : ''}">${n}</div>`;
-  }).join('');
-
-  const mailtoBody = encodeURIComponent(body.slice(0, 1500));
-  const mailtoHref = lead.email
-    ? `mailto:${lead.email}?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`
-    : `mailto:?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
-
+  const mailto = `mailto:${encodeURIComponent(lead.email||'')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   return `
-    <div class="lead-detail">
-      <div class="header">
-        <button class="back-btn" onclick="goBack()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
-          Today
-        </button>
-        <div class="logo">Studio IOS</div>
-      </div>
-      <div class="lead-card">
-        <div class="lead-card-name">${lead.first_name ? lead.first_name + ' ' + lead.last_name : '—'}</div>
-        <div class="lead-card-title">${lead.title}</div>
-        <div class="lead-card-company">${lead.company}</div>
-        <div class="lead-card-badges">
-          <span class="tier-badge badge-${lead.tier}">${lead.tier}</span>
-          ${lead.priority >= 3 ? '<span style="font-size:11px;color:#ff5b1a">🔥 High priority</span>' : ''}
-          ${Object.keys(lead.signals||{}).length ? '<span class="signal-pill">⚡ Signal detected</span>' : ''}
-        </div>
-      </div>
-      <div class="step-dots">${stepDots}</div>
-      <div class="email-section">
-        <div class="email-subject-label">Subject</div>
-        <div class="email-subject">${subject}</div>
-        <div class="email-subject-label">Body</div>
-        <div class="email-body" id="email-body">${body}</div>
-      </div>
+    <div class="demo-banner">Preview · Lead detail · Email rendered with token substitution</div>
+    <div class="app-header">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <span class="date">${lead.tier} · step ${activeStep}</span>
     </div>
-    <div class="actions">
-      <button class="btn btn-secondary" onclick="copyText(document.getElementById('email-body').textContent)">Copy email</button>
-      <a class="btn btn-secondary" style="text-decoration:none;text-align:center;line-height:1.2;display:flex;align-items:center;justify-content:center" href="${mailtoHref}">Open in Mail</a>
-      <button class="btn ${sent ? 'btn-sent' : 'btn-primary'}" onclick="handleMarkSent()">
-        ${sent ? '✓ Sent' : 'Mark sent'}
-      </button>
-    </div>`;
+    <main>
+      <div class="summary ${lead.tier.toLowerCase()}">
+        <div class="name">${lead.first_name||''} ${lead.last_name||''}</div>
+        <div class="title">${lead.title}</div>
+        <div class="company">${lead.company}${lead.email?' · '+lead.email:''}</div>
+        ${lead.custom_hook ? `<div class="hook">${lead.custom_hook}</div>` : ''}
+      </div>
+      <div class="email-card">
+        <div class="email-meta">
+          <div class="row"><span class="label">To:</span><span>${lead.email||'—'}</span></div>
+          <div class="row"><span class="label">Subject:</span><span>${subject}</span></div>
+        </div>
+        <pre class="email-body" id="email-body">${body}</pre>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="copy(document.getElementById('email-body').textContent)">Copy email body</button>
+        <a class="btn" href="${mailto}">Open in Apple Mail</a>
+        ${sent
+          ? `<div class="btn btn-success">✓ Sent</div>`
+          : `<button class="btn btn-success" onclick="markSentClick()">Mark as sent</button>`}
+      </div>
+    </main>`;
 }
 
 // ── Handlers ──────────────────────────────────────────────────────────────
-window.openLead = function(id, step) { activeLead = id; activeStep = step; view = 'lead'; render(); };
-window.goBack = function() { view = 'today'; render(); };
-window.changeStep = function(n) { activeStep = n; render(); };
-window.copyText = copyText;
-window.handleMarkSent = function() {
-  markSent(activeLead, activeStep);
-  toast('Marked as sent');
+window.goView = function(v) { prevView = view; view = v; render(); };
+window.openLead = function(id, step) { prevView = view; activeLead = id; activeStep = step; view = 'lead'; render(); };
+window.goBack = function() { view = prevView || 'today'; render(); };
+window.toggleDay = function(iso) { if (expandedDays.has(iso)) expandedDays.delete(iso); else expandedDays.add(iso); render(); };
+window.toggleBoost = function(id) {
+  const lead = LEADS.find(l=>l.id===id);
+  if (isBoosted(id)) { unboostLead(id); toast(`${lead.company} removed`); }
+  else { boostLead(id); toast(`${lead.company} added to today + sequence scheduled`); }
   render();
 };
+window.setFilter = function(k, v) { pipelineFilter[k] = v; render(); };
+window.copy = copy;
+window.markSentClick = function() { markSent(activeLead, activeStep); toast('Marked sent'); render(); };
 
 render();
 </script>

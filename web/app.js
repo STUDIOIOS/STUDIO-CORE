@@ -8,6 +8,7 @@ const LS = {
   pushover_user: 'studio.pushover_user',
   activity: 'studio.activity',
   pending_dispatch: 'studio.pending_dispatch',
+  boosted: 'studio.boosted',
 };
 
 // ───────── data layer ─────────
@@ -119,6 +120,108 @@ async function flushPendingDispatches() {
     } catch { remaining.push(event); }
   }
   localStorage.setItem(LS.pending_dispatch, JSON.stringify(remaining));
+}
+
+// ───────── boosts (local manual additions to the day) ─────────
+function getBoosted() {
+  try { return JSON.parse(localStorage.getItem(LS.boosted) || '{}'); }
+  catch { return {}; }
+}
+function saveBoosted(b) { localStorage.setItem(LS.boosted, JSON.stringify(b)); }
+
+function holidaysFromConfig(config) {
+  return [
+    ...(config.uk_bank_holidays_2026 || []),
+    ...(config.uk_bank_holidays_2027 || []),
+  ];
+}
+
+function isWeekendIso(iso) {
+  const dow = new Date(iso + 'T00:00:00Z').getUTCDay();
+  return dow === 0 || dow === 6;
+}
+
+function nextBusinessDayIso(iso, holidays) {
+  let d = new Date(iso + 'T00:00:00Z');
+  d.setUTCDate(d.getUTCDate() + 1);
+  while (true) {
+    const s = d.toISOString().slice(0, 10);
+    if (!isWeekendIso(s) && !holidays.includes(s)) return s;
+    d.setUTCDate(d.getUTCDate() + 1);
+  }
+}
+
+function addBusinessDaysIso(startIso, n, holidays) {
+  let d = new Date(startIso + 'T00:00:00Z');
+  // anchor on a business day
+  while (true) {
+    const s = d.toISOString().slice(0, 10);
+    if (!isWeekendIso(s) && !holidays.includes(s)) break;
+    d.setUTCDate(d.getUTCDate() + 1);
+  }
+  let added = 0;
+  while (added < n) {
+    d.setUTCDate(d.getUTCDate() + 1);
+    const s = d.toISOString().slice(0, 10);
+    if (!isWeekendIso(s) && !holidays.includes(s)) added++;
+  }
+  return d.toISOString().slice(0, 10);
+}
+
+function nextBusinessDays(fromIso, count, holidays) {
+  const out = [];
+  let cur = fromIso;
+  if (isWeekendIso(cur) || holidays.includes(cur)) cur = nextBusinessDayIso(cur, holidays);
+  while (out.length < count) {
+    out.push(cur);
+    cur = nextBusinessDayIso(cur, holidays);
+  }
+  return out;
+}
+
+// Add a lead to today + auto-schedule the rest of its sequence on the tier cadence.
+function boostLead(leadId, leads, config, fromIso) {
+  const lead = leads.find(l => l.id === leadId);
+  if (!lead) return;
+  const cadence = config.cadence_business_days?.[lead.tier] || [0, 3, 7, 12, 18];
+  const holidays = holidaysFromConfig(config);
+  const boosted = getBoosted();
+  cadence.forEach((offset, i) => {
+    const date = addBusinessDaysIso(fromIso, offset, holidays);
+    boosted[date] = boosted[date] || [];
+    if (!boosted[date].some(b => b.lead_id === leadId && b.step === i + 1)) {
+      boosted[date].push({
+        lead_id: leadId,
+        step: i + 1,
+        tier: lead.tier,
+        boosted_at: new Date().toISOString(),
+      });
+    }
+  });
+  saveBoosted(boosted);
+}
+
+function unboostLead(leadId) {
+  const boosted = getBoosted();
+  for (const date of Object.keys(boosted)) {
+    boosted[date] = boosted[date].filter(b => b.lead_id !== leadId);
+    if (boosted[date].length === 0) delete boosted[date];
+  }
+  saveBoosted(boosted);
+}
+
+function isBoosted(leadId) {
+  const boosted = getBoosted();
+  return Object.values(boosted).some(arr => arr.some(b => b.lead_id === leadId));
+}
+
+// Combine server schedule + local boosts for a given date, deduped.
+function combinedScheduleFor(date, schedule) {
+  const scheduled = (schedule[date] || []).map(s => ({ ...s, source: 'scheduled' }));
+  const boosted = (getBoosted()[date] || []).map(b => ({ ...b, source: 'boosted' }));
+  const seen = new Set(scheduled.map(s => `${s.lead_id}::${s.step}`));
+  const extras = boosted.filter(b => !seen.has(`${b.lead_id}::${b.step}`));
+  return [...scheduled, ...extras];
 }
 
 // ───────── email rendering ─────────
@@ -252,13 +355,15 @@ function renderToday(data) {
 
   document.querySelector('.date').textContent = fmtDateLong(date);
 
-  const todayItems = (schedule[date] || [])
+  const combined = combinedScheduleFor(date, schedule);
+  const todayItems = combined
     .map(s => ({ ...s, lead: leads.find(l => l.id === s.lead_id) }))
     .filter(s => s.lead)
     .sort((a, b) => (b.lead.priority || 0) - (a.lead.priority || 0));
 
   const sentCount = todayItems.filter(s => isSent(activity, s.lead_id, s.step)).length;
   const total = todayItems.length;
+  const boostedCount = todayItems.filter(s => s.source === 'boosted').length;
 
   // tier breakdown
   const tierCount = { T1: 0, T2: 0, T3: 0 };
@@ -270,9 +375,12 @@ function renderToday(data) {
   // progress card
   const card = el('div', { class: 'progress-card' });
   card.appendChild(progressRing(sentCount, total));
+  const meta = total === 0
+    ? 'Enjoy the day off.'
+    : `${sentCount} sent · ${total - sentCount} to go${boostedCount ? ` · ${boostedCount} boosted` : ''}`;
   card.appendChild(el('div', { class: 'progress-summary' },
     el('div', { class: 'count' }, total === 0 ? 'No touches today' : `${total} ${total === 1 ? 'touch' : 'touches'}`),
-    el('div', { class: 'meta' }, total === 0 ? 'Enjoy the day off.' : `${sentCount} sent · ${total - sentCount} to go`),
+    el('div', { class: 'meta' }, meta),
     el('div', { class: 'breakdown' },
       tierCount.T1 ? el('span', {}, `T1·${tierCount.T1}`) : null,
       tierCount.T2 ? el('span', {}, `T2·${tierCount.T2}`) : null,
@@ -284,31 +392,100 @@ function renderToday(data) {
   const sec = el('section');
   sec.appendChild(el('h2', {}, 'Today'));
   if (todayItems.length === 0) {
-    sec.appendChild(el('div', { class: 'empty' }, 'Nothing scheduled. The campaign starts on weekdays.'));
+    sec.appendChild(el('div', { class: 'empty' },
+      'Nothing scheduled. ',
+      el('a', { href: 'all.html' }, 'Boost a lead from the pipeline.'),
+    ));
   } else {
     const list = el('div', { class: 'lead-list' });
-    todayItems.forEach(item => list.appendChild(leadRow(item.lead, item.step, isSent(activity, item.lead_id, item.step))));
+    todayItems.forEach(item =>
+      list.appendChild(leadRow(item.lead, item.step, isSent(activity, item.lead_id, item.step), { boosted: item.source === 'boosted' }))
+    );
     sec.appendChild(list);
   }
   main.appendChild(sec);
 
-  // week chart
+  // Week ahead — next 5 weekdays after today
   const weekSec = el('section');
-  weekSec.appendChild(el('h2', {}, 'This week'));
-  weekSec.appendChild(weekChart(date, schedule, activity));
+  weekSec.appendChild(el('h2', {}, 'Week ahead'));
+  weekSec.appendChild(renderWeekAhead(date, leads, schedule, activity, holidaysFromConfig(config)));
   main.appendChild(weekSec);
+
+  // Compact bar chart at bottom for at-a-glance volume
+  const chartSec = el('section');
+  chartSec.appendChild(el('h2', {}, 'Volume — this week'));
+  chartSec.appendChild(weekChart(date, schedule, activity));
+  main.appendChild(chartSec);
 }
 
-function leadRow(lead, step, sent) {
+// Render next 5 weekdays as expandable cards.
+function renderWeekAhead(fromIso, leads, schedule, activity, holidays) {
+  const wrap = el('div', { class: 'week-ahead' });
+  const startNext = nextBusinessDayIso(fromIso, holidays);
+  const days = nextBusinessDays(startNext, 5, holidays);
+  days.forEach(iso => {
+    const items = combinedScheduleFor(iso, schedule)
+      .map(s => ({ ...s, lead: leads.find(l => l.id === s.lead_id) }))
+      .filter(s => s.lead)
+      .sort((a, b) => (b.lead.priority || 0) - (a.lead.priority || 0));
+
+    const tier = { T1: 0, T2: 0, T3: 0 };
+    items.forEach(i => { tier[i.lead.tier] = (tier[i.lead.tier] || 0) + 1; });
+    const boostedN = items.filter(i => i.source === 'boosted').length;
+
+    const card = el('div', { class: 'day-card' });
+    const tierBadges = el('span', { class: 'day-tiers' },
+      tier.T1 ? el('span', { class: 'tier-mini t1' }, `T1·${tier.T1}`) : null,
+      tier.T2 ? el('span', { class: 'tier-mini t2' }, `T2·${tier.T2}`) : null,
+      tier.T3 ? el('span', { class: 'tier-mini t3' }, `T3·${tier.T3}`) : null,
+    );
+    const header = el('div', { class: 'day-card-header' },
+      el('div', { class: 'day-card-left' },
+        el('div', { class: 'day-card-date' }, fmtDateShort(iso)),
+        el('div', { class: 'day-card-count' },
+          items.length === 0 ? 'no touches' : `${items.length} ${items.length === 1 ? 'touch' : 'touches'}${boostedN ? ` · ${boostedN} boosted` : ''}`),
+      ),
+      el('div', { class: 'day-card-right' },
+        tierBadges,
+        items.length ? el('span', { class: 'day-card-toggle' }, '▾') : null,
+      ),
+    );
+    card.appendChild(header);
+
+    if (items.length) {
+      const body = el('div', { class: 'day-card-leads' });
+      items.forEach(item =>
+        body.appendChild(leadRow(item.lead, item.step, isSent(activity, item.lead_id, item.step), { boosted: item.source === 'boosted', compact: true }))
+      );
+      card.appendChild(body);
+      header.addEventListener('click', () => card.classList.toggle('expanded'));
+    }
+    wrap.appendChild(card);
+  });
+  return wrap;
+}
+
+function fmtDateShort(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+
+function leadRow(lead, step, sent, opts = {}) {
+  const { boosted = false, compact = false } = opts;
+  const cls = ['lead-row'];
+  if (sent) cls.push('sent');
+  if (boosted) cls.push('boosted');
+  if (compact) cls.push('compact');
   const a = el('a', {
-    class: `lead-row${sent ? ' sent' : ''}`,
+    class: cls.join(' '),
     href: `lead.html?id=${encodeURIComponent(lead.id)}&step=${step}`,
   });
   a.appendChild(el('div', { class: `tier-bar ${lead.tier.toLowerCase()}` }));
   const content = el('div', { class: 'lead-content' });
+  const nameStr = (lead.first_name || '') + (lead.last_name ? ' ' + lead.last_name : '');
   content.appendChild(el('div', { class: 'lead-name' },
-    lead.first_name + ' ' + (lead.last_name || ''),
-    el('span', { class: 'lead-company' }, lead.company)
+    nameStr.trim() || lead.company,
+    nameStr.trim() ? el('span', { class: 'lead-company' }, lead.company) : null,
   ));
   const meta = el('div', { class: 'lead-meta' });
   meta.appendChild(document.createTextNode(lead.title || ''));
@@ -317,7 +494,8 @@ function leadRow(lead, step, sent) {
   }
   content.appendChild(meta);
   a.appendChild(content);
-  a.appendChild(el('span', { class: 'step-pill' }, `step ${step}`));
+  const pillText = boosted ? `boost · ${step}` : `step ${step}`;
+  a.appendChild(el('span', { class: `step-pill${boosted ? ' boost-pill' : ''}` }, pillText));
   return a;
 }
 
@@ -498,7 +676,7 @@ function renderLead(data) {
 
 // ───────── All / pipeline ─────────
 function renderAll(data) {
-  const { leads, schedule, activity } = data;
+  const { config, leads, schedule, activity } = data;
   const main = document.querySelector('main');
   main.innerHTML = '';
 
@@ -517,7 +695,7 @@ function renderAll(data) {
     c.dataset.tier = t;
     fb.appendChild(c);
   });
-  ['all', 'pending', 'sent'].forEach(s => {
+  ['all', 'pending', 'sent', 'boosted'].forEach(s => {
     const c = el('button', {
       class: 'chip' + (filterStatus === s ? ' active' : ''),
       onclick: () => { filterStatus = s; redraw(); },
@@ -535,6 +713,11 @@ function renderAll(data) {
   search.addEventListener('input', e => { q = e.target.value.toLowerCase(); redraw(); });
   main.appendChild(search);
 
+  const helpBar = el('div', { class: 'list-meta', style: 'margin-bottom:10px' },
+    'Tap ', el('span', { class: 'kbd' }, '+'), ' to add a lead to today and auto-schedule its 5-step sequence on the tier cadence. Tap ', el('span', { class: 'kbd' }, '✓'), ' to remove.'
+  );
+  main.appendChild(helpBar);
+
   const meta = el('div', { class: 'list-meta' });
   main.appendChild(meta);
   const listWrap = el('div', { class: 'lead-list' });
@@ -550,8 +733,10 @@ function renderAll(data) {
     const filtered = leads.filter(l => {
       if (filterTier !== 'all' && l.tier !== filterTier) return false;
       const isSentAny = sentSet.has(l.id);
+      const isBoostedLead = isBoosted(l.id);
       if (filterStatus === 'pending' && isSentAny) return false;
       if (filterStatus === 'sent' && !isSentAny) return false;
+      if (filterStatus === 'boosted' && !isBoostedLead) return false;
       if (q) {
         const hay = `${l.first_name} ${l.last_name} ${l.company} ${l.title}`.toLowerCase();
         if (!hay.includes(q)) return false;
@@ -560,14 +745,39 @@ function renderAll(data) {
     });
     meta.textContent = `${filtered.length} of ${leads.length}`;
     listWrap.innerHTML = '';
-    filtered.slice(0, 200).forEach(l => {
-      listWrap.appendChild(leadRow(l, 1, sentSet.has(l.id)));
-    });
+    filtered.slice(0, 200).forEach(l => listWrap.appendChild(boostableRow(l, sentSet.has(l.id), config, leads, redraw)));
     if (filtered.length > 200) {
       listWrap.appendChild(el('div', { class: 'list-meta', style: 'text-align:center;padding:14px;' }, `… ${filtered.length - 200} more`));
     }
   }
   redraw();
+}
+
+// Pipeline row = lead-row link + boost toggle button (button can't sit inside <a>).
+function boostableRow(lead, sent, config, leads, onChange) {
+  const wrap = el('div', { class: 'lead-row-wrap' });
+  const inner = leadRow(lead, 1, sent);
+  inner.classList.add('flush-right');
+  wrap.appendChild(inner);
+  const active = isBoosted(lead.id);
+  const btn = el('button', {
+    class: 'boost-btn' + (active ? ' active' : ''),
+    title: active ? 'Remove from today' : 'Add to today + auto-schedule sequence',
+    onclick: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (active) {
+        unboostLead(lead.id);
+        toast(`${lead.company} removed`);
+      } else {
+        boostLead(lead.id, leads, config, todayISO());
+        toast(`${lead.company} added to today + sequence scheduled`);
+      }
+      onChange();
+    },
+  }, active ? '✓' : '+');
+  wrap.appendChild(btn);
+  return wrap;
 }
 
 // ───────── Settings ─────────
