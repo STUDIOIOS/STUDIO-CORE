@@ -9,13 +9,14 @@
     "domain": "acme.com",
     "linkedin": "",
     "tier": "T1",
-    "priority": 2,
-    "signals": { "leadership_change": "new CMO appointed Q1" },
+    "priority": 1,
+    "signals": {
+      "leadership_change": "new CMO appointed Q1"
+    },
     "custom_hook": "Saw the Q1 CMO appointment at ACME — usually the moment a licensing programme gets a fresh look at apparel direction at the category level, which is why I thought it was worth a note.",
     "signal_phrase": "with the new CMO settling in",
     "notes": "Demo lead — replace with real Apollo/CSV-sourced data."
   },
-
   {
     "id": "research:t2-progress-jiu-jitsu",
     "first_name": "James",
@@ -26,8 +27,11 @@
     "domain": "progressjj.co.uk",
     "linkedin": "",
     "tier": "T2",
-    "priority": 3,
-    "signals": { "category_expansion": "international growth into US/Europe", "season_launch": true },
+    "priority": 2,
+    "signals": {
+      "category_expansion": "international growth into US/Europe",
+      "season_launch": true
+    },
     "custom_hook": "The Manchester-to-Trafford-Park trajectory — and the doubling to £2.4M — reads like a brand ready for a more deliberate seasonal graphic system. The Brit-meets-BJJ mix in the recent collections has a real point of view; what we'd want to do is amplify that into a graphic language that travels at retail.",
     "signal_phrase": "Progress's growth through £2.4M and the international push",
     "notes": "UK-based, founder-led, growing fast. Strong T2 fit. Email needs Hunter/Apollo enrichment."
@@ -42,8 +46,11 @@
     "domain": "scramblestuff.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 2,
-    "signals": { "rebrand": false, "category_expansion": true },
+    "priority": 1,
+    "signals": {
+      "rebrand": false,
+      "category_expansion": true
+    },
     "custom_hook": "Scramble has the cleanest east-meets-west aesthetic in the BJJ space — there's no other UK brand that's actually earned the Japanese design vocabulary the way you have. Reaching out because the next layer up from where Scramble sits is consistent trend direction across categories — not just the gis but the rashguards, casuals, and Polaris-adjacent merchandise — and that's the work we'd want to bring.",
     "signal_phrase": "Scramble's expanding category mix",
     "notes": "Bournemouth/UK origin, Japan-influenced, also runs Polaris."
@@ -58,7 +65,7 @@
     "domain": "scramblestuff.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Same note to Matt going across — but worth a separate line to you. The lunch-break-to-launch story is the one I always come back to when talking to other founders, and Scramble's design discipline since the Ichiban is what made the rest of this space lift its game.",
     "signal_phrase": "",
@@ -74,8 +81,10 @@
     "domain": "tatamifightwear.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 2,
-    "signals": { "category_expansion": "expanding apparel + casual line" },
+    "priority": 1,
+    "signals": {
+      "category_expansion": "expanding apparel + casual line"
+    },
     "custom_hook": "Tatami's volume-and-value play has set the floor for the whole UK BJJ market for over a decade — what's interesting now is the casual / lifestyle layer above the competition kit, where the graphic language is starting to do real lifting. That's the layer Studio IOS spends most of its time on for brands at your stage.",
     "signal_phrase": "the lifestyle layer Tatami is building above the competition line",
     "notes": "South Wales UK. Co-founder with Lee Jones, est 2009. Borderline T1.5 — likely £15M+, but co-founder still reachable."
@@ -90,7 +99,7 @@
     "domain": "tatamifightwear.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Lee — same note to Gareth going over but wanted to put one across to you separately. Tatami's evolution from value-tier into a lifestyle-conversant brand is one of the more interesting trajectories in our category. Worth a quick chat about where the next graphic system could go.",
     "signal_phrase": "",
@@ -106,8 +115,10 @@
     "domain": "invertedgear.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 2,
-    "signals": { "category_expansion": true },
+    "priority": 1,
+    "signals": {
+      "category_expansion": true
+    },
     "custom_hook": "The panda is one of the few BJJ brand marks that actually carries equity outside our community — that's rare and worth defending in how it gets applied across the next category push. Reaching out because the gap most brands at Inverted's stage hit is cohesion across SKUs once the line widens, and that's where we'd add value.",
     "signal_phrase": "Inverted's range expansion",
     "notes": "Co-founded with Hillary Witt (creative direction) — basement startup origin story."
@@ -122,7 +133,7 @@
     "domain": "invertedgear.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 3,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Hillary — wrote to Nelson too, but most of what I'd say is properly addressed to you. The graphic discipline behind Inverted's range — the panda equity, the colour restraint, the way the seasonal drops still feel like the same brand — is what most of our prospective clients are trying to learn how to do. Would love a 20 minutes on how we'd structure that into a system you could brief external manufacturers off.",
     "signal_phrase": "the graphic discipline behind Inverted's seasonal drops",
@@ -138,8 +149,10 @@
     "domain": "originusa.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 2,
-    "signals": { "category_expansion": "expansion beyond gi into broader apparel + boots" },
+    "priority": 1,
+    "signals": {
+      "category_expansion": "expansion beyond gi into broader apparel + boots"
+    },
     "custom_hook": "The American-made-from-the-loom story is the one piece of brand equity nobody else in BJJ apparel can claim, and the way Origin's been extending it into boots and broader apparel is interesting. The translation of that 'made-here' story into category-spanning graphic language is exactly the work we focus on.",
     "signal_phrase": "Origin's expansion beyond the gi line",
     "notes": "Maine, USA. Owner-operator, BJJ black belt."
@@ -154,7 +167,7 @@
     "domain": "kingz.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Kingz sits in an interesting middle — IBJJF-legal credibility on the gi side and a rapidly-evolving casual/streetwear layer on top. The risk at this stage is the two stop visually conversing with each other; that's the gap a tight graphic system closes.",
     "signal_phrase": "",
@@ -171,7 +184,9 @@
     "linkedin": "",
     "tier": "T2",
     "priority": 1,
-    "signals": { "category_expansion": "sustainable / hemp positioning" },
+    "signals": {
+      "category_expansion": "sustainable / hemp positioning"
+    },
     "custom_hook": "The hemp positioning is the part of Datsusara that sits genuinely differently in the category — and it's exactly the kind of brand asset that needs deliberate graphic language to communicate at retail rather than getting buried in product copy. That's the translation layer we'd want to build.",
     "signal_phrase": "Datsusara's sustainable category lead",
     "notes": "Hemp-based combat sports apparel. Sustainability angle is differentiated."
@@ -186,8 +201,10 @@
     "domain": "hayabusafight.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 2,
-    "signals": { "leadership_change": "UFC BJJ partnership signed" },
+    "priority": 1,
+    "signals": {
+      "leadership_change": "UFC BJJ partnership signed"
+    },
     "custom_hook": "The UFC BJJ partnership materially changes the apparel side of Hayabusa — there's now a third visual identity to manage on top of the boxing and lifestyle lines, and that's exactly the moment a tighter trend-led graphic system pays for itself.",
     "signal_phrase": "the UFC BJJ partnership",
     "notes": "Ontario, Canada. Co-founded with Ken Clement, est 2006. Borderline T1.5."
@@ -202,13 +219,12 @@
     "domain": "hayabusafight.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Ken — wrote to Craig in parallel. Worth a separate note: the multi-line challenge at Hayabusa (boxing / BJJ / lifestyle) is exactly the structural problem we help brands solve through one consolidated graphic system rather than three parallel ones.",
     "signal_phrase": "",
     "notes": "Co-founder of Hayabusa with Craig Clement."
   },
-
   {
     "id": "research:t2-93brand",
     "first_name": "",
@@ -219,7 +235,7 @@
     "domain": "93brand.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "93brand has built one of the most distinct cult followings in BJJ — the November 1993 reference point is the kind of brand foundation most new entrants spend years trying to invent. The risk at your stage is the cult equity outpacing the graphic system that delivers it; that's the gap we'd close.",
     "signal_phrase": "",
@@ -235,7 +251,7 @@
     "domain": "hyperfly.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Hyperfly's California aesthetic has been one of the most consistently-styled brands in the space — what's interesting is where that goes next as the BJJ category itself splinters into more streetwear-led sub-segments. Trend direction at the seasonal-collection level is what we do.",
     "signal_phrase": "",
@@ -251,7 +267,7 @@
     "domain": "moyabrand.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Moya's premium-gi positioning is one of the cleanest in the market — the question we'd want to talk through is how that premium signal gets carried into the apparel-and-lifestyle layer without diluting it. That translation is the bulk of what we do for brands at Moya's stage.",
     "signal_phrase": "",
@@ -267,7 +283,7 @@
     "domain": "engageind.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Engage has one of the more disciplined visual identities of the newer MMA-fightwear-and-lifestyle brands — the precision in the mark and the way it scales is rare in the category. Worth a conversation about how that scales into multi-season collection planning rather than reset-each-drop.",
     "signal_phrase": "",
@@ -283,7 +299,7 @@
     "domain": "gaidama.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "Gaidama's premium positioning in no-gi is exactly the slice of the market where graphic language has the highest conversion impact — most brands at this price point are competing on fabric, not on identity, which leaves the door open for a brand willing to invest in creative direction.",
     "signal_phrase": "",
@@ -299,13 +315,12 @@
     "domain": "wartribegear.com",
     "linkedin": "",
     "tier": "T2",
-    "priority": 1,
+    "priority": 0,
     "signals": {},
     "custom_hook": "War Tribe holds an interesting middle position in the BJJ market — recognised, in-the-rotation for serious grapplers, with room to push the brand voice further. Worth a chat on how the graphic identity could work harder across the casual-side range.",
     "signal_phrase": "",
     "notes": "BJJ apparel. Founder name TBC."
   },
-
   {
     "id": "research:t2-quadrant-norris",
     "first_name": "Lando",
@@ -316,13 +331,14 @@
     "domain": "quadrant.gg",
     "linkedin": "",
     "tier": "T2",
-    "priority": 2,
-    "signals": { "category_expansion": "evolving from gaming-only into motorsport apparel" },
+    "priority": 1,
+    "signals": {
+      "category_expansion": "evolving from gaming-only into motorsport apparel"
+    },
     "custom_hook": "Quadrant's evolution from gaming-led into motorsport-and-lifestyle is the most interesting brand expansion in the F1-adjacent space right now. The structural challenge at this stage is keeping the gaming community equity while building apparel that holds up against actual motorsport-lifestyle competitors — that translation is what Studio IOS does.",
     "signal_phrase": "Quadrant's expansion into motorsport apparel",
     "notes": "F1 driver-founded brand. Likely T2 boundary, worth contact via team. Max Fewtrell also relevant."
   },
-
   {
     "id": "research:t3-raine-malhi",
     "first_name": "",
@@ -334,7 +350,9 @@
     "linkedin": "",
     "tier": "T3",
     "priority": 1,
-    "signals": { "category_expansion": "sustainable BJJ apparel niche" },
+    "signals": {
+      "category_expansion": "sustainable BJJ apparel niche"
+    },
     "custom_hook": "Sustainable BJJ apparel is a position almost nobody else in the category is genuinely earning — and it deserves graphic language that signals it instantly at the rack rather than burying the story in product descriptions. That's the layer we'd want to build for Raine.",
     "signal_phrase": "Raine's sustainability positioning",
     "notes": "UK-based sustainable BJJ apparel. Founder is Malhi, BJJ Black Belt."
