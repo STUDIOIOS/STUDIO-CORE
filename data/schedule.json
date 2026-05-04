@@ -1,16 +1,6 @@
 {
   "2026-05-05": [
     {
-      "lead_id": "research:t2-inverted-witt",
-      "step": 1,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-inverted-puentes",
-      "step": 1,
-      "tier": "T2"
-    },
-    {
       "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 1,
       "tier": "T2"
@@ -22,6 +12,16 @@
     },
     {
       "lead_id": "research:t2-scramble-tong",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-jones",
       "step": 1,
       "tier": "T2"
     }
@@ -40,16 +40,6 @@
     {
       "lead_id": "research:t2-hyperfly",
       "step": 1,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-inverted-witt",
-      "step": 2,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-inverted-puentes",
-      "step": 2,
       "tier": "T2"
     },
     {
@@ -73,6 +63,16 @@
       "tier": "T2"
     },
     {
+      "lead_id": "research:t2-tatami-dummer",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-jones",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-war-tribe",
       "step": 1,
       "tier": "T2"
@@ -80,16 +80,6 @@
   ],
   "2026-05-14": [
     {
-      "lead_id": "research:t2-inverted-witt",
-      "step": 3,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-inverted-puentes",
-      "step": 3,
-      "tier": "T2"
-    },
-    {
       "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 3,
       "tier": "T2"
@@ -103,20 +93,25 @@
       "lead_id": "research:t2-scramble-tong",
       "step": 3,
       "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-jones",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-raine-malhi",
+      "step": 2,
+      "tier": "T3"
     }
   ],
   "2026-05-21": [
     {
-      "lead_id": "research:t2-inverted-witt",
-      "step": 4,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-inverted-puentes",
-      "step": 4,
-      "tier": "T2"
-    },
-    {
       "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 4,
       "tier": "T2"
@@ -130,20 +125,25 @@
       "lead_id": "research:t2-scramble-tong",
       "step": 4,
       "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-jones",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t3-raine-malhi",
+      "step": 3,
+      "tier": "T3"
     }
   ],
   "2026-06-01": [
     {
-      "lead_id": "research:t2-inverted-witt",
-      "step": 5,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-inverted-puentes",
-      "step": 5,
-      "tier": "T2"
-    },
-    {
       "lead_id": "research:t2-progress-jiu-jitsu",
       "step": 5,
       "tier": "T2"
@@ -155,12 +155,27 @@
     },
     {
       "lead_id": "research:t2-scramble-tong",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-dummer",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-tatami-jones",
       "step": 5,
       "tier": "T2"
     }
   ],
   "2026-05-06": [
     {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-hayabusa-clement-craig",
       "step": 1,
       "tier": "T2"
@@ -171,23 +186,28 @@
       "tier": "T2"
     },
     {
+      "lead_id": "research:t2-inverted-puentes",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-inverted-witt",
+      "step": 1,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-origin-roberts",
-      "step": 1,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-dummer",
-      "step": 1,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-jones",
       "step": 1,
       "tier": "T2"
     }
   ],
   "2026-05-11": [
     {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-hayabusa-clement-craig",
       "step": 2,
       "tier": "T2"
@@ -198,17 +218,17 @@
       "tier": "T2"
     },
     {
+      "lead_id": "research:t2-inverted-puentes",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-inverted-witt",
+      "step": 2,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-origin-roberts",
-      "step": 2,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-dummer",
-      "step": 2,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-jones",
       "step": 2,
       "tier": "T2"
     },
@@ -228,11 +248,6 @@
       "tier": "T3"
     },
     {
-      "lead_id": "research:t3-raine-malhi",
-      "step": 1,
-      "tier": "T3"
-    },
-    {
       "lead_id": "research:t3-savg-tknq",
       "step": 1,
       "tier": "T3"
@@ -240,6 +255,11 @@
   ],
   "2026-05-15": [
     {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-hayabusa-clement-craig",
       "step": 3,
       "tier": "T2"
@@ -250,23 +270,28 @@
       "tier": "T2"
     },
     {
+      "lead_id": "research:t2-inverted-puentes",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-inverted-witt",
+      "step": 3,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-origin-roberts",
-      "step": 3,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-dummer",
-      "step": 3,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-jones",
       "step": 3,
       "tier": "T2"
     }
   ],
   "2026-05-22": [
     {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-hayabusa-clement-craig",
       "step": 4,
       "tier": "T2"
@@ -277,23 +302,28 @@
       "tier": "T2"
     },
     {
+      "lead_id": "research:t2-inverted-puentes",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-inverted-witt",
+      "step": 4,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-origin-roberts",
-      "step": 4,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-dummer",
-      "step": 4,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-jones",
       "step": 4,
       "tier": "T2"
     }
   ],
   "2026-06-02": [
     {
+      "lead_id": "research:t2-datsusara-odell",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-hayabusa-clement-craig",
       "step": 5,
       "tier": "T2"
@@ -304,29 +334,29 @@
       "tier": "T2"
     },
     {
+      "lead_id": "research:t2-inverted-puentes",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
+      "lead_id": "research:t2-inverted-witt",
+      "step": 5,
+      "tier": "T2"
+    },
+    {
       "lead_id": "research:t2-origin-roberts",
       "step": 5,
       "tier": "T2"
     },
     {
-      "lead_id": "research:t2-tatami-dummer",
-      "step": 5,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-tatami-jones",
-      "step": 5,
-      "tier": "T2"
+      "lead_id": "research:t3-raine-malhi",
+      "step": 4,
+      "tier": "T3"
     }
   ],
   "2026-05-07": [
     {
       "lead_id": "research:t2-93brand",
-      "step": 1,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-datsusara-odell",
       "step": 1,
       "tier": "T2"
     },
@@ -341,6 +371,11 @@
       "tier": "T2"
     },
     {
+      "lead_id": "research:t3-raine-malhi",
+      "step": 1,
+      "tier": "T3"
+    },
+    {
       "lead_id": "demo:t1-acme",
       "step": 1,
       "tier": "T1"
@@ -349,11 +384,6 @@
   "2026-05-12": [
     {
       "lead_id": "research:t2-93brand",
-      "step": 2,
-      "tier": "T2"
-    },
-    {
-      "lead_id": "research:t2-datsusara-odell",
       "step": 2,
       "tier": "T2"
     },
@@ -375,11 +405,6 @@
       "tier": "T2"
     },
     {
-      "lead_id": "research:t2-datsusara-odell",
-      "step": 3,
-      "tier": "T2"
-    },
-    {
       "lead_id": "research:t2-kingz-munduruca",
       "step": 3,
       "tier": "T2"
@@ -401,11 +426,6 @@
     },
     {
       "lead_id": "research:t3-nogi-industries",
-      "step": 2,
-      "tier": "T3"
-    },
-    {
-      "lead_id": "research:t3-raine-malhi",
       "step": 2,
       "tier": "T3"
     },
@@ -422,11 +442,6 @@
       "tier": "T2"
     },
     {
-      "lead_id": "research:t2-datsusara-odell",
-      "step": 4,
-      "tier": "T2"
-    },
-    {
       "lead_id": "research:t2-kingz-munduruca",
       "step": 4,
       "tier": "T2"
@@ -452,11 +467,6 @@
       "tier": "T3"
     },
     {
-      "lead_id": "research:t3-raine-malhi",
-      "step": 3,
-      "tier": "T3"
-    },
-    {
       "lead_id": "research:t3-savg-tknq",
       "step": 3,
       "tier": "T3"
@@ -469,11 +479,6 @@
       "tier": "T2"
     },
     {
-      "lead_id": "research:t2-datsusara-odell",
-      "step": 5,
-      "tier": "T2"
-    },
-    {
       "lead_id": "research:t2-kingz-munduruca",
       "step": 5,
       "tier": "T2"
@@ -482,6 +487,13 @@
       "lead_id": "research:t2-quadrant-norris",
       "step": 5,
       "tier": "T2"
+    }
+  ],
+  "2026-06-11": [
+    {
+      "lead_id": "research:t3-raine-malhi",
+      "step": 5,
+      "tier": "T3"
     }
   ],
   "2026-05-28": [
@@ -635,11 +647,6 @@
       "tier": "T3"
     },
     {
-      "lead_id": "research:t3-raine-malhi",
-      "step": 4,
-      "tier": "T3"
-    },
-    {
       "lead_id": "research:t3-savg-tknq",
       "step": 4,
       "tier": "T3"
@@ -658,11 +665,6 @@
     },
     {
       "lead_id": "research:t3-nogi-industries",
-      "step": 5,
-      "tier": "T3"
-    },
-    {
-      "lead_id": "research:t3-raine-malhi",
       "step": 5,
       "tier": "T3"
     },
