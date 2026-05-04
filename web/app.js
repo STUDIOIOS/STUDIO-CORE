@@ -224,6 +224,30 @@ function combinedScheduleFor(date, schedule) {
   return [...scheduled, ...extras];
 }
 
+// ───────── mail compose URL ─────────
+// Builds the right "open in mail" URL based on config.mail_compose.provider:
+//   - 'mailto' → standard mailto: handed to the system default mail app
+//     (on iOS that's Apple Mail; the FROM account is whatever you've set
+//     under Settings → Mail → Default Account).
+//   - 'gmail'  → Gmail web compose URL with authuser= forcing the studio
+//     account regardless of which Google accounts you're signed into.
+//   - 'outlook'→ Outlook web compose URL.
+function composeUrl(config, to, subject, body) {
+  const provider = config.mail_compose?.provider || 'mailto';
+  const fromAccount = config.mail_compose?.from_account || config.sender?.email || '';
+  const subj = encodeURIComponent(subject || '');
+  const bod = encodeURIComponent((body || '').slice(0, 4000));
+  const recipient = encodeURIComponent(to || '');
+  if (provider === 'gmail') {
+    const auth = fromAccount ? `&authuser=${encodeURIComponent(fromAccount)}` : '';
+    return `https://mail.google.com/mail/?view=cm&fs=1${auth}&to=${recipient}&su=${subj}&body=${bod}`;
+  }
+  if (provider === 'outlook') {
+    return `https://outlook.office.com/mail/deeplink/compose?to=${recipient}&subject=${subj}&body=${bod}`;
+  }
+  return `mailto:${recipient}?subject=${subj}&body=${bod}`;
+}
+
 // ───────── email rendering ─────────
 function renderEmail(lead, sequences, config, step) {
   const tier = lead.tier;
@@ -636,13 +660,17 @@ function renderLead(data) {
     }, 'Copy G-drive link'));
   }
 
-  const mailto = `mailto:${encodeURIComponent(lead.email || '')}` +
-    `?subject=${encodeURIComponent(rendered.subject)}` +
-    `&body=${encodeURIComponent(rendered.body.slice(0, 1500))}`;
+  const composeHref = composeUrl(config, lead.email, rendered.subject, rendered.body);
+  const provider = config.mail_compose?.provider || 'mailto';
+  const composeLabel = provider === 'gmail' ? 'Open in Gmail (Studio IOS)'
+    : provider === 'outlook' ? 'Open in Outlook (Studio IOS)'
+    : 'Open in Mail';
   actions.appendChild(el('a', {
     class: 'btn',
-    href: mailto,
-  }, 'Open in Apple Mail'));
+    href: composeHref,
+    target: provider === 'mailto' ? '_self' : '_blank',
+    rel: 'noopener',
+  }, composeLabel));
 
   if (sent) {
     actions.appendChild(el('div', {

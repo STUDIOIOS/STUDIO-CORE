@@ -11,6 +11,11 @@
     "email": "tom@studioios.com",
     "signature": "Tom Hidderley\nCreative Director & Founder, Studio IOS\nstudioios.com"
   },
+  "mail_compose": {
+    "provider": "mailto",
+    "from_account": "tom@studioios.com",
+    "_note": "Apple Mail. mailto: hands the draft to whichever account is set as Default in iOS Settings → Mail → Default Account — set Studio IOS as default once and every draft will use that FROM. Other providers: 'gmail' (Gmail web with authuser), 'outlook' (Outlook web)."
+  },
   "gdrive_links": {
     "T1": "https://drive.google.com/REPLACE_WITH_TIER1_LICENSING_PORTFOLIO",
     "T2": "https://drive.google.com/REPLACE_WITH_TIER2_DTC_CASE_STUDIES",

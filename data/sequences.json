@@ -11,31 +11,31 @@
       {
         "step": 1,
         "name": "Credibility introduction",
-        "subject": "A note from Bristol — {{company}}'s licensed product programme",
+        "subject": "{{company}} Creative 2026",
         "body": "Hi {{first_name}},\n\nI run a small creative studio in Bristol — Studio IOS — built specifically around apparel direction, graphic language and trend intelligence for sports and entertainment licensing programmes. We're embedded inside the combat-sports apparel space (FUJI Sports, Phalanx) and the work that comes out of those engagements has been used to set retail-grade graphic standards across multiple licensee categories.\n\n{{custom_hook}}\n\nI've put together a short read on where retail-grade graphic language is heading inside {{company}}'s category over the next 18 months — drawn from what we're seeing across the licensees we work with. Happy to send it over if you'd find it useful. No agenda, no follow-up sales process.\n\n{{signature}}"
       },
       {
         "step": 2,
         "name": "Trend brief follow-up",
-        "subject": "{{company}} — the trend brief I mentioned",
+        "subject": "{{company}} Creative 2026",
         "body": "Hi {{first_name}},\n\nFollowing up on my note from a fortnight ago. Whether or not the trend brief itself is useful, the wider point I'd flag is this: the gap we keep seeing between licensing organisations and their licensees is creative direction at the category level — particularly apparel. Style guides and licensee packs are often produced as compliance documents rather than as tools that genuinely inspire great product, and the result is range inconsistency at retail.\n\nThat's the gap Studio IOS specialises in closing.\n\nIf trend direction or category-level apparel guidance is on your radar for {{company}}'s programme — current or upcoming season — I'd be glad to share what we've put together for similar mandates.\n\n{{signature}}"
       },
       {
         "step": 3,
         "name": "Case study, soft CTA",
-        "subject": "How we structured FUJI's apparel direction",
+        "subject": "{{company}} Creative 2026",
         "body": "Hi {{first_name}},\n\nA short follow-up — no agenda.\n\nWhen FUJI re-set their apparel programme we built the graphic language, trend framework and seasonal direction together with their commercial team. Two specifics that may be relevant to {{company}}:\n\n1. The style-guide function shifted from compliance document to commercial tool. Licensees started using it as creative input, not just brand-protection input. Range coherence improved measurably across categories.\n2. Trend intelligence was sequenced 9 months ahead of the buying cycle, which let category leads brief manufacturers off a single source of truth.\n\nIf either of those would be useful inside {{company}}'s programme — happy to walk through how we structured it. {{gdrive_link}} has the case study and the artefacts we shared with their team.\n\n{{signature}}"
       },
       {
         "step": 4,
         "name": "First soft CTA",
-        "subject": "{{company}} — worth a 30-min call?",
+        "subject": "{{company}} Creative 2026",
         "body": "Hi {{first_name}},\n\nI'll keep this brief. Two months in, and I've not pushed for a conversation because I don't think Tier-1 licensing relationships start that way.\n\nBut if any of the trend direction, style-guide architecture, or apparel-programme work I've sent over has resonated, I'd value 30 minutes of your time to introduce Studio IOS properly and understand what {{company}}'s creative roadmap looks like over the next two seasons.\n\n{{signal_phrase}}\n\nIf now isn't the moment, I'll respect that and keep my touches sector-relevant rather than promotional.\n\n{{signature}}"
       },
       {
         "step": 5,
         "name": "Close the loop",
-        "subject": "Closing the loop — Studio IOS",
+        "subject": "{{company}} Creative 2026",
         "body": "Hi {{first_name}},\n\nClosing this thread cleanly. If trend intelligence, apparel direction or style-guide capability becomes relevant for {{company}} in the future — whether that's a category expansion, a leadership change, or a programme refresh — my line is open.\n\nStudio IOS sits in an unusually narrow niche: specialist creative direction for licensed apparel, with combat-sports and motorsport credibility most generalist agencies can't match. We're not for every programme, but we're a clean fit for the ones we are.\n\nI'll come back if I see a reason that's specific to {{company}}. If you'd ever like to revisit before then, the door is open.\n\n{{signature}}"
       }
     ]
@@ -47,31 +47,31 @@
       {
         "step": 1,
         "name": "Signal-led opener",
-        "subject": "{{first_name}} — saw {{signal_phrase}}",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nStudio IOS — Bristol-based creative direction studio. We sit inside the combat-sports and action-sports world: FUJI, Phalanx, and a stack of brands you'd recognise.\n\n{{custom_hook}}\n\nReason for the note: founders in the £1M–£10M range often get caught between manufacturer capacity and trend intelligence. Manufacturers can produce; they can't art-direct. The result is collections that ship on time but feel reactive instead of anticipatory.\n\n{{tier_proof}}\n\nWorth a 20-minute call before {{company}}'s next collection window?\n\n{{signature}}"
       },
       {
         "step": 2,
         "name": "Free trend deck offer",
-        "subject": "Trend deck for {{company}} — no strings",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nFollowing up. I can offer something useful regardless: the seasonal trend signals deck we're sharing with our Tier-2 brands this month — graphic language, colour, silhouette and category-momentum data drawn from what we're seeing land at retail.\n\nIt's the kind of thing most brands at your scale don't have access to. Free, no follow-up obligation. Reply with \"send\" and I'll fire it over.\n\n{{signature}}"
       },
       {
         "step": 3,
         "name": "Case study with numbers",
-        "subject": "FUJI 17%, Phalanx preorder covered fees — same playbook",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nSpecifics:\n\n— FUJI Sports: 17% YoY uplift on the season we directed. Trend signals locked 4 months ahead of the brief; collection structured around 3 graphic anchors instead of 9 disconnected ones.\n— Phalanx: preorder revenue covered inventory + studio fees before launch. Achieved by tightening the graphic language to a single \"buyable identity\" the audience recognised instantly.\n\nSame playbook works for {{company}} if {{custom_hook}}\n\n20-min call to walk through what we'd build for your next collection? {{gdrive_link}} has both case studies in detail.\n\n{{signature}}"
       },
       {
         "step": 4,
         "name": "Direct window ask",
-        "subject": "{{company}}'s next collection window",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nDirect ask: when's your next collection briefing window?\n\nIf it's in the next 8 weeks, that's enough lead time for us to slot trend direction in before the brief lands at the manufacturer — which is where the seasonal uplift is unlocked.\n\nIf it's further out, no rush — drop me a note when it's on your radar and I'll prioritise the conversation.\n\n{{signature}}"
       },
       {
         "step": 5,
         "name": "Break-up, open door",
-        "subject": "Last note from me — Studio IOS",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nLast touch from me — I won't keep nudging.\n\nTwo things on the way out:\n\n1. If you do want the trend deck I mentioned, the offer stands indefinitely. Reply \"send\" any time.\n2. If a season underperforms, or you find yourself reaching for trend intelligence you don't have, my line is open.\n\nBest of luck with what's next at {{company}}.\n\n{{signature}}"
       }
     ]
@@ -83,31 +83,31 @@
       {
         "step": 1,
         "name": "Community-first opener",
-        "subject": "{{company}} graphics — quick thought",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nBristol-based studio that lives in the BJJ / combat-sports space. I run Studio IOS — small team, deep in the culture. We've worked on FUJI and Phalanx, and a stack of independent brands across BJJ academies and athlete labels.\n\n{{custom_hook}}\n\nMost early-stage brands in our world hit the same wall: cheap creative makes the product impossible to price up. Distinctive creative is the only thing that lets a £55 rashguard actually sell at £55.\n\nWe run a starter graphic package specifically for brands at your stage — accessible price point, fast turnaround, designed to do one job: build product that travels beyond your immediate community.\n\nWorth a chat?\n\n{{signature}}"
       },
       {
         "step": 2,
         "name": "Numbers + accessibility",
-        "subject": "Numbers from FUJI you'd care about",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nQuick follow-up. Numbers from the FUJI work that I think matter if you're at the stage {{company}} is at:\n\n— Sell-through on the graphics-led pieces was ~2x the plain-shell pieces.\n— The graphic anchors we built are still appearing across their range a year later — meaning the design investment didn't depreciate after one drop.\n\nThat's the thing I'd want for {{company}}: graphics that work for the next four collections, not just the next one.\n\n{{gdrive_link}} has the starter package format and what brands at your scale typically get from it.\n\n{{signature}}"
       },
       {
         "step": 3,
         "name": "Community / referral angle",
-        "subject": "{{company}} + the community wears",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nThe thing that actually makes brands at your stage grow is product community members are proud to wear and post in. That's marketing money you're not paying for — but only if the design earns it.\n\nGeneric Canva-grade design doesn't earn it. Cheap Fiverr work doesn't earn it. We've seen the difference inside the academies and athlete labels we've worked with — and the brands who invest at the right stage compound the advantage.\n\nIf a starter package is on the cards for {{company}}, I'd love to put one in front of you that's specific to where the brand is.\n\n{{signature}}"
       },
       {
         "step": 4,
         "name": "Direct simple ask",
-        "subject": "Want me to scope something for {{company}}?",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nEasiest path forward: I scope a starter graphic package for {{company}} — what's in it, what it costs, what timing looks like — and you tell me yes, no, or \"talk to me in 3 months.\"\n\nFive-minute conversation, or a paragraph by email if that's easier. Up to you.\n\n{{signature}}"
       },
       {
         "step": 5,
         "name": "Break-up",
-        "subject": "Closing this — open door",
+        "subject": "{{company}} Creative 2026",
         "body": "{{first_name}},\n\nI'll stop chasing — final note.\n\nIf {{company}}'s next product run feels like it deserves better creative than you're currently getting, my line is open. We work with academies and founder brands all the time, and most of them come back when the moment's right rather than the first time we speak.\n\nGood luck with what's next.\n\n{{signature}}"
       }
     ]
