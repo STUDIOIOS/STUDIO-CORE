@@ -600,7 +600,8 @@ function renderLead(data) {
   summary.appendChild(el('div', {},
     el('span', { class: `tier-badge ${lead.tier.toLowerCase()}` }, `${lead.tier} · ${seq.label}`)
   ));
-  summary.appendChild(el('div', { class: 'name' }, `${lead.first_name} ${lead.last_name || ''}`));
+  const displayName = ((lead.first_name || '') + ' ' + (lead.last_name || '')).trim() || lead.company;
+  summary.appendChild(el('div', { class: 'name' }, displayName));
   summary.appendChild(el('div', { class: 'title' }, lead.title || ''));
   summary.appendChild(el('div', { class: 'company' }, `${lead.company}${lead.domain ? ' · ' + lead.domain : ''}`));
   if (lead.email) summary.appendChild(el('div', { class: 'company' }, lead.email));
@@ -645,6 +646,14 @@ function renderLead(data) {
   emailCard.appendChild(meta);
   emailCard.appendChild(el('pre', { class: 'email-body' }, rendered.body));
   main.appendChild(emailCard);
+
+  // no-email warning
+  if (!lead.email) {
+    main.appendChild(el('div', { class: 'notice' },
+      el('strong', {}, 'No email address. '),
+      'Enrich via Hunter or Apollo, then update leads.json. "Open in Mail" will open a blank To: field — paste the address manually.',
+    ));
+  }
 
   // actions
   const actions = el('div', { class: 'actions' });
@@ -809,9 +818,38 @@ function boostableRow(lead, sent, config, leads, onChange) {
 }
 
 // ───────── Settings ─────────
-function renderSettings() {
+function renderSettings(data) {
+  const { leads } = data;
   const main = document.querySelector('main');
   main.innerHTML = '';
+
+  // lead quality summary
+  const noEmail = leads.filter(l => !l.email).length;
+  const noName = leads.filter(l => !l.first_name).length;
+  const noHook = leads.filter(l => !l.custom_hook).length;
+  const qSec = el('section', {});
+  qSec.appendChild(el('h2', {}, 'Lead data quality'));
+  const qRows = [
+    { label: 'Total leads', val: leads.length, ok: true },
+    { label: 'Missing email', val: noEmail, ok: noEmail === 0 },
+    { label: 'Missing first name', val: noName, ok: noName === 0 },
+    { label: 'Missing custom hook', val: noHook, ok: noHook === 0 },
+  ];
+  const qGrid = el('div', { style: 'display:grid;gap:6px;' });
+  qRows.forEach(({ label, val, ok }) => {
+    const color = ok ? 'var(--success)' : (val > 0 ? 'var(--warning)' : 'var(--text-dim)');
+    qGrid.appendChild(el('div', { class: 'setting-row', style: 'display:flex;justify-content:space-between;align-items:center;' },
+      el('span', { style: 'font-size:13px;color:var(--text-dim);' }, label),
+      el('span', { style: `font-family:var(--font-mono);font-size:14px;color:${color};font-weight:600;` }, String(val)),
+    ));
+  });
+  qSec.appendChild(qGrid);
+  if (noEmail > 0) {
+    qSec.appendChild(el('div', { class: 'notice', style: 'margin-top:10px;' },
+      `${noEmail} lead${noEmail === 1 ? '' : 's'} need email addresses. Enrich via Hunter.io or Apollo before sending.`
+    ));
+  }
+  main.appendChild(qSec);
 
   const intro = el('section', {});
   intro.appendChild(el('h2', {}, 'About'));
@@ -874,6 +912,16 @@ function renderSettings() {
       }
     },
   }, 'Clear local cache'));
+
+  acts.appendChild(el('button', {
+    class: 'btn btn-ghost',
+    onclick: () => {
+      if (confirm('Remove all boosts? This also clears the locally-scheduled future steps.')) {
+        localStorage.removeItem(LS.boosted);
+        toast('Boosts cleared');
+      }
+    },
+  }, 'Clear boosts'));
 
   sec.appendChild(acts);
   main.appendChild(sec);
