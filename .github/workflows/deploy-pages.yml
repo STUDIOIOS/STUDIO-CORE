@@ -6,6 +6,7 @@ on:
     paths:
       - 'web/**'
       - 'data/**'
+      - 'preview.html'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -29,6 +30,7 @@ jobs:
           cp -r web/. _site/
           mkdir -p _site/data
           cp data/*.json _site/data/
+          cp preview.html _site/preview.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

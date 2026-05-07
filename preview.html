@@ -69,6 +69,9 @@
   .step-pill.boost { background: rgba(255, 91, 26, 0.18); color: var(--accent); border: 1px solid rgba(255, 91, 26, 0.4); }
   .signal-pill { background: rgba(255, 91, 26, 0.12); color: var(--accent); border: 1px solid rgba(255, 91, 26, 0.3); font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.5px; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
 
+  .notice { background: rgba(255, 183, 77, 0.1); border: 1px solid rgba(255, 183, 77, 0.3); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; color: #ffb74d; margin-bottom: 14px; }
+  .notice strong { font-weight: 600; }
+
   /* Pipeline boost button */
   .lead-row-wrap { display: flex; align-items: stretch; background: var(--bg-elev); border-radius: var(--radius); overflow: hidden; }
   .lead-row-wrap .lead-row { flex: 1; background: transparent; border-radius: 0; }
@@ -452,7 +455,7 @@ function renderLead() {
     </div>
     <main>
       <div class="summary ${lead.tier.toLowerCase()}">
-        <div class="name">${lead.first_name||''} ${lead.last_name||''}</div>
+        <div class="name">${(((lead.first_name||'')+' '+(lead.last_name||'')).trim()) || lead.company}</div>
         <div class="title">${lead.title}</div>
         <div class="company">${lead.company}${lead.email?' · '+lead.email:''}</div>
         ${lead.custom_hook ? `<div class="hook">${lead.custom_hook}</div>` : ''}
@@ -464,6 +467,7 @@ function renderLead() {
         </div>
         <pre class="email-body" id="email-body">${body}</pre>
       </div>
+      ${!lead.email ? `<div class="notice"><strong>No email address. </strong>Enrich via Hunter or Apollo, then update leads.json. "Open in Mail" will open a blank To: field — paste the address manually.</div>` : ''}
       <div class="actions">
         <button class="btn btn-primary" onclick="copy(document.getElementById('email-body').textContent)">Copy email body</button>
         <a class="btn" href="${mailto}">Open in Apple Mail</a>
