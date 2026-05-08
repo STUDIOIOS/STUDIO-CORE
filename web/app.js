@@ -117,10 +117,12 @@ function queueDispatch(event) {
 
 async function flushPendingDispatches() {
   const pat = localStorage.getItem(LS.pat);
-  if (!pat) return;
+  if (!pat) return { sent: 0, remaining: JSON.parse(localStorage.getItem(LS.pending_dispatch) || '[]').length, reason: 'no PAT' };
   const q = JSON.parse(localStorage.getItem(LS.pending_dispatch) || '[]');
-  if (!q.length) return;
+  if (!q.length) return { sent: 0, remaining: 0 };
   const remaining = [];
+  let sent = 0;
+  let lastError = null;
   for (const event of q) {
     try {
       const r = await fetch(`https://api.github.com/repos/${REPO}/dispatches`, {
@@ -132,10 +134,31 @@ async function flushPendingDispatches() {
         },
         body: JSON.stringify({ event_type: 'lead_sent', client_payload: event }),
       });
-      if (!r.ok) remaining.push(event);
-    } catch { remaining.push(event); }
+      if (!r.ok) { remaining.push(event); lastError = `HTTP ${r.status}`; }
+      else sent++;
+    } catch (e) { remaining.push(event); lastError = e.message; }
   }
   localStorage.setItem(LS.pending_dispatch, JSON.stringify(remaining));
+  return { sent, remaining: remaining.length, reason: lastError };
+}
+
+async function verifyPat(pat) {
+  if (!pat) return { ok: false, reason: 'No PAT set on this device' };
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}`, {
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${pat}`,
+      },
+    });
+    if (r.status === 401) return { ok: false, reason: 'PAT rejected (401) — token invalid or expired' };
+    if (r.status === 403) return { ok: false, reason: 'PAT lacks permission (403) — needs Contents: Read & Write' };
+    if (r.status === 404) return { ok: false, reason: 'Repo not visible (404) — check PAT repository access' };
+    if (!r.ok) return { ok: false, reason: `HTTP ${r.status}` };
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, reason: `Network error: ${e.message}` };
+  }
 }
 
 // ───────── boosts (local manual additions to the day) ─────────
@@ -835,7 +858,7 @@ function boostableRow(lead, sent, config, leads, onChange) {
 
 // ───────── Settings ─────────
 function renderSettings(data) {
-  const { leads } = data;
+  const { leads, activity } = data;
   const main = document.querySelector('main');
   main.innerHTML = '';
 
@@ -857,6 +880,76 @@ function renderSettings(data) {
   themeRow.appendChild(themeToggle);
   aSec.appendChild(themeRow);
   main.appendChild(aSec);
+
+  // sync status
+  const syncSec = el('section', {});
+  syncSec.appendChild(el('h2', {}, 'Sync status'));
+  const syncBody = el('div', { id: 'sync-body' });
+  syncSec.appendChild(syncBody);
+
+  const renderSyncBody = (verifyResult) => {
+    syncBody.innerHTML = '';
+    const patSet = !!localStorage.getItem(LS.pat);
+    const pending = JSON.parse(localStorage.getItem(LS.pending_dispatch) || '[]').length;
+    const local = localActivity().length;
+    const server = (activity?.events || []).length;
+
+    let patStatus, patColor;
+    if (!patSet) { patStatus = 'Not set on this device'; patColor = 'var(--warning)'; }
+    else if (!verifyResult) { patStatus = 'Set — not yet verified'; patColor = 'var(--text-dim)'; }
+    else if (verifyResult.ok) { patStatus = 'Verified ✓'; patColor = 'var(--success)'; }
+    else { patStatus = `Failed — ${verifyResult.reason}`; patColor = 'var(--danger, var(--warning))'; }
+
+    const rows = [
+      { label: 'PAT', val: patStatus, color: patColor },
+      { label: 'Pending sends', val: String(pending), color: pending > 0 ? 'var(--warning)' : 'var(--text-dim)' },
+      { label: 'Marked sent on this device', val: String(local), color: 'var(--text-dim)' },
+      { label: 'Logged to repo (all devices)', val: String(server), color: 'var(--text-dim)' },
+    ];
+    const grid = el('div', { style: 'display:grid;gap:6px;' });
+    rows.forEach(({ label, val, color }) => {
+      grid.appendChild(el('div', { class: 'setting-row', style: 'display:flex;justify-content:space-between;align-items:center;gap:12px;' },
+        el('span', { style: 'font-size:13px;color:var(--text-dim);' }, label),
+        el('span', { style: `font-family:var(--font-mono);font-size:13px;color:${color};font-weight:600;text-align:right;` }, val),
+      ));
+    });
+    syncBody.appendChild(grid);
+
+    if (!patSet) {
+      syncBody.appendChild(el('div', { class: 'notice', style: 'margin-top:10px;' },
+        'Add a GitHub PAT below so "Mark as sent" syncs across devices. Without it, sent state stays local to this device only.'
+      ));
+    } else if (pending > 0 && (!verifyResult || !verifyResult.ok)) {
+      syncBody.appendChild(el('div', { class: 'notice', style: 'margin-top:10px;' },
+        `${pending} event${pending === 1 ? '' : 's'} queued locally. Tap "Test & sync now" to push them.`
+      ));
+    }
+
+    const actsRow = el('div', { class: 'section-actions', style: 'margin-top:12px;' });
+    const testBtn = el('button', { class: 'btn btn-primary' }, 'Test & sync now');
+    testBtn.addEventListener('click', async () => {
+      testBtn.disabled = true;
+      testBtn.textContent = 'Testing…';
+      const pat = localStorage.getItem(LS.pat);
+      const v = await verifyPat(pat);
+      if (!v.ok) {
+        renderSyncBody(v);
+        toast(v.reason);
+        return;
+      }
+      testBtn.textContent = 'Syncing…';
+      const flushResult = await flushPendingDispatches();
+      renderSyncBody(v);
+      if (flushResult.sent > 0) toast(`Synced ${flushResult.sent} event${flushResult.sent === 1 ? '' : 's'} ✓`);
+      else if (flushResult.remaining > 0) toast(`${flushResult.remaining} still pending — ${flushResult.reason || 'unknown error'}`);
+      else toast('PAT verified ✓ — nothing to sync');
+    });
+    actsRow.appendChild(testBtn);
+    syncBody.appendChild(actsRow);
+  };
+
+  renderSyncBody(null);
+  main.appendChild(syncSec);
 
   // lead quality summary
   const noEmail = leads.filter(l => !l.email).length;
@@ -932,8 +1025,10 @@ function renderSettings(data) {
   acts.appendChild(el('button', {
     class: 'btn',
     onclick: async () => {
-      await flushPendingDispatches();
-      toast('Flushed pending');
+      const r = await flushPendingDispatches();
+      if (r.sent > 0) toast(`Sent ${r.sent} ✓${r.remaining ? ` · ${r.remaining} still pending` : ''}`);
+      else if (r.remaining > 0) toast(`${r.remaining} pending — ${r.reason || 'check PAT'}`);
+      else toast('Nothing pending');
     },
   }, 'Flush pending sends'));
 

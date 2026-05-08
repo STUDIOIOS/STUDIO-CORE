@@ -1,7 +1,7 @@
 // Studio IOS — service worker
 // Caches the app shell and data for offline use.
 
-const CACHE = 'studio-ios-v1';
+const CACHE = 'studio-ios-v3';
 const SHELL = [
   './',
   './index.html',
