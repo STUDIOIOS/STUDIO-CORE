@@ -23,6 +23,23 @@
   --font-mono: ui-monospace, 'SF Mono', 'Menlo', monospace;
 }
 
+:root[data-theme="light"] {
+  --bg: #fafafa;
+  --bg-elev: #ffffff;
+  --bg-elev-2: #f1f1f1;
+  --border: #e3e3e3;
+  --text: #111111;
+  --text-dim: #555555;
+  --text-faint: #888888;
+  --accent: #e64a0d;
+  --t1: #a87f30;
+  --t2: #e64a0d;
+  --t3: #2390a0;
+  --success: #2e7d32;
+  --danger: #c62828;
+  --warning: #c4720a;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
@@ -429,6 +446,11 @@ h2 {
 .chip.t1.active { background: var(--t1); border-color: var(--t1); color: #0a0a0a; }
 .chip.t2.active { background: var(--t2); border-color: var(--t2); }
 .chip.t3.active { background: var(--t3); border-color: var(--t3); color: #0a0a0a; }
+
+.theme-toggle { display: flex; gap: 0; }
+.theme-toggle .chip { border-radius: 0; }
+.theme-toggle .chip:first-child { border-radius: 999px 0 0 999px; }
+.theme-toggle .chip:last-child { border-radius: 0 999px 999px 0; margin-left: -1px; }
 
 .search-input {
   width: 100%;

@@ -9,7 +9,23 @@ const LS = {
   activity: 'studio.activity',
   pending_dispatch: 'studio.pending_dispatch',
   boosted: 'studio.boosted',
+  theme: 'studio.theme',
 };
+
+function getTheme() {
+  return localStorage.getItem(LS.theme) === 'light' ? 'light' : 'dark';
+}
+function setTheme(theme) {
+  if (theme === 'light') {
+    document.documentElement.dataset.theme = 'light';
+    localStorage.setItem(LS.theme, 'light');
+  } else {
+    delete document.documentElement.dataset.theme;
+    localStorage.removeItem(LS.theme);
+  }
+  const m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.setAttribute('content', theme === 'light' ? '#fafafa' : '#0a0a0a');
+}
 
 // ───────── data layer ─────────
 const _cache = {};
@@ -822,6 +838,25 @@ function renderSettings(data) {
   const { leads } = data;
   const main = document.querySelector('main');
   main.innerHTML = '';
+
+  // appearance
+  const aSec = el('section', {});
+  aSec.appendChild(el('h2', {}, 'Appearance'));
+  const themeRow = el('div', { class: 'setting-row', style: 'display:flex;justify-content:space-between;align-items:center;gap:12px;' });
+  themeRow.appendChild(el('div', {},
+    el('div', { style: 'font-size:14px;font-weight:600;' }, 'Theme'),
+    el('div', { style: 'font-size:12px;color:var(--text-dim);margin-top:2px;' }, 'Switch between light and dark.'),
+  ));
+  const themeToggle = el('div', { class: 'theme-toggle' });
+  const darkBtn = el('button', { class: 'chip' + (getTheme() === 'dark' ? ' active' : '') }, 'Dark');
+  const lightBtn = el('button', { class: 'chip' + (getTheme() === 'light' ? ' active' : '') }, 'Light');
+  darkBtn.addEventListener('click', () => { setTheme('dark'); darkBtn.classList.add('active'); lightBtn.classList.remove('active'); });
+  lightBtn.addEventListener('click', () => { setTheme('light'); lightBtn.classList.add('active'); darkBtn.classList.remove('active'); });
+  themeToggle.appendChild(darkBtn);
+  themeToggle.appendChild(lightBtn);
+  themeRow.appendChild(themeToggle);
+  aSec.appendChild(themeRow);
+  main.appendChild(aSec);
 
   // lead quality summary
   const noEmail = leads.filter(l => !l.email).length;
