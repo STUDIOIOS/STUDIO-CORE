@@ -10,6 +10,8 @@ const LS = {
   pending_dispatch: 'studio.pending_dispatch',
   boosted: 'studio.boosted',
   theme: 'studio.theme',
+  copy_status: 'studio.copy_status',
+  copy_notes: 'studio.copy_notes',
 };
 
 function getTheme() {
@@ -368,6 +370,7 @@ const routes = {
   today: renderToday,
   lead: renderLead,
   all: renderAll,
+  copy: renderCopy,
   settings: renderSettings,
 };
 
@@ -831,6 +834,236 @@ function boostableRow(lead, sent, config, leads, onChange) {
   }, active ? '✓' : '+');
   wrap.appendChild(btn);
   return wrap;
+}
+
+// ───────── Copy review ─────────
+const COPY_STATUSES = ['draft', 'review', 'approved'];
+
+function getCopyState() {
+  try { return JSON.parse(localStorage.getItem(LS.copy_status) || '{}'); } catch { return {}; }
+}
+function setCopyStatus(key, status) {
+  const state = getCopyState();
+  state[key] = status;
+  localStorage.setItem(LS.copy_status, JSON.stringify(state));
+}
+function getCopyNotes() {
+  try { return JSON.parse(localStorage.getItem(LS.copy_notes) || '{}'); } catch { return {}; }
+}
+function setCopyNote(key, text) {
+  const notes = getCopyNotes();
+  if (text) notes[key] = text; else delete notes[key];
+  localStorage.setItem(LS.copy_notes, JSON.stringify(notes));
+}
+
+function tokensIn(text) {
+  const found = new Set();
+  (text || '').replace(/\{\{(\w+)\}\}/g, (_, k) => { found.add(k); return _; });
+  return [...found];
+}
+
+function exportCopyCsv(sequences) {
+  const headers = ['tier', 'tier_label', 'tier_tone', 'step', 'name', 'subject', 'body', 'tokens', 'char_count', 'status', 'notes'];
+  const state = getCopyState();
+  const notes = getCopyNotes();
+  const rows = [headers];
+  for (const tier of ['T1', 'T2', 'T3']) {
+    const seq = sequences[tier];
+    if (!seq) continue;
+    for (const s of seq.steps) {
+      const key = `${tier}.${s.step}`;
+      const tokens = [...new Set([...tokensIn(s.subject), ...tokensIn(s.body)])].join(' ');
+      rows.push([
+        tier,
+        seq.label || '',
+        seq.tone || '',
+        s.step,
+        s.name || '',
+        s.subject || '',
+        s.body || '',
+        tokens,
+        (s.body || '').length,
+        state[key] || 'draft',
+        notes[key] || '',
+      ]);
+    }
+  }
+  const escape = (v) => {
+    const s = String(v == null ? '' : v);
+    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  const csv = rows.map(r => r.map(escape).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `studio-ios-copy-review-${todayISO()}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function renderCopy(data) {
+  const { sequences } = data;
+  const main = document.querySelector('main');
+  main.innerHTML = '';
+
+  const stateInit = getCopyState();
+  const notesInit = getCopyNotes();
+
+  // tally
+  const tiers = ['T1', 'T2', 'T3'];
+  let totalSteps = 0, draft = 0, review = 0, approved = 0;
+  tiers.forEach(t => {
+    const seq = sequences[t];
+    if (!seq) return;
+    seq.steps.forEach(s => {
+      totalSteps++;
+      const key = `${t}.${s.step}`;
+      const st = stateInit[key] || 'draft';
+      if (st === 'approved') approved++;
+      else if (st === 'review') review++;
+      else draft++;
+    });
+  });
+
+  // header card with progress + export
+  const header = el('div', { class: 'progress-card', style: 'gap:18px;align-items:flex-start;' });
+  header.appendChild(el('div', { style: 'flex:1;' },
+    el('div', { class: 'count', style: 'font-size:24px;' }, `${approved}/${totalSteps} approved`),
+    el('div', { class: 'meta' }, `${draft} draft · ${review} in review`),
+    el('div', { class: 'breakdown', style: 'margin-top:10px;' },
+      el('span', { class: 'tier-mini t1' }, `T1·${sequences.T1?.steps.length || 0}`),
+      el('span', { class: 'tier-mini t2' }, `T2·${sequences.T2?.steps.length || 0}`),
+      el('span', { class: 'tier-mini t3' }, `T3·${sequences.T3?.steps.length || 0}`),
+    ),
+  ));
+  header.appendChild(el('button', {
+    class: 'btn',
+    style: 'flex-shrink:0;',
+    onclick: () => exportCopyCsv(sequences),
+  }, 'Export CSV'));
+  main.appendChild(header);
+
+  // tier filter
+  let activeTier = 'all';
+  const filterBar = el('div', { class: 'filter-bar' });
+  ['all', 'T1', 'T2', 'T3'].forEach(t => {
+    const c = el('button', {
+      class: `chip ${t.toLowerCase()}` + (activeTier === t ? ' active' : ''),
+      onclick: () => { activeTier = t; redraw(); },
+    }, t === 'all' ? 'All tiers' : t);
+    c.dataset.t = t;
+    filterBar.appendChild(c);
+  });
+  main.appendChild(filterBar);
+
+  // status filter
+  let activeStatus = 'all';
+  const statusBar = el('div', { class: 'filter-bar' });
+  ['all', 'draft', 'review', 'approved'].forEach(s => {
+    const c = el('button', {
+      class: 'chip' + (activeStatus === s ? ' active' : ''),
+      onclick: () => { activeStatus = s; redraw(); },
+    }, s);
+    c.dataset.s = s;
+    statusBar.appendChild(c);
+  });
+  main.appendChild(statusBar);
+
+  const list = el('div', { class: 'copy-list' });
+  main.appendChild(list);
+
+  function redraw() {
+    filterBar.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.t === activeTier));
+    statusBar.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.s === activeStatus));
+    list.innerHTML = '';
+    tiers.forEach(t => {
+      if (activeTier !== 'all' && activeTier !== t) return;
+      const seq = sequences[t];
+      if (!seq) return;
+      const tierHeader = el('div', { class: 'copy-tier-header' },
+        el('span', { class: `tier-badge ${t.toLowerCase()}` }, `${t} · ${seq.label}`),
+        el('div', { class: 'copy-tier-tone' }, seq.tone || ''),
+      );
+      list.appendChild(tierHeader);
+      seq.steps.forEach(s => {
+        const key = `${t}.${s.step}`;
+        const status = stateInit[key] || 'draft';
+        if (activeStatus !== 'all' && activeStatus !== status) return;
+        list.appendChild(buildCopyCard(t, seq, s, key, status, notesInit[key] || ''));
+      });
+    });
+    if (!list.childElementCount) {
+      list.appendChild(el('div', { class: 'empty' }, 'No emails match these filters.'));
+    }
+  }
+
+  redraw();
+}
+
+function buildCopyCard(tier, seq, step, key, status, notes) {
+  const tokens = [...new Set([...tokensIn(step.subject), ...tokensIn(step.body)])];
+  const card = el('div', { class: `copy-card status-${status}` });
+
+  const top = el('div', { class: 'copy-card-top' },
+    el('div', {},
+      el('div', { class: 'copy-card-id' }, `${tier} · STEP ${step.step}`),
+      el('div', { class: 'copy-card-name' }, step.name || ''),
+    ),
+    el('div', { class: 'copy-card-meta' },
+      el('span', { class: 'mono-mini' }, `${(step.body || '').length} ch`),
+      el('span', { class: 'mono-mini' }, `${tokens.length} tok`),
+    ),
+  );
+  card.appendChild(top);
+
+  card.appendChild(el('div', { class: 'copy-row' },
+    el('span', { class: 'copy-label' }, 'Subject'),
+    el('span', { class: 'copy-val' }, step.subject || ''),
+  ));
+
+  if (tokens.length) {
+    const tokenWrap = el('div', { class: 'copy-tokens' });
+    tokens.forEach(t => tokenWrap.appendChild(el('span', { class: 'token-pill' }, `{{${t}}}`)));
+    card.appendChild(tokenWrap);
+  }
+
+  card.appendChild(el('pre', { class: 'copy-body' }, step.body || ''));
+
+  // notes textarea
+  const note = el('textarea', {
+    class: 'copy-notes',
+    placeholder: 'Notes / what to change…',
+    rows: '2',
+  });
+  note.value = notes;
+  note.addEventListener('change', () => setCopyNote(key, note.value.trim()));
+  card.appendChild(note);
+
+  // status row
+  const statusRow = el('div', { class: 'copy-status-row' });
+  COPY_STATUSES.forEach(s => {
+    const b = el('button', {
+      class: 'chip status-chip' + (status === s ? ` active status-${s}` : ''),
+      onclick: () => {
+        setCopyStatus(key, s);
+        // refresh just this card
+        const newCard = buildCopyCard(tier, seq, step, key, s, getCopyNotes()[key] || '');
+        card.replaceWith(newCard);
+      },
+    }, s);
+    statusRow.appendChild(b);
+  });
+  statusRow.appendChild(el('button', {
+    class: 'chip',
+    style: 'margin-left:auto;',
+    onclick: () => copy(`Subject: ${step.subject}\n\n${step.body}`),
+  }, 'Copy text'));
+  card.appendChild(statusRow);
+
+  return card;
 }
 
 // ───────── Settings ─────────
