@@ -29,6 +29,11 @@
       "lead_id": "research:t2-hayabusa-clement-craig",
       "sent_at": "2026-05-09T08:16:44.510Z",
       "step": 4
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-ken",
+      "sent_at": "2026-05-09T08:17:25.407Z",
+      "step": 1
     }
   ]
 }
