@@ -14,6 +14,11 @@
       "lead_id": "demo:t1-acme",
       "sent_at": "2026-05-09T08:09:17.020Z",
       "step": 1
+    },
+    {
+      "lead_id": "research:t2-hayabusa-clement-craig",
+      "sent_at": "2026-05-09T08:10:01.211Z",
+      "step": 1
     }
   ]
 }
