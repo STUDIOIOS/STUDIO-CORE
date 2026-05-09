@@ -1,3 +1,9 @@
 {
-  "events": []
+  "events": [
+    {
+      "lead_id": "research:t2-progress-jiu-jitsu",
+      "sent_at": "2026-05-08T22:32:18.308Z",
+      "step": 2
+    }
+  ]
 }
