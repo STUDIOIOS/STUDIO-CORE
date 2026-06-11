@@ -153,6 +153,19 @@ const SQUADS = {
 };
 const SPORTSDB="https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4429&s=2026";
 
+/* ---------------- Verified kick-off overrides ------------------------------
+ * Authoritative kick-off times (UK local, BST = +01:00). These take precedence
+ * over the live feed, which is then used only for scores/status. Keyed by an
+ * unordered team pair, so home/away order doesn't matter. Add a line here to
+ * pin any fixture's time exactly. */
+const BAKED={
+  "mexico|south-africa":"2026-06-11T20:00:00+01:00", // Group A opener, Mexico City
+  "england|croatia":   "2026-06-17T21:00:00+01:00", // Group L, MD1
+  "england|ghana":     "2026-06-23T21:00:00+01:00", // Group L, MD2
+  "panama|england":    "2026-06-27T22:00:00+01:00"  // Group L, MD3
+};
+const bakedUtc=(h,a)=>BAKED[h+"|"+a]||BAKED[a+"|"+h]||null;
+
 /* ---------------- Indices -------------------------------------------------- */
 const byId={},byNorm={},ownersByTeam={};
 const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
@@ -170,7 +183,7 @@ function offlineFixtures(){
   Object.keys(g).sort().forEach(grp=>{
     const at=p=>g[grp].find(t=>t.pos===p);
     pat.forEach(([md,h,a])=>{const home=at(h),away=at(a);
-      out.push({id:grp+md+home.id,group:grp,matchday:md,home,away,utc:null,status:"SCHEDULED",min:null,sh:null,sa:null});});
+      out.push({id:grp+md+home.id,group:grp,matchday:md,home,away,utc:bakedUtc(home.id,away.id),status:"SCHEDULED",min:null,sh:null,sa:null});});
   });
   return out;
 }
@@ -181,6 +194,7 @@ function liveFixtures(events){
     if(!home||!away)return;
     let utc=e.strTimestamp||null;
     if(!utc&&e.dateEvent)utc=e.dateEvent+"T"+((e.strTime&&e.strTime!=="00:00:00")?e.strTime:"00:00:00")+"Z";
+    utc=bakedUtc(home.id,away.id)||utc; // verified override wins over the feed
     out.push({id:home.id+away.id,group:home.group,matchday:e.intRound?+e.intRound:null,home,away,
       utc,status:mapStatus(e.strStatus),min:e.strProgress||null,
       sh:e.intHomeScore!=null&&e.intHomeScore!==""?+e.intHomeScore:null,
