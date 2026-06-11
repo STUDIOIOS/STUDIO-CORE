@@ -85,7 +85,7 @@
 <header>
   <div class="inner">
     <div class="brand"><span class="ball">⚽</span>
-      <div><h1>STC World Cup 2026</h1><p class="tag">When does each manager face off?</p></div>
+      <div><h1>STC World Cup 2026</h1><p class="tag">Face-off tracker · all kick-offs in GMT</p></div>
     </div>
     <div class="pill" id="status"><span class="dot"></span><span id="statusText">Loading…</span></div>
   </div>
@@ -210,10 +210,14 @@ function setStatus(k,t){const p=document.getElementById("status");
   p.className="pill "+(k==="live"?"live":k==="ok"?"ok":"offline");
   document.getElementById("statusText").textContent=t;}
 function setUpdated(iso){document.getElementById("updated").textContent=
-  iso?"Updated "+new Date(iso).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"}):"Offline schedule";}
+  iso?"Updated "+fmtT(iso)+" GMT":"Offline schedule";}
 
 /* ---------------- Render --------------------------------------------------- */
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+// All kick-off times pinned to GMT (UTC+0), independent of the viewer's device.
+const TZ="GMT";
+const fmtT=iso=>new Intl.DateTimeFormat("en-GB",{hour:"2-digit",minute:"2-digit",timeZone:TZ}).format(new Date(iso));
+const fmtD=iso=>new Intl.DateTimeFormat("en-GB",{weekday:"long",day:"numeric",month:"short",timeZone:TZ}).format(new Date(iso));
 function chip(m,dim){return `<span class="own${dim?" dim":""}" style="background:${COLORS[m]||"#888"}">${esc(m)}</span>`;}
 function teamHTML(t,side){const o=ownersByTeam[t.id]||[];
   const dimFn=m=>state.mgrFilter!=="all"&&m!==state.mgrFilter;
@@ -222,8 +226,8 @@ function teamHTML(t,side){const o=ownersByTeam[t.id]||[];
 function scoreHTML(f){
   if(f.status==="LIVE"||f.status==="FINISHED"){const h=f.sh!=null?f.sh:"-",a=f.sa!=null?f.sa:"-";
     const m=f.status==="LIVE"&&f.min?`<div class="cd">${esc(f.min)}'</div>`:"";return `<div class="score">${h}–${a}${m}</div>`;}
-  if(f.utc){const d=new Date(f.utc);const hasTime=!/T00:00:00/.test(f.utc);
-    const t=hasTime?d.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"}):"TBC";
+  if(f.utc){const hasTime=!/T00:00:00/.test(f.utc);
+    const t=hasTime?fmtT(f.utc)+" GMT":"TBC";
     return `<div class="score"><div class="kick">${t}</div><div class="cd" data-cd="${f.utc}"></div></div>`;}
   return `<div class="score"><div class="kick">vs</div></div>`;}
 function vsHTML(f){const ho=ownersByTeam[f.home.id]||[],ao=ownersByTeam[f.away.id]||[];
@@ -243,7 +247,7 @@ function passes(f){if(state.statusFilter!=="all"&&f.status!==state.statusFilter)
   if(state.mgrFilter!=="all"){const o=new Set([...ownersByTeam[f.home.id],...ownersByTeam[f.away.id]]);
     if(!o.has(state.mgrFilter))return false;}return true;}
 function dateKey(f){if(!f.utc||/T00:00:00/.test(f.utc))return f.matchday?"Matchday "+f.matchday:"Group stage";
-  return new Date(f.utc).toLocaleDateString([],{weekday:"long",month:"short",day:"numeric"});}
+  return fmtD(f.utc)+" · GMT";}
 
 function render(){
   const list=document.getElementById("list");list.innerHTML="";
@@ -287,9 +291,22 @@ document.getElementById("statusFilter").addEventListener("click",e=>{const b=e.t
   state.statusFilter=b.dataset.s;
   document.querySelectorAll("#statusFilter .chip").forEach(c=>c.classList.toggle("active",c===b));render();});
 
+// Adaptive polling: refresh every 20s while any game is live, otherwise every 60s.
+let pollTimer=null;
+function loopOnce(){
+  if(pollTimer)clearTimeout(pollTimer);
+  Promise.resolve(refresh()).finally(()=>{
+    const live=state.fixtures.some(f=>f.status==="LIVE");
+    pollTimer=setTimeout(loopOnce,live?20000:60000);
+  });
+}
+// Tap the status pill to refresh on demand.
+const statusPill=document.getElementById("status");
+statusPill.style.cursor="pointer";statusPill.title="Tap to refresh";
+statusPill.addEventListener("click",loopOnce);
+
 buildMgrChips();
-refresh();
-setInterval(refresh,60000);
+loopOnce();
 setInterval(tick,1000);
 </script>
 </body>
