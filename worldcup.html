@@ -85,7 +85,7 @@
 <header>
   <div class="inner">
     <div class="brand"><span class="ball">⚽</span>
-      <div><h1>STC World Cup 2026</h1><p class="tag">Face-off tracker · all kick-offs in GMT</p></div>
+      <div><h1>STC World Cup 2026</h1><p class="tag">Face-off tracker · kick-offs in UK time</p></div>
     </div>
     <div class="pill" id="status"><span class="dot"></span><span id="statusText">Loading…</span></div>
   </div>
@@ -210,12 +210,14 @@ function setStatus(k,t){const p=document.getElementById("status");
   p.className="pill "+(k==="live"?"live":k==="ok"?"ok":"offline");
   document.getElementById("statusText").textContent=t;}
 function setUpdated(iso){document.getElementById("updated").textContent=
-  iso?"Updated "+fmtT(iso)+" GMT":"Offline schedule";}
+  iso?"Updated "+fmtT(iso)+" "+zoneLabel:"Offline schedule";}
 
 /* ---------------- Render --------------------------------------------------- */
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-// All kick-off times pinned to GMT (UTC+0), independent of the viewer's device.
-const TZ="GMT";
+// All kick-off times shown in UK time (Europe/London → BST in summer, GMT in winter).
+const TZ="Europe/London";
+const zoneLabel=(()=>{try{const p=new Intl.DateTimeFormat("en-GB",{timeZone:TZ,timeZoneName:"short"})
+  .formatToParts(new Date()).find(x=>x.type==="timeZoneName");return p&&p.value?p.value:"UK";}catch(_){return"UK";}})();
 const fmtT=iso=>new Intl.DateTimeFormat("en-GB",{hour:"2-digit",minute:"2-digit",timeZone:TZ}).format(new Date(iso));
 const fmtD=iso=>new Intl.DateTimeFormat("en-GB",{weekday:"long",day:"numeric",month:"short",timeZone:TZ}).format(new Date(iso));
 function chip(m,dim){return `<span class="own${dim?" dim":""}" style="background:${COLORS[m]||"#888"}">${esc(m)}</span>`;}
@@ -227,7 +229,7 @@ function scoreHTML(f){
   if(f.status==="LIVE"||f.status==="FINISHED"){const h=f.sh!=null?f.sh:"-",a=f.sa!=null?f.sa:"-";
     const m=f.status==="LIVE"&&f.min?`<div class="cd">${esc(f.min)}'</div>`:"";return `<div class="score">${h}–${a}${m}</div>`;}
   if(f.utc){const hasTime=!/T00:00:00/.test(f.utc);
-    const t=hasTime?fmtT(f.utc)+" GMT":"TBC";
+    const t=hasTime?fmtT(f.utc)+" "+zoneLabel:"TBC";
     return `<div class="score"><div class="kick">${t}</div><div class="cd" data-cd="${f.utc}"></div></div>`;}
   return `<div class="score"><div class="kick">vs</div></div>`;}
 function vsHTML(f){const ho=ownersByTeam[f.home.id]||[],ao=ownersByTeam[f.away.id]||[];
@@ -247,7 +249,7 @@ function passes(f){if(state.statusFilter!=="all"&&f.status!==state.statusFilter)
   if(state.mgrFilter!=="all"){const o=new Set([...ownersByTeam[f.home.id],...ownersByTeam[f.away.id]]);
     if(!o.has(state.mgrFilter))return false;}return true;}
 function dateKey(f){if(!f.utc||/T00:00:00/.test(f.utc))return f.matchday?"Matchday "+f.matchday:"Group stage";
-  return fmtD(f.utc)+" · GMT";}
+  return fmtD(f.utc)+" · "+zoneLabel;}
 
 function render(){
   const list=document.getElementById("list");list.innerHTML="";
