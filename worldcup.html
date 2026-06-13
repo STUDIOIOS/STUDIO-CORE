@@ -110,6 +110,12 @@
     border-radius:8px;padding:5px 8px;font-size:12px}
   .chalform input{width:78px}
   .note{color:var(--muted);font-size:11px}
+  .howto{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+  .howto h3{margin:0 0 6px;font-size:13px;color:var(--text)}
+  .howto b{color:var(--text)}
+  .howto ol{margin:6px 0 0;padding-left:18px;display:grid;gap:3px}
+  .howto .x{float:right;cursor:pointer;color:var(--muted);font-weight:800;font-size:15px;line-height:1;margin-left:8px}
 </style>
 </head>
 <body>
@@ -123,6 +129,18 @@
 </header>
 <main>
   <div class="betbar" id="betbar"><span class="note">Connecting betting…</span></div>
+  <div class="howto" id="howto" hidden>
+    <span class="x" id="howtoClose" title="Dismiss">×</span>
+    <h3>⚔️ Face-off duels — how it works</h3>
+    You start with <b>1,000 tokens</b>. When one of your teams plays a rival manager's team, bet against them on the result.
+    <ol>
+      <li><b>Sign in</b> — pick your name and set a 4-digit PIN (so only you can place your bets).</li>
+      <li><b>Challenge</b> a rival on any match where your teams meet, and stake some tokens on your team.</li>
+      <li>They <b>accept or decline</b>. Bets <b>lock at kick-off</b> and settle automatically at full time.</li>
+      <li><b>Win</b> → you take their stake · <b>draw</b> → stakes returned · <b>lose</b> → they take yours.</li>
+    </ol>
+    <div class="note" style="margin-top:7px">Your final token balance = your slice of the <b>£100 prize pot</b>. Tap <b>Standings</b> any time to see the leaderboard and projected winnings.</div>
+  </div>
   <div class="betpanel" id="betpanel"></div>
   <div class="row" id="statusFilter">
     <button class="chip active" data-s="all">All</button>
@@ -564,6 +582,8 @@ document.addEventListener("click",async e=>{
     if(id==="doSignin"){const n=document.getElementById("meSel").value,p=document.getElementById("pinIn").value;
       if(!p||p.length<4){alert("PIN must be at least 4 digits");return;}t.disabled=true;await signIn(n,p);}
     else if(id==="signout")signOut();
+    else if(id==="howtoClose"){document.getElementById("howto").hidden=true;
+      try{localStorage.setItem("wc_howto","1");}catch(_){}}
     else if(id==="togglePanel")document.getElementById("betpanel").classList.toggle("open");
     else if(act==="chal-send"){const fid=t.getAttribute("data-fix"),side=t.getAttribute("data-side");
       const f=state.fixtures.find(x=>x.id===fid);if(!f)return;
@@ -581,6 +601,10 @@ document.addEventListener("click",async e=>{
         p_duel_id:+t.getAttribute("data-id")});await loadBet();}
   }catch(err){alert(err.message||String(err));if(t)t.disabled=false;}
 });
+
+// Show the how-to blurb until the user dismisses it once.
+try{if(!localStorage.getItem("wc_howto"))document.getElementById("howto").hidden=false;}
+catch(_){document.getElementById("howto").hidden=false;}
 
 buildMgrChips();
 loopOnce();
