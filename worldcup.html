@@ -79,6 +79,37 @@
   .empty{color:var(--muted);font-size:13px;text-align:center;padding:30px 0}
   footer{max-width:720px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:11px;text-align:center}
   @media(max-width:460px){.tline{font-size:13.5px}.score{font-size:18px;min-width:46px}.flag{font-size:17px}}
+  /* --- betting (face-off duels) --- */
+  .betbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:10px 13px;margin-bottom:12px;font-size:12.5px}
+  .betbar .me{font-weight:800;color:var(--text)}
+  .betbar .bal{color:var(--win);font-weight:800}
+  .betbar .gbp{color:var(--accent);font-weight:800}
+  .betbar .grow{flex:1 1 120px}
+  .btn{background:var(--accent);color:#061018;border:none;border-radius:999px;padding:6px 12px;
+    font-size:12px;font-weight:700;cursor:pointer}
+  .btn:disabled{opacity:.5;cursor:default}
+  .btn.ghost{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+  .btn.sm{padding:4px 9px;font-size:11px}
+  .betpanel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;
+    margin-bottom:12px;font-size:12.5px;display:none}
+  .betpanel.open{display:block}
+  .lb{display:grid;grid-template-columns:auto 1fr auto auto;gap:6px 10px;align-items:center;margin-top:7px}
+  .lb .rk{color:var(--muted);font-variant-numeric:tabular-nums}
+  .lb .nm{font-weight:700}.lb .nm.me{color:var(--win)}
+  .lb .tk{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+  .lb .gp{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700;text-align:right}
+  .bet{border-top:1px dashed var(--line);padding-top:9px;margin-top:1px;font-size:12px;display:grid;gap:7px}
+  .duel{display:flex;flex-wrap:wrap;align-items:center;gap:6px;color:var(--muted)}
+  .duel b{color:var(--text)}
+  .duel .st{font-weight:700;padding:1px 7px;border-radius:999px;font-size:10.5px;background:var(--card2);border:1px solid var(--line)}
+  .duel .st.accepted{color:var(--accent)}.duel .st.pending{color:#f59e0b}
+  .duel .st.won{color:var(--win)}.duel .st.lost{color:var(--live)}.duel .st.push{color:var(--muted)}
+  .chalform{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .chalform select,.chalform input{background:var(--bg);color:var(--text);border:1px solid var(--line);
+    border-radius:8px;padding:5px 8px;font-size:12px}
+  .chalform input{width:78px}
+  .note{color:var(--muted);font-size:11px}
 </style>
 </head>
 <body>
@@ -91,6 +122,8 @@
   </div>
 </header>
 <main>
+  <div class="betbar" id="betbar"><span class="note">Connecting betting…</span></div>
+  <div class="betpanel" id="betpanel"></div>
   <div class="row" id="statusFilter">
     <button class="chip active" data-s="all">All</button>
     <button class="chip" data-s="LIVE">🔴 Live</button>
@@ -104,6 +137,7 @@
 </main>
 <footer><span id="updated"></span> · Kick-offs: official schedule (UK time) · Live scores: TheSportsDB</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ---------------- Data (the only thing you'd edit to change squads) -------- */
 const TEAMS = [
@@ -152,6 +186,16 @@ const SQUADS = {
   Ben:["spain","england","japan","senegal","austria","scotland","ivory-coast","bosnia"]
 };
 const SPORTSDB="https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4429&s=2026";
+
+/* ---------------- Betting (Supabase) config --------------------------------
+ * Shared face-off duels. Everyone starts with 1000 tokens; tokens are zero-sum
+ * so the pool total is always TOKEN_TOTAL. At tournament end the real-money
+ * POT is split in proportion to each manager's final token balance.
+ * The anon key below is the PUBLIC key — safe to ship; all writes go through
+ * PIN-gated server functions and row-level security. */
+const SUPA_URL="https://gyhejhbokugymklmhtfe.supabase.co";
+const SUPA_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5aGVqaGJva3VneW1rbG1odGZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNDI0MTEsImV4cCI6MjA5NjkxODQxMX0.MosYwSglEJG4Q4dAHRLdwRQ7j43rwFCAmfpBrtA_aPY";
+const POT_GBP=100, START_TOKENS=1000, TOKEN_TOTAL=START_TOKENS*10;
 
 /* ---------------- Official kick-off schedule (source of truth) -------------
  * All 72 group-stage fixtures with verified kick-off times in UK local time
@@ -255,7 +299,8 @@ TEAMS.forEach(t=>{byId[t.id]=t;byNorm[norm(t.name)]=t;t.aliases.forEach(a=>byNor
 MANAGERS.forEach(m=>SQUADS[m].forEach(id=>ownersByTeam[id]&&ownersByTeam[id].push(m)));
 const resolve=name=>byNorm[norm(name)]||null;
 
-let state={fixtures:[],source:"loading",statusFilter:"all",mgrFilter:"all"};
+let state={fixtures:[],source:"loading",statusFilter:"all",mgrFilter:"all",
+  me:null,pin:null,managers:{},duels:[],duelsByFix:{}};
 
 /* ---------------- Fixtures ------------------------------------------------- */
 // Build the 72 fixtures from the baked schedule; matchday is derived by
@@ -299,7 +344,7 @@ async function refresh(){
   }else{
     setStatus("offline","Schedule loaded · live scores unavailable");setUpdated(null);state.source="offline";
   }
-  state.fixtures=fixtures;render();
+  state.fixtures=fixtures;reportFinished(fixtures);render();
 }
 function setStatus(k,t){const p=document.getElementById("status");
   p.className="pill "+(k==="live"?"live":k==="ok"?"ok":"offline");
@@ -335,7 +380,7 @@ function badge(f){if(f.status==="LIVE")return `<span class="badge LIVE"><span cl
 function card(f){const el=document.createElement("article");el.className="match"+(f.status==="LIVE"?" live":"");
   el.innerHTML=`<div class="mtop"><span class="gtag">Group ${f.group}</span>
     <span>${f.matchday?"Matchday "+f.matchday:"Group stage"}</span>${badge(f)}</div>
-    <div class="teams">${teamHTML(f.home,"home")}${scoreHTML(f)}${teamHTML(f.away,"away")}</div>${vsHTML(f)}`;return el;}
+    <div class="teams">${teamHTML(f.home,"home")}${scoreHTML(f)}${teamHTML(f.away,"away")}</div>${vsHTML(f)}${betBlock(f)}`;return el;}
 
 function passes(f){if(state.statusFilter!=="all"&&f.status!==state.statusFilter)return false;
   if(state.mgrFilter!=="all"){const o=new Set([...ownersByTeam[f.home.id],...ownersByTeam[f.away.id]]);
@@ -398,8 +443,148 @@ const statusPill=document.getElementById("status");
 statusPill.style.cursor="pointer";statusPill.title="Tap to refresh";
 statusPill.addEventListener("click",loopOnce);
 
+/* ================= Betting: face-off duels (Supabase) ===================== */
+let sb=null, betReady=false;
+const reported=new Set();          // fixtures whose final score we've reported
+const eq=m=>{const x=state.managers[m];return x?x.balance+x.locked:START_TOKENS;};
+const gbp=v=>"£"+(POT_GBP*v/TOKEN_TOTAL).toFixed(2);
+
+async function rpc(fn,args){const {data,error}=await sb.rpc(fn,args);
+  if(error)throw new Error(error.message||"Request failed");return data;}
+
+function indexDuels(){state.duelsByFix={};
+  state.duels.forEach(d=>(state.duelsByFix[d.fixture_id]=state.duelsByFix[d.fixture_id]||[]).push(d));}
+
+async function loadBet(){if(!sb)return;
+  const [{data:m},{data:d}]=await Promise.all([
+    sb.from("managers").select("*"),
+    sb.from("duels").select("*").order("id")]);
+  state.managers={};(m||[]).forEach(x=>state.managers[x.name]=x);
+  state.duels=d||[];indexDuels();
+  renderBetBar();renderBetPanel();render();}
+
+async function initBet(){
+  try{state.me=localStorage.getItem("wc_me")||null;state.pin=localStorage.getItem("wc_pin")||null;}catch(_){}
+  if(!window.supabase){renderBetBar();return;}
+  try{sb=window.supabase.createClient(SUPA_URL,SUPA_KEY);betReady=true;
+    await loadBet();
+    sb.channel("bet")
+      .on("postgres_changes",{event:"*",schema:"public",table:"duels"},loadBet)
+      .on("postgres_changes",{event:"*",schema:"public",table:"managers"},loadBet)
+      .subscribe();
+  }catch(_){betReady=false;}
+  renderBetBar();renderBetPanel();}
+
+async function signIn(name,pin){await rpc("claim_manager",{p_name:name,p_pin:pin});
+  state.me=name;state.pin=pin;
+  try{localStorage.setItem("wc_me",name);localStorage.setItem("wc_pin",pin);}catch(_){}
+  await loadBet();}
+function signOut(){state.me=null;state.pin=null;
+  try{localStorage.removeItem("wc_me");localStorage.removeItem("wc_pin");}catch(_){}
+  renderBetBar();renderBetPanel();render();}
+
+// Push a final score to the pool once a match finishes; server settles duels.
+function reportFinished(fixtures){if(!sb||!betReady)return;
+  fixtures.forEach(f=>{if(f.status==="FINISHED"&&f.sh!=null&&f.sa!=null&&!reported.has(f.id)){
+    reported.add(f.id);
+    rpc("report_result",{p_fixture:f.id,p_home:f.sh,p_away:f.sa}).catch(()=>reported.delete(f.id));}});}
+
+/* ---- Render the identity / balance bar ---- */
+function renderBetBar(){const bar=document.getElementById("betbar");if(!bar)return;
+  if(!betReady){bar.innerHTML=`<span class="note">Betting offline — tracker still live.</span>`;return;}
+  if(!state.me){
+    bar.innerHTML=`<select id="meSel">${MANAGERS.map(m=>`<option>${esc(m)}</option>`).join("")}</select>
+      <input id="pinIn" type="password" inputmode="numeric" maxlength="8" placeholder="PIN (4+ digits)">
+      <button class="btn" id="doSignin">Sign in to bet</button>
+      <span class="note grow">First sign-in sets your PIN · tokens convert to prize money by final balance.</span>`;
+    return;}
+  const x=state.managers[state.me]||{balance:START_TOKENS,locked:0};
+  bar.innerHTML=`<span class="me">${esc(state.me)}</span>
+    <span class="bal">${x.balance+x.locked} tk</span>
+    <span class="note">${x.balance} free${x.locked?` · ${x.locked} staked`:""}</span>
+    <span class="gbp">≈ ${gbp(x.balance+x.locked)}</span><span class="grow"></span>
+    <button class="btn ghost sm" id="togglePanel">Standings</button>
+    <button class="btn ghost sm" id="signout">Sign out</button>`;}
+
+/* ---- Render the standings / prize-money panel ---- */
+function renderBetPanel(){const p=document.getElementById("betpanel");if(!p)return;
+  const rows=MANAGERS.map(m=>({m,v:eq(m),joined:!!(state.managers[m]&&state.managers[m].claimed)}))
+    .sort((a,b)=>b.v-a.v);
+  const lb=`<div class="lb">`+rows.map((r,i)=>
+    `<span class="rk">${i+1}</span>
+     <span class="nm ${r.m===state.me?"me":""}">${esc(r.m)}${r.joined?"":' <span class="note">· not joined</span>'}</span>
+     <span class="tk">${r.v} tk</span><span class="gp">${gbp(r.v)}</span>`).join("")+`</div>`;
+  p.innerHTML=`<div class="note">£${POT_GBP} prize pot split by final token balance · ${TOKEN_TOTAL} tokens in play</div>${lb}`;}
+
+/* ---- Per-match duel block (shown on every card) ---- */
+function duelLine(d,f){
+  const back=d.challenger_side==="home"?f.home.name:f.away.name;
+  let cls=d.status,label=d.status;
+  if(d.status==="settled"){
+    if(d.outcome==="push"){cls="push";label="push — stakes returned";}
+    else{const w=d.outcome==="challenger"?d.challenger:d.opponent;
+      label=esc(w)+" won "+d.stake;cls=(w===state.me)?"won":"lost";}}
+  let acts="";
+  if(state.me===d.opponent&&d.status==="pending")
+    acts=`<button class="btn sm" data-act="accept" data-id="${d.id}">Accept</button>
+          <button class="btn ghost sm" data-act="decline" data-id="${d.id}">Decline</button>`;
+  else if(state.me===d.challenger&&d.status==="pending")
+    acts=`<button class="btn ghost sm" data-act="cancel" data-id="${d.id}">Cancel</button>`;
+  return `<div class="duel"><b>${esc(d.challenger)}</b> backs ${esc(back)} · <b>${d.stake}</b> tk vs <b>${esc(d.opponent)}</b>
+    <span class="st ${cls}">${esc(label)}</span>${acts}</div>`;}
+
+function betBlock(f){if(!betReady)return"";
+  const fid=f.id;
+  const duels=(state.duelsByFix[fid]||[]).filter(d=>["pending","accepted","settled"].includes(d.status));
+  const locked=f.status!=="SCHEDULED"||Date.now()>=new Date(f.utc).getTime();
+  const ho=ownersByTeam[f.home.id],ao=ownersByTeam[f.away.id];
+  let lines=duels.map(d=>duelLine(d,f)).join("");
+  let ctrl="";
+  if(state.me&&!locked){
+    const meHome=ho.includes(state.me),meAway=ao.includes(state.me);
+    if(meHome&&meAway)ctrl=`<span class="note">You own both teams here — no duel.</span>`;
+    else if(meHome||meAway){
+      const side=meHome?"home":"away",mine=meHome?f.home:f.away,theirs=meHome?f.away:f.home;
+      const opps=(meHome?ao:ho).filter(o=>o!==state.me&&!(ho.includes(o)&&ao.includes(o)));
+      ctrl=opps.length
+        ?`<div class="chalform"><span class="note">Back <b>${esc(mine.name)}</b> vs</span>
+            <select id="opp-${fid}">${opps.map(o=>`<option>${esc(o)}</option>`).join("")}</select>
+            <input id="stk-${fid}" type="number" min="10" step="10" value="50">
+            <button class="btn sm" data-act="chal-send" data-fix="${fid}" data-side="${side}">Challenge</button></div>`
+        :`<span class="note">No rival owns ${esc(theirs.name)} to duel here.</span>`;}
+  }else if(state.me&&locked&&!duels.length){return"";}
+  if(!lines&&!ctrl)return"";
+  return `<div class="bet" data-fix="${fid}">${lines}${ctrl}</div>`;}
+
+/* ---- One delegated click handler for all betting actions ---- */
+document.addEventListener("click",async e=>{
+  const t=e.target,id=t.id,act=t.getAttribute&&t.getAttribute("data-act");
+  if(!id&&!act)return;
+  try{
+    if(id==="doSignin"){const n=document.getElementById("meSel").value,p=document.getElementById("pinIn").value;
+      if(!p||p.length<4){alert("PIN must be at least 4 digits");return;}t.disabled=true;await signIn(n,p);}
+    else if(id==="signout")signOut();
+    else if(id==="togglePanel")document.getElementById("betpanel").classList.toggle("open");
+    else if(act==="chal-send"){const fid=t.getAttribute("data-fix"),side=t.getAttribute("data-side");
+      const f=state.fixtures.find(x=>x.id===fid);if(!f)return;
+      const opp=document.getElementById("opp-"+fid).value;
+      const stk=parseInt(document.getElementById("stk-"+fid).value,10);
+      if(!(stk>=10)){alert("Minimum stake is 10 tokens");return;}
+      t.disabled=true;
+      await rpc("create_duel",{p_challenger:state.me,p_pin:state.pin,p_opponent:opp,
+        p_fixture:fid,p_kickoff:f.utc,p_side:side,p_stake:stk});await loadBet();}
+    else if(act==="accept"||act==="decline"){t.disabled=true;
+      await rpc("respond_duel",{p_opponent:state.me,p_pin:state.pin,
+        p_duel_id:+t.getAttribute("data-id"),p_accept:act==="accept"});await loadBet();}
+    else if(act==="cancel"){t.disabled=true;
+      await rpc("cancel_duel",{p_challenger:state.me,p_pin:state.pin,
+        p_duel_id:+t.getAttribute("data-id")});await loadBet();}
+  }catch(err){alert(err.message||String(err));if(t)t.disabled=false;}
+});
+
 buildMgrChips();
 loopOnce();
+initBet();
 setInterval(tick,1000);
 </script>
 </body>
