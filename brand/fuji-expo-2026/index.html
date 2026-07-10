@@ -1,0 +1,682 @@
+<title>FUJI EXPO 2026 — Brand Direction Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* ============ SHELL TOKENS ============ */
+  :root{
+    --paper:#EEECE6; --paper-2:#E4E1D8; --card:#F6F4EF;
+    --ink:#15171B; --ink-2:#3A3D44; --ink-3:#6B6F78;
+    --line:#D4D0C6; --line-2:#C7C2B6;
+    --nav:#2B3A55;               /* shell wayfinding accent only */
+    --shadow:0 1px 0 rgba(0,0,0,.02), 0 24px 48px -32px rgba(20,22,26,.45);
+    --maxw:1180px;
+    --f-disp:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+    --f-body:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --f-mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0E0F12; --paper-2:#121419; --card:#16181D;
+      --ink:#ECEAE3; --ink-2:#B7B9C0; --ink-3:#7E828C;
+      --line:#25272E; --line-2:#2E3038;
+      --nav:#8FA6CE;
+      --shadow:0 1px 0 rgba(255,255,255,.02), 0 30px 60px -34px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EEECE6; --paper-2:#E4E1D8; --card:#F6F4EF;
+    --ink:#15171B; --ink-2:#3A3D44; --ink-3:#6B6F78;
+    --line:#D4D0C6; --line-2:#C7C2B6; --nav:#2B3A55;
+    --shadow:0 1px 0 rgba(0,0,0,.02), 0 24px 48px -32px rgba(20,22,26,.45);
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E0F12; --paper-2:#121419; --card:#16181D;
+    --ink:#ECEAE3; --ink-2:#B7B9C0; --ink-3:#7E828C;
+    --line:#25272E; --line-2:#2E3038; --nav:#8FA6CE;
+    --shadow:0 1px 0 rgba(255,255,255,.02), 0 30px 60px -34px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--f-body); font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+  a{color:var(--nav); text-underline-offset:3px}
+  h1,h2,h3{text-wrap:balance; margin:0}
+  p{margin:0}
+  img,svg{max-width:100%; display:block}
+  .eyebrow{
+    font-family:var(--f-mono); font-size:12px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--ink-3);
+  }
+  .lede{font-size:clamp(19px,2.4vw,23px); line-height:1.5; color:var(--ink-2); max-width:60ch}
+
+  /* ============ TOP BAR ============ */
+  .topbar{
+    position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--paper) 88%,transparent);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{display:flex; align-items:center; justify-content:space-between; height:58px; gap:16px}
+  .brandmark{display:flex; align-items:center; gap:10px; font-family:var(--f-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink)}
+  .brandmark b{font-weight:700}
+  .brandmark .dot{width:8px;height:8px;background:var(--nav);border-radius:50%}
+  .topnav{display:flex; gap:22px; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase}
+  .topnav a{color:var(--ink-3); text-decoration:none}
+  .topnav a:hover{color:var(--ink)}
+  @media (max-width:720px){.topnav{display:none}}
+
+  /* ============ HERO ============ */
+  .hero{padding:clamp(48px,9vw,110px) 0 clamp(40px,6vw,72px); border-bottom:1px solid var(--line)}
+  .hero .kicker{display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:26px}
+  .tag{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); border:1px solid var(--line-2); padding:5px 10px; border-radius:100px}
+  .hero h1{
+    font-family:var(--f-disp); font-weight:800;
+    font-size:clamp(44px,10.5vw,132px); line-height:.9; letter-spacing:-.03em;
+    transform:scaleX(.94); transform-origin:left;
+  }
+  .hero h1 span{color:var(--ink-3)}
+  .hero-sub{margin-top:30px; display:grid; grid-template-columns:1.4fr 1fr; gap:40px; align-items:end}
+  @media (max-width:760px){.hero-sub{grid-template-columns:1fr; gap:22px}}
+  .hero-meta{font-family:var(--f-mono); font-size:12.5px; line-height:1.9; color:var(--ink-2)}
+  .hero-meta .k{color:var(--ink-3); display:inline-block; width:92px}
+
+  /* ============ SECTION SCAFFOLD ============ */
+  section{padding:clamp(52px,8vw,96px) 0}
+  .sec-head{display:flex; gap:16px; align-items:baseline; margin-bottom:38px; border-bottom:1px solid var(--line); padding-bottom:16px}
+  .sec-head .no{font-family:var(--f-mono); font-size:12px; color:var(--nav); letter-spacing:.1em}
+  .sec-head h2{font-family:var(--f-disp); font-weight:800; font-size:clamp(24px,3.6vw,40px); letter-spacing:-.02em; line-height:1}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,56px)}
+  @media (max-width:800px){.two-col{grid-template-columns:1fr; gap:26px}}
+  .prose p+p{margin-top:16px}
+  .prose p{color:var(--ink-2)}
+
+  /* context stat strip */
+  .facts{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-top:8px}
+  @media (max-width:680px){.facts{grid-template-columns:repeat(2,1fr)}}
+  .fact{background:var(--card); padding:22px 20px}
+  .fact .n{font-family:var(--f-disp); font-weight:800; font-size:34px; letter-spacing:-.02em; line-height:1}
+  .fact .l{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:10px}
+
+  /* ============ TRENDS ============ */
+  .trend-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden}
+  @media (max-width:760px){.trend-grid{grid-template-columns:1fr}}
+  .trend{background:var(--card); padding:30px 28px; display:flex; flex-direction:column; gap:12px; min-height:200px}
+  .trend .tn{font-family:var(--f-mono); font-size:12px; color:var(--nav); letter-spacing:.12em}
+  .trend h3{font-family:var(--f-disp); font-weight:800; font-size:22px; letter-spacing:-.01em}
+  .trend p{color:var(--ink-2); font-size:15.5px; line-height:1.55}
+  .trend .used{margin-top:auto; font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; color:var(--ink-3); text-transform:uppercase}
+  .trend .used b{color:var(--ink)}
+
+  /* ============ CONCEPT SHELL ============ */
+  .concept{margin:clamp(40px,6vw,72px) 0}
+  .concept-rail{display:flex; align-items:baseline; gap:18px; margin-bottom:20px}
+  .concept-rail .cno{font-family:var(--f-mono); font-size:13px; color:var(--nav); letter-spacing:.14em}
+  .concept-rail h2{font-family:var(--f-disp); font-weight:800; font-size:clamp(28px,4.5vw,52px); letter-spacing:-.02em; line-height:.95}
+  .concept-rail .cw{color:var(--ink-3); font-family:var(--f-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; margin-left:auto; align-self:center}
+  @media (max-width:600px){.concept-rail .cw{display:none}}
+
+  .canvas{border-radius:20px; overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--line)}
+  /* poster hero inside each concept */
+  .poster{position:relative; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; overflow:hidden}
+  @media (max-width:640px){.poster{aspect-ratio:4/5}}
+
+  /* concept detail grid */
+  .cdetail{display:grid; grid-template-columns:1.15fr 1fr; gap:0; background:var(--card); border-top:1px solid var(--line)}
+  @media (max-width:820px){.cdetail{grid-template-columns:1fr}}
+  .cdetail .pane{padding:28px 28px}
+  .cdetail .pane+.pane{border-left:1px solid var(--line)}
+  @media (max-width:820px){.cdetail .pane+.pane{border-left:0;border-top:1px solid var(--line)}}
+  .pane h4{font-family:var(--f-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px}
+  .pane p{color:var(--ink-2); font-size:15.5px; line-height:1.55}
+  .pane p+p{margin-top:12px}
+
+  .swatches{display:flex; gap:0; border-radius:10px; overflow:hidden; border:1px solid var(--line); margin-bottom:16px}
+  .sw{flex:1; height:56px; display:flex; align-items:flex-end; padding:6px; font-family:var(--f-mono); font-size:9px; color:rgba(255,255,255,.85)}
+  .sw.dk{color:rgba(255,255,255,.9)} .sw.lt{color:rgba(0,0,0,.6)}
+  .typespec{font-family:var(--f-mono); font-size:12.5px; line-height:1.9; color:var(--ink-2)}
+  .typespec .k{color:var(--ink-3); width:78px; display:inline-block}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:6px}
+  .chip{font-family:var(--f-mono); font-size:11px; letter-spacing:.04em; padding:4px 9px; border:1px solid var(--line-2); border-radius:100px; color:var(--ink-2)}
+
+  /* applications row */
+  .apps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px}
+  @media (max-width:760px){.apps{grid-template-columns:1fr}}
+  .app{border-radius:14px; overflow:hidden; border:1px solid var(--line); background:var(--card)}
+  .app .cap{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); padding:10px 12px; border-top:1px solid var(--line)}
+  .app .art{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; overflow:hidden}
+
+  /* ============ COMPARE TABLE ============ */
+  .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:14px}
+  table{border-collapse:collapse; width:100%; min-width:640px; font-size:15px}
+  th,td{text-align:left; padding:15px 18px; border-bottom:1px solid var(--line); vertical-align:top}
+  thead th{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--paper-2)}
+  tbody th{font-family:var(--f-disp); font-weight:800; font-size:16px; white-space:nowrap}
+  td{color:var(--ink-2)}
+  .rec{display:inline-block; font-family:var(--f-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:100px; background:var(--nav); color:#fff}
+
+  /* recommendation callout */
+  .callout{border:1px solid var(--line); border-radius:18px; background:var(--card); padding:clamp(24px,4vw,40px); box-shadow:var(--shadow)}
+  .callout .eyebrow{margin-bottom:14px}
+  .callout h3{font-family:var(--f-disp); font-weight:800; font-size:clamp(22px,3.2vw,32px); letter-spacing:-.02em; margin-bottom:14px}
+  .callout p{color:var(--ink-2); max-width:66ch}
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:26px}
+  @media (max-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:440px){.steps{grid-template-columns:1fr}}
+  .step{padding-top:14px; border-top:2px solid var(--nav)}
+  .step .sn{font-family:var(--f-mono); font-size:11px; color:var(--nav); letter-spacing:.1em}
+  .step p{font-size:14.5px; margin-top:8px; color:var(--ink)}
+
+  footer{border-top:1px solid var(--line); padding:40px 0 60px; color:var(--ink-3); font-family:var(--f-mono); font-size:12px; letter-spacing:.06em}
+  footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+
+  .note{font-family:var(--f-mono); font-size:12px; color:var(--ink-3); border-left:2px solid var(--line-2); padding:4px 0 4px 14px; line-height:1.6}
+</style>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandmark"><span class="dot"></span><b>STUDIO&nbsp;IOS</b>&nbsp;/ Brand Direction</div>
+    <nav class="topnav">
+      <a href="#brief">Brief</a>
+      <a href="#trends">Trends</a>
+      <a href="#routes">Routes</a>
+      <a href="#compare">Compare</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">
+      <span class="tag">Confidential — Client Pitch</span>
+      <span class="tag">FUJI · Brazilian Jiu-Jitsu</span>
+      <span class="tag">Prepared 10 Jul 2026</span>
+    </div>
+    <h1>FUJI<br>EXPO&nbsp;<span>’26</span></h1>
+    <div class="hero-sub">
+      <p class="lede">A graphic-style study and three route options for the FUJI EXPO 2026 identity — event branding, signage, key art and medal design, built for a modern combat-sports audience.</p>
+      <div class="hero-meta">
+        <div><span class="k">Deliverable</span> Direction report</div>
+        <div><span class="k">Scope</span> Logo · signage · key art · medal</div>
+        <div><span class="k">Routes</span> 03 shown</div>
+        <div><span class="k">Decision</span> Pick one to develop</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ BRIEF ============ -->
+<section id="brief">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">01</span><h2>The brief &amp; the roots</h2></div>
+    <div class="two-col">
+      <div class="prose">
+        <p>FUJI EXPO 2026 is a flagship gathering for the Brazilian Jiu-Jitsu community — competition, gear, seminars and brand activations under one roof. The identity has to work loud at arena scale, hold up small on a lanyard, and feel current to a young, style-literate audience that lives on Instagram and TikTok.</p>
+        <p>The name gives us our raw material. <b>Fuji</b> carries a clean set of associations — the mountain, the ascent, the rising sun, and the Japanese martial heritage underneath the Brazilian sport. The strongest routes mine that world rather than defaulting to generic “extreme sports” tropes.</p>
+        <p class="note">Note: the reference pack of previously produced FUJI assets wasn’t attached to the brief. These routes are pitched fresh; once we see the existing house style we’ll align type, spacing and any equity worth carrying forward.</p>
+      </div>
+      <div>
+        <div class="facts">
+          <div class="fact"><div class="n">3</div><div class="l">Distinct routes</div></div>
+          <div class="fact"><div class="n">Ø→XL</div><div class="l">Lanyard to arena</div></div>
+          <div class="fact"><div class="n">2026</div><div class="l">Trend-aligned</div></div>
+          <div class="fact"><div class="n">JP↔EN</div><div class="l">Bilingual ready</div></div>
+        </div>
+        <p style="margin-top:18px;color:var(--ink-2);font-size:15px">Every route is designed as a <b>system</b>, not a single logo: a mark, a type voice, a colour world and a motion behaviour that carries across the whole event.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRENDS ============ -->
+<section id="trends" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">02</span><h2>What’s driving sports graphics in 2026</h2></div>
+    <p class="lede" style="margin-bottom:34px">Six currents shaping combat-sports and event design right now. Each of our three routes is anchored in a different cluster of these — so the client is choosing a considered position, not a mood.</p>
+    <div class="trend-grid">
+      <div class="trend">
+        <span class="tn">T/01</span>
+        <h3>Oversized condensed type</h3>
+        <p>Ultra-bold, tightly-tracked condensed caps used as the primary graphic element — type <em>is</em> the artwork. Loud, kinetic, unmistakably athletic. The dominant register in MMA, running and streetwear.</p>
+        <div class="used">Anchors → <b>Route 01 · Summit</b></div>
+      </div>
+      <div class="trend">
+        <span class="tn">T/02</span>
+        <h3>Chrome &amp; acid gradients</h3>
+        <p>The Y2K/techwear revival: liquid-chrome lettering, mesh gradients and “digital sunrise” colour ramps. Reads future-facing and screen-native — built for reels and LED walls.</p>
+        <div class="used">Anchors → <b>Route 02 · Meridian</b></div>
+      </div>
+      <div class="trend">
+        <span class="tn">T/03</span>
+        <h3>Heritage-modern craft</h3>
+        <p>Traditional marks — crests, seals, brush ink — rebuilt with contemporary precision. Signals authenticity and premium. Strong fit for a sport with deep lineage and belt culture.</p>
+        <div class="used">Anchors → <b>Route 03 · Crest</b></div>
+      </div>
+      <div class="trend">
+        <span class="tn">T/04</span>
+        <h3>Bilingual lockups</h3>
+        <p>Japanese and Latin scripts set together as one composition — 富士 beside FUJI. Adds texture, authenticity and instant global legibility. Now standard in fight-wear and fashion.</p>
+        <div class="used">Used across → <b>all three routes</b></div>
+      </div>
+      <div class="trend">
+        <span class="tn">T/05</span>
+        <h3>Modular, motion-ready systems</h3>
+        <p>Identities designed as kits — a grid, a set of marks, a rule for how they animate — so they scale from a ticket to a 20-metre banner and move natively in video.</p>
+        <div class="used">Baked into → <b>every system</b></div>
+      </div>
+      <div class="trend">
+        <span class="tn">T/06</span>
+        <h3>Tactile print &amp; finish</h3>
+        <p>Foil, emboss, riso texture and heavyweight stock pushing back against flat digital. Where it matters most for us: the <b>medal</b> and premium credential — objects people keep.</p>
+        <div class="used">Peaks on → <b>medal &amp; credentials</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROUTES ============ -->
+<section id="routes">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">03</span><h2>Three routes to take to the client</h2></div>
+    <p class="lede" style="margin-bottom:8px">Each route is a complete world: primary logo lockup, key-art poster, colour, type — then the same system carried onto a medal, event signage and a social tile.</p>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- ROUTE 01 · SUMMIT -->
+  <!-- ========================================================= -->
+  <div class="wrap">
+    <div class="concept">
+      <div class="concept-rail">
+        <span class="cno">R/01</span>
+        <h2>SUMMIT</h2>
+        <span class="cw">Brutalist sport · type-first</span>
+      </div>
+
+      <div class="canvas">
+        <!-- POSTER -->
+        <div class="poster" style="background:#141210">
+          <svg viewBox="0 0 1600 900" width="100%" height="100%" role="img" aria-label="Summit route key art: FUJI EXPO 2026 in bold condensed type with a mountain apex">
+            <defs>
+              <clipPath id="s-clip"><rect x="0" y="0" width="1600" height="900"/></clipPath>
+            </defs>
+            <g clip-path="url(#s-clip)">
+              <rect width="1600" height="900" fill="#141210"/>
+              <!-- grid ticks -->
+              <g stroke="#2a2723" stroke-width="1">
+                <line x1="120" y1="70" x2="120" y2="830"/><line x1="1480" y1="70" x2="1480" y2="830"/>
+                <line x1="120" y1="70" x2="1480" y2="70"/><line x1="120" y1="830" x2="1480" y2="830"/>
+              </g>
+              <!-- big apex mark -->
+              <path d="M800 150 L1120 620 L480 620 Z" fill="none" stroke="#FF3D22" stroke-width="14"/>
+              <path d="M800 300 L960 540 L640 540 Z" fill="#FF3D22"/>
+              <!-- snow line negative -->
+              <path d="M735 258 L865 258 L800 150 Z" fill="#F4F2EC"/>
+              <!-- wordmark -->
+              <text x="800" y="740" text-anchor="middle" fill="#F4F2EC" font-family="'Helvetica Neue',Arial,sans-serif" font-weight="800" font-size="300" letter-spacing="-6" transform="translate(0,0) scale(1,1)" style="transform-box:fill-box" >FUJI</text>
+              <text x="800" y="740" text-anchor="middle" fill="#F4F2EC" font-family="'Helvetica Neue',Arial,sans-serif" font-weight="800" font-size="300" letter-spacing="-6" opacity="0">FUJI</text>
+              <!-- top labels -->
+              <text x="120" y="55" fill="#8a857c" font-family="ui-monospace,Menlo,monospace" font-size="26" letter-spacing="8">EXPO / 2026</text>
+              <text x="1480" y="55" text-anchor="end" fill="#8a857c" font-family="ui-monospace,Menlo,monospace" font-size="26" letter-spacing="8">富士 · BJJ</text>
+              <text x="800" y="800" text-anchor="middle" fill="#FF3D22" font-family="ui-monospace,Menlo,monospace" font-size="30" letter-spacing="18">THE ASCENT</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- DETAIL -->
+        <div class="cdetail">
+          <div class="pane">
+            <h4>The idea</h4>
+            <p><b>Type is the mountain.</b> A single ultra-bold condensed wordmark does the heavy lifting, with a triangular apex mark that doubles as a peak and a directional arrow — <em>the ascent</em>. Monochrome ground, one hot signal colour. It hits hard on an LED wall and crops endlessly for social.</p>
+            <p>The loudest, most immediately “sport” of the three — closest to the modern MMA / streetwear register the young audience already wears.</p>
+          </div>
+          <div class="pane">
+            <h4>Palette</h4>
+            <div class="swatches">
+              <div class="sw dk" style="background:#141210">#141210</div>
+              <div class="sw dk" style="background:#FF3D22">#FF3D22</div>
+              <div class="sw lt" style="background:#F4F2EC">#F4F2EC</div>
+              <div class="sw lt" style="background:#C7C4BB">#C7C4BB</div>
+            </div>
+            <h4>Type</h4>
+            <div class="typespec">
+              <div><span class="k">Display</span> Grotesque, condensed, weight 800–900</div>
+              <div><span class="k">Body</span> Neo-grotesque, tight tracking</div>
+              <div><span class="k">Utility</span> Monospace tags &amp; numerals</div>
+            </div>
+            <div class="chips">
+              <span class="chip">High energy</span><span class="chip">Cheap to print</span><span class="chip">Crops anywhere</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APPLICATIONS -->
+      <div class="apps">
+        <!-- MEDAL -->
+        <div class="app">
+          <div class="art" style="background:#141210">
+            <svg viewBox="0 0 300 300" width="80%" role="img" aria-label="Summit medal">
+              <path d="M120 40 L150 120 L110 120 Z" fill="#FF3D22"/><path d="M180 40 L150 120 L190 120 Z" fill="#c22f18"/>
+              <circle cx="150" cy="185" r="82" fill="#1c1916" stroke="#FF3D22" stroke-width="6"/>
+              <circle cx="150" cy="185" r="82" fill="none" stroke="#F4F2EC" stroke-width="1.5" opacity=".4"/>
+              <path d="M150 135 L196 215 L104 215 Z" fill="none" stroke="#FF3D22" stroke-width="7"/>
+              <path d="M150 168 L173 208 L127 208 Z" fill="#FF3D22"/>
+              <text x="150" y="248" text-anchor="middle" fill="#F4F2EC" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="24" letter-spacing="1">FUJI ’26</text>
+            </svg>
+          </div>
+          <div class="cap">Medal — cast + red anodise</div>
+        </div>
+        <!-- SIGNAGE -->
+        <div class="app">
+          <div class="art" style="background:#F4F2EC">
+            <svg viewBox="0 0 300 300" width="100%" role="img" aria-label="Summit signage banner">
+              <rect width="300" height="300" fill="#F4F2EC"/>
+              <rect x="40" y="20" width="90" height="260" fill="#141210"/>
+              <rect x="170" y="20" width="90" height="260" fill="#FF3D22"/>
+              <text x="85" y="150" fill="#FF3D22" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="70" text-anchor="middle" transform="rotate(-90 85 150)">FUJI</text>
+              <text x="215" y="150" fill="#141210" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="46" text-anchor="middle" transform="rotate(-90 215 150)">EXPO 26</text>
+            </svg>
+          </div>
+          <div class="cap">Signage — hanging banners</div>
+        </div>
+        <!-- SOCIAL -->
+        <div class="app">
+          <div class="art" style="background:#141210">
+            <svg viewBox="0 0 300 300" width="100%" role="img" aria-label="Summit social tile">
+              <rect width="300" height="300" fill="#141210"/>
+              <path d="M150 70 L205 175 L95 175 Z" fill="none" stroke="#FF3D22" stroke-width="7"/>
+              <path d="M150 108 L178 162 L122 162 Z" fill="#FF3D22"/>
+              <text x="150" y="222" text-anchor="middle" fill="#F4F2EC" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="58" letter-spacing="-2">FUJI</text>
+              <text x="150" y="252" text-anchor="middle" fill="#FF3D22" font-family="ui-monospace,monospace" font-size="15" letter-spacing="8">EXPO / 2026</text>
+            </svg>
+          </div>
+          <div class="cap">Social — feed tile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- ROUTE 02 · MERIDIAN -->
+  <!-- ========================================================= -->
+  <div class="wrap">
+    <div class="concept">
+      <div class="concept-rail">
+        <span class="cno">R/02</span>
+        <h2>MERIDIAN</h2>
+        <span class="cw">Techwear · neo-Tokyo</span>
+      </div>
+
+      <div class="canvas">
+        <div class="poster" style="background:#07070F">
+          <svg viewBox="0 0 1600 900" width="100%" height="100%" role="img" aria-label="Meridian route key art: chrome FUJI wordmark with a digital sunrise gradient and kanji lockup">
+            <defs>
+              <linearGradient id="m-sun" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#6B4CF6"/><stop offset=".5" stop-color="#FF3DAE"/><stop offset="1" stop-color="#23E0D6"/>
+              </linearGradient>
+              <linearGradient id="m-chrome" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#cfd8e6"/>
+                <stop offset=".5" stop-color="#7f8aa3"/><stop offset=".52" stop-color="#eef3fa"/>
+                <stop offset="1" stop-color="#9fa9bd"/>
+              </linearGradient>
+              <radialGradient id="m-glow" cx="50%" cy="72%" r="55%">
+                <stop offset="0" stop-color="#FF3DAE" stop-opacity=".55"/><stop offset="1" stop-color="#07070F" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="1600" height="900" fill="#07070F"/>
+            <rect width="1600" height="900" fill="url(#m-glow)"/>
+            <!-- sun disc -->
+            <circle cx="800" cy="470" r="250" fill="url(#m-sun)"/>
+            <!-- scanline bands over sun bottom -->
+            <g fill="#07070F">
+              <rect x="530" y="540" width="540" height="14"/><rect x="530" y="575" width="540" height="18"/>
+              <rect x="530" y="618" width="540" height="24"/><rect x="530" y="670" width="540" height="34"/>
+            </g>
+            <!-- kanji -->
+            <text x="800" y="360" text-anchor="middle" fill="#07070F" font-family="'Hiragino Sans','Yu Gothic',sans-serif" font-weight="700" font-size="150" opacity=".9">富士</text>
+            <!-- chrome wordmark -->
+            <text x="800" y="800" text-anchor="middle" fill="url(#m-chrome)" font-family="'Helvetica Neue',Arial,sans-serif" font-weight="800" font-size="230" letter-spacing="4" stroke="#e9eef7" stroke-width="1">FUJI</text>
+            <!-- tech tags -->
+            <text x="120" y="90" fill="#23E0D6" font-family="ui-monospace,Menlo,monospace" font-size="26" letter-spacing="6">EXPO·2026</text>
+            <text x="1480" y="90" text-anchor="end" fill="#FF3DAE" font-family="ui-monospace,Menlo,monospace" font-size="26" letter-spacing="6">[ RISING ]</text>
+            <text x="800" y="860" text-anchor="middle" fill="#9fa9bd" font-family="ui-monospace,Menlo,monospace" font-size="24" letter-spacing="14">NEW SUN · NEW SCHOOL</text>
+          </svg>
+        </div>
+
+        <div class="cdetail">
+          <div class="pane">
+            <h4>The idea</h4>
+            <p><b>A digital sunrise over the mountain.</b> A gradient sun-disc dissolving into scanlines, liquid-chrome type and a bilingual 富士 / FUJI lockup. It’s screen-native — built to glow on LED walls, loop in reels and feel like the future of the sport.</p>
+            <p>The most contemporary and the most “internet”. Highest energy on video; needs careful print management so the chrome and gradients hold on merch and signage.</p>
+          </div>
+          <div class="pane">
+            <h4>Palette</h4>
+            <div class="swatches">
+              <div class="sw dk" style="background:#07070F">#07070F</div>
+              <div class="sw dk" style="background:#6B4CF6">#6B4CF6</div>
+              <div class="sw dk" style="background:#FF3DAE">#FF3DAE</div>
+              <div class="sw dk" style="background:#23E0D6">#23E0D6</div>
+              <div class="sw lt" style="background:#CFD8E6">chrome</div>
+            </div>
+            <h4>Type</h4>
+            <div class="typespec">
+              <div><span class="k">Display</span> Grotesque w/ chrome + gradient fills</div>
+              <div><span class="k">Kanji</span> Gothic (ゴシック) heavy</div>
+              <div><span class="k">Utility</span> Monospace, bracketed tags</div>
+            </div>
+            <div class="chips"><span class="chip">Screen-first</span><span class="chip">Motion-native</span><span class="chip">Gen-Z coded</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="apps">
+        <div class="app">
+          <div class="art" style="background:#07070F">
+            <svg viewBox="0 0 300 300" width="80%" role="img" aria-label="Meridian medal">
+              <defs>
+                <linearGradient id="m2-sun" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#6B4CF6"/><stop offset=".5" stop-color="#FF3DAE"/><stop offset="1" stop-color="#23E0D6"/></linearGradient>
+                <linearGradient id="m2-rib" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#23E0D6"/><stop offset="1" stop-color="#6B4CF6"/></linearGradient>
+              </defs>
+              <path d="M120 40 L150 120 L110 120 Z" fill="url(#m2-rib)"/><path d="M180 40 L150 120 L190 120 Z" fill="#6B4CF6"/>
+              <circle cx="150" cy="185" r="82" fill="#0d0d18" stroke="url(#m2-sun)" stroke-width="7"/>
+              <circle cx="150" cy="185" r="52" fill="url(#m2-sun)"/>
+              <g fill="#0d0d18"><rect x="98" y="200" width="104" height="7"/><rect x="98" y="214" width="104" height="10"/></g>
+              <text x="150" y="258" text-anchor="middle" fill="#CFD8E6" font-family="ui-monospace,monospace" font-size="15" letter-spacing="4">富士 ’26</text>
+            </svg>
+          </div>
+          <div class="cap">Medal — gradient anodise</div>
+        </div>
+        <div class="app">
+          <div class="art" style="background:#07070F">
+            <svg viewBox="0 0 300 300" width="100%" role="img" aria-label="Meridian signage">
+              <defs><linearGradient id="m3" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#6B4CF6"/><stop offset=".5" stop-color="#FF3DAE"/><stop offset="1" stop-color="#23E0D6"/></linearGradient></defs>
+              <rect width="300" height="300" fill="#07070F"/>
+              <circle cx="150" cy="130" r="70" fill="url(#m3)"/>
+              <g fill="#07070F"><rect x="80" y="155" width="140" height="6"/><rect x="80" y="168" width="140" height="9"/><rect x="80" y="184" width="140" height="13"/></g>
+              <text x="150" y="245" text-anchor="middle" fill="#eef3fa" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="46">FUJI</text>
+              <text x="150" y="270" text-anchor="middle" fill="#23E0D6" font-family="ui-monospace,monospace" font-size="13" letter-spacing="5">EXPO 2026</text>
+            </svg>
+          </div>
+          <div class="cap">Signage — LED / backlit</div>
+        </div>
+        <div class="app">
+          <div class="art" style="background:#07070F">
+            <svg viewBox="0 0 300 300" width="100%" role="img" aria-label="Meridian social tile">
+              <defs><linearGradient id="m4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#8492ab"/><stop offset=".52" stop-color="#eef3fa"/><stop offset="1" stop-color="#9fa9bd"/></linearGradient></defs>
+              <rect width="300" height="300" fill="#07070F"/>
+              <circle cx="150" cy="120" r="55" fill="none" stroke="#FF3DAE" stroke-width="3"/>
+              <text x="150" y="135" text-anchor="middle" fill="#FF3DAE" font-family="'Hiragino Sans',sans-serif" font-weight="700" font-size="52">富士</text>
+              <text x="150" y="215" text-anchor="middle" fill="url(#m4)" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="66" stroke="#e9eef7" stroke-width=".6">FUJI</text>
+              <text x="150" y="245" text-anchor="middle" fill="#23E0D6" font-family="ui-monospace,monospace" font-size="13" letter-spacing="7">[ EXPO 2026 ]</text>
+            </svg>
+          </div>
+          <div class="cap">Social — reel end-card</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- ROUTE 03 · CREST -->
+  <!-- ========================================================= -->
+  <div class="wrap">
+    <div class="concept">
+      <div class="concept-rail">
+        <span class="cno">R/03</span>
+        <h2>CREST</h2>
+        <span class="cw">Heritage mon · craft</span>
+      </div>
+
+      <div class="canvas">
+        <div class="poster" style="background:#0F1B2D">
+          <svg viewBox="0 0 1600 900" width="100%" height="100%" role="img" aria-label="Crest route key art: a circular Japanese-style mon enclosing Mount Fuji in gold on deep indigo">
+            <defs>
+              <radialGradient id="c-vig" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#1E3A5F" stop-opacity=".7"/><stop offset="1" stop-color="#0F1B2D" stop-opacity="0"/></radialGradient>
+            </defs>
+            <rect width="1600" height="900" fill="#0F1B2D"/>
+            <rect width="1600" height="900" fill="url(#c-vig)"/>
+            <!-- the mon -->
+            <g transform="translate(800,410)">
+              <circle r="255" fill="none" stroke="#CBA35A" stroke-width="5"/>
+              <circle r="230" fill="none" stroke="#CBA35A" stroke-width="1.5" opacity=".6"/>
+              <!-- mountain -->
+              <path d="M-150 95 L0 -150 L150 95 Z" fill="none" stroke="#CBA35A" stroke-width="6"/>
+              <path d="M-52 -30 L0 -150 L52 -30 L18 -30 L0 -70 L-18 -30 Z" fill="#EFE9DC"/>
+              <!-- wave base (seigaiha-ish arcs) -->
+              <g fill="none" stroke="#CBA35A" stroke-width="5">
+                <path d="M-150 95 q40 -46 80 0 q40 -46 80 0 q40 -46 80 0 q40 -46 80 0"/>
+              </g>
+              <!-- rising sun rays behind -->
+              <g stroke="#CBA35A" stroke-width="2.5" opacity=".55">
+                <line x1="0" y1="-150" x2="0" y2="-215"/><line x1="-70" y1="-135" x2="-100" y2="-190"/><line x1="70" y1="-135" x2="100" y2="-190"/>
+              </g>
+            </g>
+            <!-- wordmark -->
+            <text x="800" y="770" text-anchor="middle" fill="#EFE9DC" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="120" letter-spacing="26">FUJI</text>
+            <text x="800" y="825" text-anchor="middle" fill="#CBA35A" font-family="ui-monospace,Menlo,monospace" font-size="30" letter-spacing="22">EXPO · MMXXVI</text>
+            <text x="120" y="90" fill="#CBA35A" font-family="'Hiragino Mincho ProN',serif" font-size="40">富士博覧会</text>
+          </svg>
+        </div>
+
+        <div class="cdetail">
+          <div class="pane">
+            <h4>The idea</h4>
+            <p><b>A family crest for the sport.</b> A circular <em>mon</em> — the Japanese crest form — encloses Mount Fuji rising from a stylised wave, drawn with the precision of a coin die. Gold on deep indigo, a serif wordmark, and a real Japanese title lockup. Restrained, lineage-aware, premium.</p>
+            <p>The most timeless and the most ownable — it won’t date. Reads as heritage and quality; the natural home for foil, emboss and a medal people genuinely want to keep.</p>
+          </div>
+          <div class="pane">
+            <h4>Palette</h4>
+            <div class="swatches">
+              <div class="sw dk" style="background:#0F1B2D">#0F1B2D</div>
+              <div class="sw dk" style="background:#1E3A5F">#1E3A5F</div>
+              <div class="sw lt" style="background:#CBA35A">#CBA35A</div>
+              <div class="sw lt" style="background:#EFE9DC">#EFE9DC</div>
+              <div class="sw dk" style="background:#B23A2E">#B23A2E</div>
+            </div>
+            <h4>Type</h4>
+            <div class="typespec">
+              <div><span class="k">Display</span> High-contrast serif, wide tracking</div>
+              <div><span class="k">Kanji</span> Mincho (明朝) — brush-rooted</div>
+              <div><span class="k">Utility</span> Monospace w/ Roman numerals</div>
+            </div>
+            <div class="chips"><span class="chip">Premium</span><span class="chip">Foil / emboss</span><span class="chip">Won’t date</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="apps">
+        <div class="app">
+          <div class="art" style="background:#0F1B2D">
+            <svg viewBox="0 0 300 300" width="80%" role="img" aria-label="Crest medal">
+              <path d="M120 35 L150 115 L110 115 Z" fill="#B23A2E"/><path d="M180 35 L150 115 L190 115 Z" fill="#8f2c22"/>
+              <circle cx="150" cy="185" r="84" fill="#12233a" stroke="#CBA35A" stroke-width="4"/>
+              <circle cx="150" cy="185" r="70" fill="none" stroke="#CBA35A" stroke-width="1.5" opacity=".6"/>
+              <path d="M108 210 L150 140 L192 210 Z" fill="none" stroke="#CBA35A" stroke-width="5"/>
+              <path d="M133 168 L150 140 L167 168 L158 168 L150 154 L142 168 Z" fill="#EFE9DC"/>
+              <path d="M108 210 q21 -24 42 0 q21 -24 42 0" fill="none" stroke="#CBA35A" stroke-width="4"/>
+              <text x="150" y="252" text-anchor="middle" fill="#CBA35A" font-family="Georgia,serif" font-weight="700" font-size="22" letter-spacing="6">FUJI</text>
+            </svg>
+          </div>
+          <div class="cap">Medal — die-struck, gold plate</div>
+        </div>
+        <div class="app">
+          <div class="art" style="background:#EFE9DC">
+            <svg viewBox="0 0 300 300" width="100%" role="img" aria-label="Crest signage">
+              <rect width="300" height="300" fill="#EFE9DC"/>
+              <circle cx="150" cy="115" r="66" fill="#0F1B2D"/>
+              <path d="M118 138 L150 82 L182 138 Z" fill="none" stroke="#CBA35A" stroke-width="4"/>
+              <path d="M138 105 L150 82 L162 105 Z" fill="#EFE9DC"/>
+              <text x="150" y="215" text-anchor="middle" fill="#0F1B2D" font-family="Georgia,serif" font-weight="700" font-size="42" letter-spacing="8">FUJI</text>
+              <text x="150" y="245" text-anchor="middle" fill="#B23A2E" font-family="ui-monospace,monospace" font-size="13" letter-spacing="6">EXPO · MMXXVI</text>
+            </svg>
+          </div>
+          <div class="cap">Signage — entrance crest</div>
+        </div>
+        <div class="app">
+          <div class="art" style="background:#0F1B2D">
+            <svg viewBox="0 0 300 300" width="100%" role="img" aria-label="Crest social tile">
+              <rect width="300" height="300" fill="#0F1B2D"/>
+              <circle cx="150" cy="130" r="78" fill="none" stroke="#CBA35A" stroke-width="3"/>
+              <path d="M110 165 L150 92 L190 165 Z" fill="none" stroke="#CBA35A" stroke-width="4"/>
+              <path d="M133 122 L150 92 L167 122 Z" fill="#EFE9DC"/>
+              <path d="M110 165 q20 -22 40 0 q20 -22 40 0" fill="none" stroke="#CBA35A" stroke-width="3.5"/>
+              <text x="150" y="238" text-anchor="middle" fill="#EFE9DC" font-family="Georgia,serif" font-weight="700" font-size="30" letter-spacing="10">FUJI</text>
+              <text x="150" y="262" text-anchor="middle" fill="#CBA35A" font-family="ui-monospace,monospace" font-size="11" letter-spacing="5">EXPO 2026</text>
+            </svg>
+          </div>
+          <div class="cap">Social — announce post</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section id="compare" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">04</span><h2>How the routes compare</h2></div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Dimension</th><th>01 · Summit</th><th>02 · Meridian</th><th>03 · Crest</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Register</th><td>Loud, brutalist, athletic</td><td>Futuristic, screen-native</td><td>Premium, heritage, timeless</td></tr>
+          <tr><th>Best on</th><td>Arena walls, apparel, crops</td><td>LED, reels, motion</td><td>Foil print, medal, credentials</td></tr>
+          <tr><th>Risk</th><td>Type-only can feel familiar</td><td>Chrome/gradients hard to print</td><td>Can read formal if under-energised</td></tr>
+          <tr><th>Print cost</th><td>Low — 1–2 colours</td><td>High — gradients + finish</td><td>Medium–high — foil/emboss</td></tr>
+          <tr><th>Longevity</th><td>Medium — trend-adjacent</td><td>Lower — of-the-moment</td><td>High — evergreen</td></tr>
+          <tr><th>Audience pull</th><td>Broad, hype-driven</td><td>Gen-Z, online-first</td><td>Purists, premium buyers</td></tr>
+          <tr><th>Studio view</th><td>Safe, high-impact</td><td>Boldest, most shareable</td><td><span class="rec">Recommended</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECOMMENDATION / NEXT ============ -->
+<section id="next">
+  <div class="wrap">
+    <div class="callout">
+      <div class="eyebrow">Our recommendation</div>
+      <h3>Lead with Crest — with Summit’s energy in the toolkit.</h3>
+      <p><b>Crest</b> gives FUJI EXPO an ownable, lineage-true mark that will still look right in 2030, and it’s the strongest home for the medal — the one object attendees keep. Its risk is feeling formal, so we’d build the system with <b>Summit’s</b> kinetic type treatment as the “hype layer” for social, apparel and hype reels. That pairing gives the client one dignified anchor mark plus a loud, motion-ready campaign voice — heritage where it earns trust, energy where it drives attendance. <b>Meridian</b> is the boldest swing: hold it as the option if the client wants to lead hard on a young, online-first positioning.</p>
+      <div class="steps">
+        <div class="step"><div class="sn">→ 01</div><p>Client picks a lead route (or the Crest × Summit pairing).</p></div>
+        <div class="step"><div class="sn">→ 02</div><p>Refine the mark, build the type + colour system and grid.</p></div>
+        <div class="step"><div class="sn">→ 03</div><p>Produce the medal, signage suite and social kit for sign-off.</p></div>
+        <div class="step"><div class="sn">→ 04</div><p>Ship brand guidelines + production-ready artwork.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>STUDIO IOS — FUJI EXPO 2026 · Brand Direction Report</div>
+    <div>Draft 01 · 10 Jul 2026 · Concepts for discussion</div>
+  </div>
+</footer>
