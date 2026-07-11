@@ -1,0 +1,388 @@
+<title>FUJI EXPO 2026 — Inspiration &amp; References</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --paper:#EEECE6; --paper-2:#E4E1D8; --card:#F6F4EF;
+    --ink:#15171B; --ink-2:#3A3D44; --ink-3:#6B6F78;
+    --line:#D4D0C6; --line-2:#C7C2B6; --nav:#2B3A55;
+    --shadow:0 1px 0 rgba(0,0,0,.02), 0 24px 48px -32px rgba(20,22,26,.45);
+    --maxw:1180px;
+    --f-disp:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+    --f-body:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --f-mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0E0F12; --paper-2:#121419; --card:#16181D;
+      --ink:#ECEAE3; --ink-2:#B7B9C0; --ink-3:#7E828C;
+      --line:#25272E; --line-2:#2E3038; --nav:#8FA6CE;
+      --shadow:0 1px 0 rgba(255,255,255,.02), 0 30px 60px -34px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EEECE6; --paper-2:#E4E1D8; --card:#F6F4EF;
+    --ink:#15171B; --ink-2:#3A3D44; --ink-3:#6B6F78;
+    --line:#D4D0C6; --line-2:#C7C2B6; --nav:#2B3A55;
+    --shadow:0 1px 0 rgba(0,0,0,.02), 0 24px 48px -32px rgba(20,22,26,.45);
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E0F12; --paper-2:#121419; --card:#16181D;
+    --ink:#ECEAE3; --ink-2:#B7B9C0; --ink-3:#7E828C;
+    --line:#25272E; --line-2:#2E3038; --nav:#8FA6CE;
+    --shadow:0 1px 0 rgba(255,255,255,.02), 0 30px 60px -34px rgba(0,0,0,.8);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+  a{color:var(--nav); text-underline-offset:3px}
+  h1,h2,h3{text-wrap:balance; margin:0}
+  p{margin:0}
+  img,svg{max-width:100%; display:block}
+  .eyebrow{font-family:var(--f-mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3)}
+  .lede{font-size:clamp(19px,2.4vw,23px); line-height:1.5; color:var(--ink-2); max-width:62ch}
+
+  .topbar{position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--paper) 88%,transparent); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex; align-items:center; justify-content:space-between; height:58px; gap:16px}
+  .brandmark{display:flex; align-items:center; gap:10px; font-family:var(--f-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink)}
+  .brandmark .dot{width:8px;height:8px;background:var(--nav);border-radius:50%}
+  .topnav{display:flex; gap:22px; font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase}
+  .topnav a{color:var(--ink-3); text-decoration:none}
+  .topnav a:hover{color:var(--ink)}
+  @media (max-width:720px){.topnav{display:none}}
+
+  .hero{padding:clamp(48px,9vw,104px) 0 clamp(36px,6vw,60px); border-bottom:1px solid var(--line)}
+  .hero .kicker{display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:26px}
+  .tag{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); border:1px solid var(--line-2); padding:5px 10px; border-radius:100px}
+  .hero h1{font-family:var(--f-disp); font-weight:800; font-size:clamp(38px,8vw,104px); line-height:.92; letter-spacing:-.03em; transform:scaleX(.96); transform-origin:left}
+  .hero h1 span{color:var(--ink-3)}
+  .hero-sub{margin-top:28px; display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:end}
+  @media (max-width:760px){.hero-sub{grid-template-columns:1fr; gap:20px}}
+  .hero-meta{font-family:var(--f-mono); font-size:12.5px; line-height:1.9; color:var(--ink-2)}
+  .hero-meta .k{color:var(--ink-3); display:inline-block; width:92px}
+
+  section{padding:clamp(44px,7vw,84px) 0}
+  .sec-head{display:flex; gap:16px; align-items:baseline; margin-bottom:30px; border-bottom:1px solid var(--line); padding-bottom:16px}
+  .sec-head .no{font-family:var(--f-mono); font-size:12px; color:var(--nav); letter-spacing:.1em}
+  .sec-head h2{font-family:var(--f-disp); font-weight:800; font-size:clamp(24px,3.6vw,40px); letter-spacing:-.02em; line-height:1}
+
+  .note{font-family:var(--f-mono); font-size:12.5px; color:var(--ink-3); border-left:2px solid var(--line-2); padding:6px 0 6px 14px; line-height:1.6; max-width:70ch}
+
+  /* board grid */
+  .board{display:grid; grid-template-columns:repeat(2,1fr); gap:22px}
+  @media (max-width:840px){.board{grid-template-columns:1fr}}
+  .plate{background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
+  .plate .tile{aspect-ratio:16/7; overflow:hidden; border-bottom:1px solid var(--line); position:relative}
+  .plate .body{padding:24px 24px 26px; display:flex; flex-direction:column; gap:14px}
+  .plate .rowtop{display:flex; align-items:baseline; gap:12px}
+  .plate .tn{font-family:var(--f-mono); font-size:12px; color:var(--nav); letter-spacing:.12em}
+  .plate h3{font-family:var(--f-disp); font-weight:800; font-size:23px; letter-spacing:-.01em}
+  .plate .desc{color:var(--ink-2); font-size:15px; line-height:1.55}
+  .refs{display:flex; flex-wrap:wrap; gap:7px}
+  .refs a{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.02em; text-decoration:none; color:var(--ink); border:1px solid var(--line-2); border-radius:100px; padding:5px 11px; display:inline-flex; gap:6px; align-items:center}
+  .refs a:hover{border-color:var(--nav); color:var(--nav)}
+  .refs a::after{content:"↗"; font-size:10px; color:var(--ink-3)}
+  .steal{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:7px}
+  .steal li{position:relative; padding-left:20px; color:var(--ink); font-size:14.5px; line-height:1.5}
+  .steal li::before{content:"→"; position:absolute; left:0; color:var(--nav); font-family:var(--f-mono)}
+  .plate h4{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin:2px 0 -4px}
+
+  /* mapping table */
+  .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:14px}
+  table{border-collapse:collapse; width:100%; min-width:620px; font-size:15px}
+  th,td{text-align:left; padding:15px 18px; border-bottom:1px solid var(--line); vertical-align:top}
+  thead th{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--paper-2)}
+  tbody th{font-family:var(--f-disp); font-weight:800; font-size:16px; white-space:nowrap}
+  td{color:var(--ink-2)}
+
+  footer{border-top:1px solid var(--line); padding:36px 0 60px; color:var(--ink-3); font-family:var(--f-mono); font-size:12px; letter-spacing:.04em; line-height:1.9}
+  footer a{color:var(--ink-3)}
+  footer .wrap>div:first-child{color:var(--ink); margin-bottom:10px}
+</style>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandmark"><span class="dot"></span><b>STUDIO&nbsp;IOS</b>&nbsp;/ Inspiration Board</div>
+    <nav class="topnav">
+      <a href="#how">How to use</a>
+      <a href="#board">References</a>
+      <a href="#map">Route map</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">
+      <span class="tag">FUJI EXPO 2026</span>
+      <span class="tag">Existing art · reference survey</span>
+      <span class="tag">Companion to the direction report</span>
+    </div>
+    <h1>Inspiration<br><span>&amp; references</span></h1>
+    <div class="hero-sub">
+      <p class="lede">A curated survey of existing artwork worth stealing from — real combat-sports identities, Japanese graphic heritage, medal craft and 2026 trends — mapped to the three FUJI EXPO routes.</p>
+      <div class="hero-meta">
+        <div><span class="k">Format</span> Reference board</div>
+        <div><span class="k">Territories</span> 06</div>
+        <div><span class="k">Every ref</span> Links out to source</div>
+        <div><span class="k">Use</span> Steer the direction</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">01</span><h2>How to use this board</h2></div>
+    <p class="lede" style="margin-bottom:22px">Six territories of existing work that bear on FUJI EXPO. Each plate gives a <b>visual cue</b>, the <b>real references</b> (linked — open them to see the actual artwork) and a short <b>“steal this”</b> list of exactly what we’d carry into the design.</p>
+    <p class="note">The tiles on each plate are <b>Studio IOS interpretations</b> — original, abstract motifs drawn to signal the territory. They are <b>not</b> the referenced artworks, which remain the property of their creators; use the links to view the originals. This keeps the board shareable and copyright-clean.</p>
+  </div>
+</section>
+
+<section id="board" style="background:var(--paper-2); padding-top:clamp(36px,5vw,60px)">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">02</span><h2>The reference board</h2></div>
+    <div class="board">
+
+      <!-- 1 · COMBAT SPORTS IDENTITY -->
+      <div class="plate">
+        <div class="tile" style="background:#0B0B0B">
+          <svg viewBox="0 0 640 280" width="100%" height="100%" aria-label="Combat-sports identity motif: opposed chevrons and a versus bar">
+            <rect width="640" height="280" fill="#0B0B0B"/>
+            <g fill="#D71920"><path d="M0 0 L120 0 L40 140 L0 140 Z"/><path d="M640 280 L520 280 L600 140 L640 140 Z"/></g>
+            <g fill="none" stroke="#C6A24B" stroke-width="4" opacity=".7"><path d="M150 40 L230 40 L190 96"/><path d="M490 240 L410 240 L450 184"/></g>
+            <path d="M300 60 L320 130 L340 60 M300 220 L320 150 L340 220" stroke="#fff" stroke-width="10" fill="none"/>
+            <text x="320" y="150" text-anchor="middle" fill="#fff" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="58" letter-spacing="-2">VS</text>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="rowtop"><span class="tn">T/01</span><h3>Combat-sports event identity</h3></div>
+          <p class="desc">How the majors build a fight-night look: a strong hero lockup, high-contrast type, and a modular system that scales from ticket to arena. Note ADCC’s no-gi grappling world specifically — closest to FUJI’s audience.</p>
+          <h4>References</h4>
+          <div class="refs">
+            <a href="https://adcc-official.com/">ADCC</a>
+            <a href="https://www.instagram.com/adcc_official/">ADCC · IG</a>
+            <a href="https://www.onefc.com/">ONE Championship</a>
+            <a href="https://www.behance.net/search/projects/ufc%20poster">UFC key art · Behance</a>
+          </div>
+          <h4>Steal this</h4>
+          <ul class="steal">
+            <li>One dominant hero lockup, everything else subordinate</li>
+            <li>Black ground + single hot colour = instant fight energy</li>
+            <li>A system, not a poster — build for every touchpoint</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2 · JAPANESE HERITAGE / KAMON -->
+      <div class="plate">
+        <div class="tile" style="background:#14213D">
+          <svg viewBox="0 0 640 280" width="100%" height="100%" aria-label="Kamon motif: geometric family crest built inside a circle">
+            <rect width="640" height="280" fill="#14213D"/>
+            <g transform="translate(320,140)" fill="none" stroke="#EFE9DC" stroke-width="3.5">
+              <circle r="95"/><circle r="78"/>
+              <g stroke-width="3">
+                <path d="M0 -78 A78 78 0 0 1 55 -55 A55 55 0 0 0 0 -30 A55 55 0 0 0 -55 -55 A78 78 0 0 1 0 -78 Z"/>
+                <path d="M0 -78 A78 78 0 0 1 55 -55 A55 55 0 0 0 0 -30 A55 55 0 0 0 -55 -55 A78 78 0 0 1 0 -78 Z" transform="rotate(90)"/>
+                <path d="M0 -78 A78 78 0 0 1 55 -55 A55 55 0 0 0 0 -30 A55 55 0 0 0 -55 -55 A78 78 0 0 1 0 -78 Z" transform="rotate(180)"/>
+                <path d="M0 -78 A78 78 0 0 1 55 -55 A55 55 0 0 0 0 -30 A55 55 0 0 0 -55 -55 A78 78 0 0 1 0 -78 Z" transform="rotate(270)"/>
+              </g>
+              <circle r="14" fill="#EFE9DC" stroke="none"/>
+            </g>
+            <g fill="#EFE9DC"><rect x="70" y="60" width="18" height="18"/><rect x="70" y="88" width="18" height="18" opacity=".5"/><rect x="98" y="60" width="18" height="18" opacity=".5"/></g>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="rowtop"><span class="tn">T/02</span><h3>Japanese heritage &amp; kamon</h3></div>
+          <p class="desc">The 1,000-year <em>kamon</em> (family-crest) tradition — motifs balanced with compass-precision inside a circle — and Asao Tokolo’s Tokyo 2020 <em>harmonised chequered</em> emblem, built from modular <em>ichimatsu</em> shapes. This is the deepest, most ownable well for a brand literally named after a Japanese mountain.</p>
+          <h4>References</h4>
+          <div class="refs">
+            <a href="https://www.gchicco.com/kamon-the-original-logos-of-japan/">Kamon: original logos of Japan</a>
+            <a href="https://www.patternz.jp/kamon-japanese-family-crest-artisans/">Kamon artisans</a>
+            <a href="https://www.olympics.com/en/news/emblem">Tokyo 2020 emblem</a>
+            <a href="https://www.spoon-tamago.com/who-is-asao-tokolo-the-designer-behind-tokyos-2020-olympic-emblem/">Asao Tokolo</a>
+          </div>
+          <h4>Steal this</h4>
+          <ul class="steal">
+            <li>Build the mark inside a circle with true geometric rigour</li>
+            <li>Modular units → many layouts from one kit (unity in diversity)</li>
+            <li>Restraint reads as premium; indigo + off-white as a base</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 · GRAPPLING APPAREL / COLLECTIBLE -->
+      <div class="plate">
+        <div class="tile" style="background:#1A1A1A">
+          <svg viewBox="0 0 640 280" width="100%" height="100%" aria-label="Apparel patch motif: a woven batch tag with stitching">
+            <rect width="640" height="280" fill="#1A1A1A"/>
+            <rect x="200" y="70" width="240" height="140" rx="10" fill="none" stroke="#E8E2D2" stroke-width="3" stroke-dasharray="2 8"/>
+            <rect x="216" y="86" width="208" height="108" rx="6" fill="#E8E2D2"/>
+            <text x="320" y="132" text-anchor="middle" fill="#1A1A1A" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="30" letter-spacing="1">BATCH</text>
+            <text x="320" y="170" text-anchor="middle" fill="#B23A2E" font-family="ui-monospace,monospace" font-size="22" letter-spacing="4">No. 26 / 26</text>
+            <circle cx="470" cy="80" r="6" fill="#C6A24B"/><circle cx="170" cy="200" r="6" fill="#C6A24B"/>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="rowtop"><span class="tn">T/03</span><h3>Grappling apparel &amp; drop culture</h3></div>
+          <p class="desc">BJJ’s own design economy: Shoyoroll turned gis into limited “batch” collectibles; Hyperfly and the RVCA collabs push bold streetwear crossover. Merch is where an expo makes memories (and money) — treat drops, patches and heritage detailing as first-class.</p>
+          <h4>References</h4>
+          <div class="refs">
+            <a href="https://shoyoroll.com/">Shoyoroll (batch culture)</a>
+            <a href="https://www.pinterest.com/ideas/hyperfly-gi/911137875187/">Hyperfly</a>
+            <a href="https://www.behance.net/search/projects/sports%20styling%20trends">Sports-luxe · Behance</a>
+          </div>
+          <h4>Steal this</h4>
+          <ul class="steal">
+            <li>Numbered / dated “drop” framing → collectible EXPO ’26 merch</li>
+            <li>Woven-patch &amp; stitch detailing signals craft and authenticity</li>
+            <li>A crossover capsule with the streetwear-literate audience</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 · MEDAL / TROPHY CRAFT -->
+      <div class="plate">
+        <div class="tile" style="background:#0F1B2D">
+          <svg viewBox="0 0 640 280" width="100%" height="100%" aria-label="Medal craft motif: hexagon medal with radiating embossed lines and ribbon">
+            <rect width="640" height="280" fill="#0F1B2D"/>
+            <path d="M300 30 L340 30 L360 70 L340 110 L300 110 L280 70 Z" fill="#B23A2E" opacity=".9"/>
+            <g transform="translate(320,165)">
+              <circle r="82" fill="#12233a" stroke="#CBA35A" stroke-width="4"/>
+              <g stroke="#CBA35A" stroke-width="2" opacity=".7">
+                <line x1="0" y1="-70" x2="0" y2="-40"/><line x1="49" y1="-49" x2="28" y2="-28"/><line x1="70" y1="0" x2="40" y2="0"/><line x1="49" y1="49" x2="28" y2="28"/><line x1="0" y1="70" x2="0" y2="40"/><line x1="-49" y1="49" x2="-28" y2="28"/><line x1="-70" y1="0" x2="-40" y2="0"/><line x1="-49" y1="-49" x2="-28" y2="-28"/>
+              </g>
+              <path d="M0 -34 L30 20 L-30 20 Z" fill="none" stroke="#CBA35A" stroke-width="4"/>
+              <path d="M-8 -6 L0 -20 L8 -6 Z" fill="#EFE9DC"/>
+            </g>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="rowtop"><span class="tn">T/04</span><h3>Medal &amp; trophy craft</h3></div>
+          <p class="desc">Paris 2024 set the modern bar: Chaumet built the medal around a <em>hexagon</em>, a real material story (18g of Eiffel Tower iron), <em>Clous de Paris</em> hobnail setting and embossed radiating lines. The lesson for FUJI: a medal is a keepsake — give it geometry, a story and tactile finish.</p>
+          <h4>References</h4>
+          <div class="refs">
+            <a href="https://www.olympics.com/en/olympic-games/paris-2024/medal-design">Paris 2024 medals</a>
+            <a href="https://www.dezeen.com/2024/02/08/paris-2024-olympic-paralympic-medals/">Dezeen breakdown</a>
+            <a href="https://www.olympics.com/en/news/tokolo-asao-designer-of-the-victory-ceremony-podiums-and-emblem">Tokyo podiums</a>
+          </div>
+          <h4>Steal this</h4>
+          <ul class="steal">
+            <li>Anchor the medal to one geometry — a Fuji hexagon / summit</li>
+            <li>Embossed radiating lines &gt; flat engraving for “shine”</li>
+            <li>Design the ribbon as hard as the disc; consider a material story</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5 · ESPORTS / BROADCAST SYSTEMS -->
+      <div class="plate">
+        <div class="tile" style="background:#080B12">
+          <svg viewBox="0 0 640 280" width="100%" height="100%" aria-label="Broadcast HUD motif: corner brackets, grid and timestamp overlay">
+            <rect width="640" height="280" fill="#080B12"/>
+            <g stroke="#1c2634" stroke-width="1">
+              <line x1="0" y1="70" x2="640" y2="70"/><line x1="0" y1="210" x2="640" y2="210"/><line x1="160" y1="0" x2="160" y2="280"/><line x1="480" y1="0" x2="480" y2="280"/>
+            </g>
+            <g stroke="#23E0D6" stroke-width="3" fill="none">
+              <path d="M40 40 L40 80 M40 40 L80 40"/><path d="M600 240 L600 200 M600 240 L560 240"/>
+            </g>
+            <rect x="220" y="120" width="200" height="42" fill="none" stroke="#FF3DAE" stroke-width="2"/>
+            <text x="234" y="148" fill="#fff" font-family="ui-monospace,monospace" font-size="22" letter-spacing="2">FUJI//EXPO</text>
+            <text x="40" y="255" fill="#23E0D6" font-family="ui-monospace,monospace" font-size="15" letter-spacing="3">00:14:32:06</text>
+            <text x="600" y="60" text-anchor="end" fill="#FF3DAE" font-family="ui-monospace,monospace" font-size="15" letter-spacing="3">[ LIVE ]</text>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="rowtop"><span class="tn">T/05</span><h3>Esports &amp; broadcast systems</h3></div>
+          <p class="desc">VALORANT Champions (BUCK / Worship Studio) is the reference for a <em>modular identity across many sub-events</em>, one animation language, and the “technical depth” look — HUD brackets, grids, timestamps. Directly relevant to an expo with many zones, stages and a live broadcast.</p>
+          <h4>References</h4>
+          <div class="refs">
+            <a href="https://buck.co/work/valorant-champions">VALORANT Champions · BUCK</a>
+            <a href="https://www.worship.studio/vct23/">VCT23 · Worship Studio</a>
+            <a href="https://blog.scorevision.com/top-4-trends-for-sports-graphics-2025-2026">Sports graphics trends</a>
+          </div>
+          <h4>Steal this</h4>
+          <ul class="steal">
+            <li>One core mark + colour-coded sub-brands per zone/stage</li>
+            <li>Technical overlays (brackets, grids, timecodes) = credibility</li>
+            <li>Define the motion language up front — it’s a video-first event</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6 · 2026 GRAPHIC CURRENTS -->
+      <div class="plate">
+        <div class="tile" style="background:#0A0A0A">
+          <svg viewBox="0 0 640 280" width="100%" height="100%" aria-label="2026 trends motif: neon glow, chrome and gradient bands">
+            <defs>
+              <linearGradient id="g-acid" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6B4CF6"/><stop offset=".5" stop-color="#FF3DAE"/><stop offset="1" stop-color="#23E0D6"/></linearGradient>
+              <linearGradient id="g-chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#7f8aa3"/><stop offset=".52" stop-color="#eef3fa"/><stop offset="1" stop-color="#9fa9bd"/></linearGradient>
+            </defs>
+            <rect width="640" height="280" fill="#0A0A0A"/>
+            <rect x="0" y="60" width="640" height="26" fill="url(#g-acid)"/>
+            <rect x="0" y="120" width="640" height="8" fill="#D71920"/>
+            <text x="40" y="210" fill="url(#g-chrome)" font-family="'Helvetica Neue',Arial" font-weight="800" font-size="70" letter-spacing="-2" stroke="#e9eef7" stroke-width=".6">2026</text>
+            <text x="410" y="180" fill="#39FF14" font-family="ui-monospace,monospace" font-size="18" letter-spacing="2" style="filter:drop-shadow(0 0 6px #39FF14)">NEON</text>
+            <text x="410" y="210" fill="#C6A24B" font-family="ui-monospace,monospace" font-size="18" letter-spacing="2">SPORTS-LUXE</text>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="rowtop"><span class="tn">T/06</span><h3>2026 graphic currents</h3></div>
+          <p class="desc">Where the wider field is heading this year: neon &amp; glow, bold high-contrast type, “technical depth” overlays, the chrome/gradient revival, and <em>sports-luxe</em> (athleisure-meets-luxury) powered by the season’s big tournaments. Useful for keeping EXPO current — used deliberately, not all at once.</p>
+          <h4>References</h4>
+          <div class="refs">
+            <a href="https://www.itsnicethat.com/features/forward-thinking-graphic-trends-2026-graphic-design-120126">It’s Nice That · 2026</a>
+            <a href="https://blog.scorevision.com/top-4-trends-for-sports-graphics-2025-2026">ScoreVision · sports</a>
+            <a href="https://elements.envato.com/learn/graphic-design-trends">Envato · trends</a>
+          </div>
+          <h4>Steal this</h4>
+          <ul class="steal">
+            <li>Pick <em>one</em> trend to lead with — layering all of them dates fast</li>
+            <li>Neon/glow &amp; chrome live best on screen &amp; LED, not print</li>
+            <li>“Sports-luxe” = the bridge between the fight world and premium</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="map">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">03</span><h2>Which references feed which route</h2></div>
+    <p class="lede" style="margin-bottom:24px">Tying the board back to the three routes in the direction report, so the client can see the lineage behind each option.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Route</th><th>Leans on</th><th>Reference DNA</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>01 · Summit</th><td>T/01 · T/06</td><td>Combat-sports fight-night energy + bold-type / sports-luxe currents. The house evolution.</td></tr>
+          <tr><th>02 · Meridian</th><td>T/05 · T/06</td><td>Esports broadcast systems + neon / chrome / gradient revival. The screen-native swing.</td></tr>
+          <tr><th>03 · Crest</th><td>T/02 · T/04</td><td>Kamon &amp; Tokolo geometry + Paris-grade medal craft. The premium, heritage elevation.</td></tr>
+          <tr><th>All three</th><td>T/03</td><td>Grappling drop culture &amp; apparel — the merch/keepsake layer sits under every route.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>STUDIO IOS — FUJI EXPO 2026 · Inspiration &amp; References · Draft 01 · 11 Jul 2026</div>
+    <div>Tiles are original Studio IOS interpretations, not the referenced works. Sources:
+      <a href="https://adcc-official.com/">ADCC</a> ·
+      <a href="https://www.onefc.com/">ONE</a> ·
+      <a href="https://buck.co/work/valorant-champions">BUCK</a> ·
+      <a href="https://www.worship.studio/vct23/">Worship Studio</a> ·
+      <a href="https://www.olympics.com/en/olympic-games/paris-2024/medal-design">Olympics.com</a> ·
+      <a href="https://www.dezeen.com/2024/02/08/paris-2024-olympic-paralympic-medals/">Dezeen</a> ·
+      <a href="https://www.spoon-tamago.com/who-is-asao-tokolo-the-designer-behind-tokyos-2020-olympic-emblem/">Spoon &amp; Tamago</a> ·
+      <a href="https://www.gchicco.com/kamon-the-original-logos-of-japan/">G. Chicco</a> ·
+      <a href="https://shoyoroll.com/">Shoyoroll</a> ·
+      <a href="https://www.itsnicethat.com/features/forward-thinking-graphic-trends-2026-graphic-design-120126">It’s Nice That</a> ·
+      <a href="https://blog.scorevision.com/top-4-trends-for-sports-graphics-2025-2026">ScoreVision</a>
+    </div>
+  </div>
+</footer>
