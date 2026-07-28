@@ -2,18 +2,16 @@
 
 **To:** Grant (founder), Adapt Jiu-Jitsu Ltd
 **Tier:** T2 (growth-stage DTC)
-**Blend:** MLP outreach structure + Kendall case-study-share mechanic + Adapt-specific reframe
+**Framework:** Observation → Problem → Proof → Ask
 **Angle:** Studio IOS as a commercial asset for trend forecasting and positioning. Explicitly not selling artwork.
 
 ---
 
 ## Subject
 
-`Adapt Creative 2026`
+`next range timing`
 
-Keeps the campaign's unified subject convention. Alternatives if a sharper open is wanted:
-- `Where the quiet end of BJJ goes next`
-- `Adapt, before the next range locks`
+Alternates: `colour calls` · `drop timing`
 
 ---
 
@@ -21,58 +19,44 @@ Keeps the campaign's unified subject convention. Alternatives if a sharper open 
 
 Hi Grant,
 
-I hope you're good!
+Most brands in this category differentiate with graphics. Adapt doesn't, and that's why the range reads the way it does.
 
-I've been looking through the Adapt range and one thing stood out that I had to share with you.
+It's also the harder path. When the product stays quiet, the difference lives in colour, wash, fabric and drop timing, and those get locked nine to twelve months out. Miss that window and a range arrives at full price looking like last season.
 
-Most brands in this category try to differentiate with graphics. Adapt clearly doesn't, and that's the right call. "Designed for the lifestyle, developed to last the journey" is a real position, and the restraint is what holds it up: the washed finishes, the jacquard rashguards, the minimal marks. So this isn't a note about artwork.
+That's the work we do, trend direction set ahead of the buying cycle. We built a collection for Phalanx called We The People that became one of their most commercially successful drops of the year. I've got a short case study on how we got there. Strategy, not artwork.
 
-The opportunity I noticed sits somewhere else. When a range is deliberately quiet, differentiation moves into colour, wash, fabric and drop cadence, and those calls get made nine to twelve months before anything reaches the mats. Get them early and a range compounds. Get them late and it arrives reading as last season at full price.
-
-Creating commercially successful, on trend collections ahead of time is one of the biggest challenges for our clients, and it's where we do our best work. Our graphic trend reports reveal what's next, and we deliver the creative direction to turn that insight into product.
-
-I've got a short case study on a collection we created for Phalanx, We The People, that shows how we approach it. It became one of their most commercially successful drops of the year, and the case study covers the strategic thinking behind the work rather than the artwork itself.
-
-Download link: **[WTP CASE STUDY LINK]**
-
-Adapt would need a different read entirely: where the lifestyle end of BJJ is heading through 2027, which colour and finish stories are worth owning, and which are about to be everywhere.
-
-What are your thoughts on this kind of approach for Adapt?
+Want me to send it over?
 
 Thanks,
 Tom
 
+*(122 words)*
+
 ---
 
-## What came from where
+## What changed from the previous version
 
-| Element | Source |
-|---|---|
-| "one thing stood out that I had to share with you" | MLP email, opening move |
-| "The opportunity I noticed sits somewhere else" | MLP's "a key area that isn't being fully exploited", re-pointed |
-| "Creating commercially successful, on trend collections ahead of time is one of the biggest challenges for our clients" | MLP email, verbatim |
-| "Our graphic trend reports reveal what's next" | MLP email, verbatim |
-| "What are your thoughts on this kind of approach for Adapt?" | MLP email, CTA verbatim |
-| "I hope you're good!" / "Thanks, Tom" | Kendall email |
-| Case study offer, download link, "the strategic thinking behind the work" | Kendall email mechanic |
-| "one of their most commercially successful drops of the year" | Kendall email, verbatim |
-| "Designed for the lifestyle, developed to last the journey" | Adapt's own brand line |
+**Length: 290 words to 122.** Everything that didn't move Grant toward a reply is gone. Cut: the "I hope you're good", the studio introduction, the FUJI and Phalanx credential name-drop, Adapt's own tagline quoted back at them, the "Creating commercially successful, on trend collections ahead of time" line, the 2027 forecast paragraph, and the market-leader boilerplate. None of it earned its place in a first touch.
 
-## Three deliberate changes from the MLP template
+**Subject line.** `Adapt Creative 2026` is a vendor subject: title case, company name, year, visibly a campaign. `next range timing` is lowercase, three words, and looks like it came from someone internal. This does break the campaign's unified-subject convention in `sequences.json`, which was designed so a five-touch thread stays consistent. Worth deciding deliberately: the convention helps thread coherence at touches 2 to 5, and hurts the open rate on touch 1, which is the only one that has to survive a cold inbox.
 
-**1. The gap is inverted.** MLP's pitch is "you need more trend-aligned graphic capsules and lifestyle collections." Adapt is already lifestyle-led and has chosen against graphic capsules, so that argument attacks their positioning instead of supporting it. The draft names the restraint as correct, then relocates the revenue gap to the decisions restraint doesn't protect you from: colour, wash, fabric, timing. Same underlying sale, trend forecasting ahead of the buying cycle, pointed somewhere Adapt can accept it.
+**No link in the first email.** The Kendall email leads with a Drive link because Kendall already knows you. Cold, a link costs deliverability and asks for a download before any interest exists. Asking permission first makes the case study the reason to reply rather than an attachment to ignore, and it removes the missing-URL blocker from touch 1 entirely.
 
-**2. "Creative firepower" became "creative direction."** Tom's phrase, and it works for Major League Pickleball. Against a brand built on quiet, it's the wrong volume. Swap back if you disagree.
+**CTA is interest-based, not a meeting.** "Want me to send it over?" is a one-word reply. "Twenty minutes" and "What are your thoughts on this kind of approach for Adapt?" both ask for more than a cold first touch has earned.
 
-**3. British spelling.** The MLP email runs US spelling (capitalizing, year round). Adapt is a UK company, so this uses colour and cadence.
+**Opening leads with their world.** No studio introduction before the observation. The first line is about Adapt's range, and the observation connects straight into the problem, which is the test for whether personalisation is doing real work rather than decorating a template.
 
-**Also dropped:** the "market leaders in licensed apparel and global action sports" boilerplate. Adapt is a founder-run brand of three, not a market leader, and the line would read as a mismatched template.
+## The positioning brief, preserved
+
+The trend-forecasting sale now sits in the timing argument rather than in a claim about ourselves. "Those get locked nine to twelve months out" is the forecasting pitch. "Trend direction set ahead of the buying cycle" names it in seven words. "Strategy, not artwork" closes the door on the artwork read explicitly, in three.
+
+The graphics observation still does the heavy lifting: it credits the restraint as correct before introducing the gap, so the email never argues against Adapt's own positioning the way a graphic-capsule pitch would.
 
 ## Before sending
 
-1. **`[WTP CASE STUDY LINK]`** — the Drive URL for `STUDIOIOS_CASE_STUDY_PHALANX_WE_THE_PEOPLE.pdf`. Not held here. This is also the value that belongs in `data/config.json` → `gdrive_links.T2`, which is still a `REPLACE_WITH` placeholder.
-2. **Contact email** — not held. Adapt Jiu-Jitsu Ltd, company no. 11660196, Guildford. Needs Hunter or `apollo_people_match`.
-3. **Surname for Grant** — public sources give the first name only.
+1. **Contact email** — not held. Adapt Jiu-Jitsu Ltd, company no. 11660196, Guildford. Needs Hunter or `apollo_people_match`.
+2. **Surname for Grant** — public sources give the first name only.
+3. **`gdrive_links.T2`** in `data/config.json` is still a `REPLACE_WITH` placeholder. Not needed for this email, needed the moment Grant replies yes.
 
 ## Source facts used
 
@@ -80,8 +64,7 @@ Tom
 |---|---|
 | Founded 2018 in London, now operating from Guildford | Companies House 11660196 / brand about page |
 | Founder Grant, designer, built the brand around clean minimal design for hobbyists rather than elite competitors | adaptjj.com about page |
-| Now owned and operated by three lifelong friends | adaptjj.com about page |
-| "Designed for the lifestyle, developed to last the journey" | Adapt brand line |
-| Washed / acid wash limited editions, colourways including Marine, Steel Grey, Emerald Green | adaptjj.com collections |
-| Jacquard Lycra rashguards, underarm mesh, elastic waistband, women-specific fits | adaptjj.com product copy |
+| Minimal, non-graphic range; washed finishes, jacquard Lycra rashguards, underarm mesh | adaptjj.com collections and product copy |
 | Phalanx We The People, one of their most commercially successful drops of the year | Kendall email |
+| "Trend direction ahead of the buying cycle" as the core sale | MLP outreach email |
+| Case study as the offer rather than a call | Kendall email mechanic |
