@@ -2,7 +2,7 @@
 
 **To:** Grant (founder), Adapt Jiu-Jitsu Ltd
 **Tier:** T2 (growth-stage DTC)
-**Register:** combat sports, held back. Warm email voice, not deck voice.
+**Blend:** MLP outreach structure + Kendall case-study-share mechanic + Adapt-specific reframe
 **Angle:** Studio IOS as a commercial asset for trend forecasting and positioning. Explicitly not selling artwork.
 
 ---
@@ -11,9 +11,7 @@
 
 `Adapt Creative 2026`
 
-Keeps the campaign's unified subject convention so the thread stays consistent across the sequence.
-
-Alternatives if a sharper open is wanted:
+Keeps the campaign's unified subject convention. Alternatives if a sharper open is wanted:
 - `Where the quiet end of BJJ goes next`
 - `Adapt, before the next range locks`
 
@@ -23,39 +21,58 @@ Alternatives if a sharper open is wanted:
 
 Hi Grant,
 
-Studio IOS, Bristol. We work in combat sports on the commercial side of creative: trend forecasting, category positioning, and the graphic systems that carry them. Phalanx and FUJI Sports are the two you'd recognise.
+I hope you're good!
 
-Worth saying up front that this isn't a pitch for artwork. Adapt already holds a position most brands in this category never find. "Designed for the lifestyle, developed to last the journey" is a real one, and it's the restraint that holds it up: the washed finishes, the jacquard rashguards, the minimal marks. Loading graphics onto that would cost more than it returned.
+I've been looking through the Adapt range and one thing stood out that I had to share with you.
 
-The commercial risk for a brand built on restraint sits somewhere else. When the product is deliberately quiet, differentiation moves into colour, wash, fabric and drop cadence, and those calls get made nine to twelve months before anything reaches the mats. Locked early, a range compounds. Locked late, it arrives reading as last season at full price.
+Most brands in this category try to differentiate with graphics. Adapt clearly doesn't, and that's the right call. "Designed for the lifestyle, developed to last the journey" is a real position, and the restraint is what holds it up: the washed finishes, the jacquard rashguards, the minimal marks. So this isn't a note about artwork.
 
-That's the work we do. On Phalanx's We The People drop we set the direction ahead of the buying cycle rather than dressing the product after it. [WTP RESULT LINE] The preorder window covered inventory and our fees before launch day.
+The opportunity I noticed sits somewhere else. When a range is deliberately quiet, differentiation moves into colour, wash, fabric and drop cadence, and those calls get made nine to twelve months before anything reaches the mats. Get them early and a range compounds. Get them late and it arrives reading as last season at full price.
 
-Adapt is a different brand and would need a different read: where the lifestyle end of BJJ is heading through 2027, which colour and finish stories are worth owning, and which are about to be everywhere.
+Creating commercially successful, on trend collections ahead of time is one of the biggest challenges for our clients, and it's where we do our best work. Our graphic trend reports reveal what's next, and we deliver the creative direction to turn that insight into product.
 
-Happy to put that in front of you before the next range locks. Twenty minutes.
+I've got a short case study on a collection we created for Phalanx, We The People, that shows how we approach it. It became one of their most commercially successful drops of the year, and the case study covers the strategic thinking behind the work rather than the artwork itself.
 
-Tom Hidderley
-Creative Director & Founder, Studio IOS
-studioios.com
+Download link: **[WTP CASE STUDY LINK]**
+
+Adapt would need a different read entirely: where the lifestyle end of BJJ is heading through 2027, which colour and finish stories are worth owning, and which are about to be everywhere.
+
+What are your thoughts on this kind of approach for Adapt?
+
+Thanks,
+Tom
 
 ---
 
-## Gaps to close before sending
+## What came from where
 
-1. **`[WTP RESULT LINE]`** — needs the specific result from the most recent Kendall email. That email is not in this repo, and the Google Drive connector is connected but not enabled in this chat, so it couldn't be pulled. Paste it and the line gets locked. Everything else in the Phalanx paragraph is drawn from claims already verified in `data/config.json` and `data/sequences.json`, so the draft stands without it.
+| Element | Source |
+|---|---|
+| "one thing stood out that I had to share with you" | MLP email, opening move |
+| "The opportunity I noticed sits somewhere else" | MLP's "a key area that isn't being fully exploited", re-pointed |
+| "Creating commercially successful, on trend collections ahead of time is one of the biggest challenges for our clients" | MLP email, verbatim |
+| "Our graphic trend reports reveal what's next" | MLP email, verbatim |
+| "What are your thoughts on this kind of approach for Adapt?" | MLP email, CTA verbatim |
+| "I hope you're good!" / "Thanks, Tom" | Kendall email |
+| Case study offer, download link, "the strategic thinking behind the work" | Kendall email mechanic |
+| "one of their most commercially successful drops of the year" | Kendall email, verbatim |
+| "Designed for the lifestyle, developed to last the journey" | Adapt's own brand line |
+
+## Three deliberate changes from the MLP template
+
+**1. The gap is inverted.** MLP's pitch is "you need more trend-aligned graphic capsules and lifestyle collections." Adapt is already lifestyle-led and has chosen against graphic capsules, so that argument attacks their positioning instead of supporting it. The draft names the restraint as correct, then relocates the revenue gap to the decisions restraint doesn't protect you from: colour, wash, fabric, timing. Same underlying sale, trend forecasting ahead of the buying cycle, pointed somewhere Adapt can accept it.
+
+**2. "Creative firepower" became "creative direction."** Tom's phrase, and it works for Major League Pickleball. Against a brand built on quiet, it's the wrong volume. Swap back if you disagree.
+
+**3. British spelling.** The MLP email runs US spelling (capitalizing, year round). Adapt is a UK company, so this uses colour and cadence.
+
+**Also dropped:** the "market leaders in licensed apparel and global action sports" boilerplate. Adapt is a founder-run brand of three, not a market leader, and the line would read as a mismatched template.
+
+## Before sending
+
+1. **`[WTP CASE STUDY LINK]`** — the Drive URL for `STUDIOIOS_CASE_STUDY_PHALANX_WE_THE_PEOPLE.pdf`. Not held here. This is also the value that belongs in `data/config.json` → `gdrive_links.T2`, which is still a `REPLACE_WITH` placeholder.
 2. **Contact email** — not held. Adapt Jiu-Jitsu Ltd, company no. 11660196, Guildford. Needs Hunter or `apollo_people_match`.
-3. **Surname for Grant** — public sources give the first name only. Worth confirming before send.
-
-## Why it reads the way it does
-
-**No artwork pitch.** Adapt avoids flashy rashguards on purpose. The T2 template's usual move, graphic anchors and sell-through on graphics-led pieces, would have argued against their own positioning. The draft names the restraint as the asset and puts the commercial risk somewhere restraint doesn't cover: colour, wash, fabric, timing. That reframes the sale as forecasting rather than decoration.
-
-**Their own line as the anchor.** "Designed for the lifestyle, developed to last the journey" is Adapt's copy, not ours. Quoting it proves the research and avoids the generic-flattery open.
-
-**Phalanx carries commercial proof, not creative proof.** The case study lands on preorder covering inventory and fees, not on how the collection looked.
-
-**Held to house voice.** No em dashes, British English, one antithesis per passage with both sides concrete, no banned vocabulary.
+3. **Surname for Grant** — public sources give the first name only.
 
 ## Source facts used
 
@@ -67,5 +84,4 @@ studioios.com
 | "Designed for the lifestyle, developed to last the journey" | Adapt brand line |
 | Washed / acid wash limited editions, colourways including Marine, Steel Grey, Emerald Green | adaptjj.com collections |
 | Jacquard Lycra rashguards, underarm mesh, elastic waistband, women-specific fits | adaptjj.com product copy |
-| Phalanx preorder covered inventory and studio fees before launch | `data/config.json` → `tier_proof.T2` |
-| FUJI 17% YoY uplift, signals locked 4 months ahead | `data/sequences.json` → T2 step 3 |
+| Phalanx We The People, one of their most commercially successful drops of the year | Kendall email |
