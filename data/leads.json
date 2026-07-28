@@ -420,5 +420,24 @@
     "custom_hook": "Australian community-led brands punch above their weight when the graphic identity is right — Continuous Flow has that on the product side and the audience side, what's worth talking about is how to formalise the graphic system so it carries cleanly into each new drop without reinvention.",
     "signal_phrase": "",
     "notes": "Australian BJJ brand, community-led."
+  },
+  {
+    "id": "research:t2-adapt-jiu-jitsu",
+    "first_name": "Grant",
+    "last_name": "",
+    "email": "",
+    "title": "Founder",
+    "company": "Adapt Jiu-Jitsu",
+    "domain": "adaptjj.com",
+    "linkedin": "",
+    "tier": "T2",
+    "priority": 2,
+    "signals": {
+      "lifestyle_positioning": "minimal, non-graphic range built on washed finishes and fabric detail",
+      "season_launch": true
+    },
+    "custom_hook": "Adapt already holds a position most brands in this category never find. \"Designed for the lifestyle, developed to last the journey\" is a real one, and it's the restraint that holds it up: the washed finishes, the jacquard rashguards, the minimal marks. Loading graphics onto that would cost more than it returned. The commercial risk for a brand built on restraint sits somewhere else, in colour, wash, fabric and drop cadence, and those calls get made nine to twelve months out.",
+    "signal_phrase": "Adapt's restraint and the lifestyle-first position it protects",
+    "notes": "Founded 2018 London, now Guildford. Companies House 11660196. Founder Grant (designer); now owned and run by three lifelong friends. Hobbyist-first, avoids flashy rashguards. Pitch angle is trend forecasting and positioning, NOT artwork. Full draft in drafts/adapt-jiu-jitsu.md. Email needs Hunter/Apollo enrichment; surname unconfirmed."
   }
 ]
