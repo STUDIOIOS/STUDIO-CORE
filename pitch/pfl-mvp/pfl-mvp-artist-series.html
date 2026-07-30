@@ -55,7 +55,7 @@
   header {
     background: var(--ink);
     color: var(--paper);
-    padding: 7.5mm var(--pad) 5.6mm;
+    padding: 7mm var(--pad) 5.2mm;
   }
   .topbar {
     display: flex;
@@ -63,7 +63,7 @@
     align-items: baseline;
     border-bottom: 0.5pt solid rgba(255,255,255,0.32);
     padding-bottom: 2.4mm;
-    margin-bottom: 7.5mm;
+    margin-bottom: 6.8mm;
     color: rgba(255,255,255,0.72);
   }
   .wordmark {
@@ -94,21 +94,21 @@
   /* ---------------- stat row ---------------- */
   .stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     border-bottom: 0.5pt solid var(--hair);
   }
   .stat {
-    padding: 4mm var(--pad) 3.6mm;
+    padding: 3.6mm 5mm 3.4mm;
     border-right: 0.5pt solid var(--hair);
   }
-  .stat:last-child { border-right: 0; }
-  .stat:not(:first-child) { padding-left: 6mm; }
+  .stat:last-child { border-right: 0; padding-right: var(--pad); }
+  .stat:first-child { padding-left: var(--pad); }
   .stat .fig {
     font-family: 'Shapiro 65 Light Heavy Wide', 'Shapiro', 'DisplaySub', sans-serif;
     font-weight: 700; font-stretch: 125%;
-    font-size: 13.5pt; line-height: 1;
+    font-size: 12.5pt; line-height: 1;
   }
-  .stat .cap { color: var(--grey); margin-top: 1.8mm; font-size: 6.1pt; line-height: 1.38; }
+  .stat .cap { color: var(--grey); margin-top: 1.6mm; font-size: 5.9pt; line-height: 1.36; }
 
   /* ---------------- body blocks ---------------- */
   main { flex: 1; padding: 0 var(--pad); display: flex; flex-direction: column; }
@@ -117,7 +117,7 @@
     grid-template-columns: 34mm 1fr;
     gap: 6mm;
     flex: 1 0 auto;
-    padding: 4mm 0 3.6mm;
+    padding: 3.4mm 0 3.2mm;
     border-bottom: 0.5pt solid var(--hair);
   }
   .block:last-of-type { border-bottom: 0; }
@@ -189,16 +189,20 @@
 
 <section class="stats">
   <div class="stat">
-    <div class="fig">12.4M</div>
-    <div class="cap">Viewers for MVP's MMA debut on Netflix, May 2026</div>
+    <div class="fig">$40M</div>
+    <div class="cap">MLB's Tokyo Series in fan gear and cards, carrying Murakami artwork. Fanatics' best selling event on record</div>
   </div>
   <div class="stat">
-    <div class="fig">300+</div>
-    <div class="cap">Fighters on the PFL roster, drawn from over 40 countries</div>
+    <div class="fig">15 MIN</div>
+    <div class="cap">Most of that Murakami collection gone. Sold out inside the hour, after 100,000 app downloads to reach it</div>
   </div>
   <div class="stat">
-    <div class="fig">$4.63BN</div>
-    <div class="cap">MMA merchandise, equipment and nutrition market in 2026, growing at 6% a year</div>
+    <div class="fig">$136.4M</div>
+    <div class="cap">WWE consumer products licensing in 2025, up 23 per cent on a design and collaboration led programme</div>
+  </div>
+  <div class="stat">
+    <div class="fig">$55.0M</div>
+    <div class="cap">UFC consumer products and licensing in 2024, 4 per cent of revenue and down on 2023</div>
   </div>
 </section>
 
@@ -210,44 +214,58 @@
       <h2>UFC Artist Series</h2>
     </div>
     <div class="body">
-      <p>The UFC commissions original artwork for its marquee cards and releases it as limited edition
-      Artist Series prints, tees and collectibles, extending the model into designer art toys with Stancé
-      and illustrator Tracy Tubera. Each event becomes a dated, collectable drop rather than a restock of
-      the primary logo, and the artwork carries the fighters fans came for.</p>
-      <p>TKO's own numbers carry the commercial read. Consumer products licensing grew across the
-      portfolio through 2025, with WWE's reaching <em>$136.4 million, up 23 per cent year on year</em>,
-      and UFC's rising on merchandise and gaming. Artwork led programmes monetise the roster and marks a
-      promotion already owns.</p>
+      <p>The UFC commissions original artwork for its marquee cards and releases it as Artist Series
+      prints, tees and collectibles, extending into designer art toys with Stanc&eacute; and illustrator
+      Tracy Tubera. The economics sit in scarcity and price: framed Artist Series prints retail at
+      <em>$199.99</em>, numbered runs land in the low hundreds, and canvas editions pressed onto used
+      Octagon canvas are made in tens. Each card becomes a dated, collectable drop rather than a restock
+      of the primary logo.</p>
     </div>
   </div>
 
   <div class="block">
     <div>
-      <div class="label"><span class="num">02</span>&nbsp; THE ADJACENT FIELD</div>
-      <h2>Fight IP in Lifestyle</h2>
+      <div class="label"><span class="num">02</span>&nbsp; THE DEMAND</div>
+      <h2>Artist Led Product Sells</h2>
     </div>
     <div class="body">
-      <p>ONE Championship has run an athleisure business since 2018 and built it on outside creative
-      credibility: a camouflage capsule by SBTG, whose client list runs to Nike, Arsenal and
-      Paris Saint-Germain, and a no-gi collaboration with Shoyoroll. Combat sports IP now sits alongside the brands fans wear outside the arena, and ONE
-      reached that position on a fraction of the audience the merged business commands.</p>
+      <p>MLB ran the same play at scale. Takashi Murakami artwork across jerseys, hoodies and caps sold
+      out on the Fanatics app in under an hour, most of it inside 15 minutes, after more than 100,000
+      fans downloaded the app to reach it. The Tokyo Series took <em>$40 million</em> in fan gear and
+      trading cards, the best selling event on Fanatics' record.</p>
+      <p>Formula 1 shows the pattern holding in apparel. Fashion led collaborations have run to roughly
+      80 per cent sold through at some retailers, apparel sponsorship spend is up 75 per cent in two
+      years, and other revenue covering licensing, merchandising and hospitality rose <em>20 per cent to
+      $787 million</em> in 2025.</p>
     </div>
   </div>
 
   <div class="block">
     <div>
-      <div class="label"><span class="num">03</span>&nbsp; THE STUDIO</div>
+      <div class="label"><span class="num">03</span>&nbsp; THE HEADROOM</div>
+      <h2>Combat Sports Under Trades</h2>
+    </div>
+    <div class="body">
+      <p>UFC consumer products and licensing was $55.0 million in 2024, around 4 per cent of UFC revenue
+      and down on the year before. WWE, under the same owner and the same commercial machine, took
+      $136.4 million and grew 23 per cent on a programme built around design, collaboration and repeat
+      drops. ONE Championship has chased the same ground since 2018 with SBTG and Shoyoroll. Combat
+      sports has the appetite. What it lacks is the creative system feeding the licensees.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div>
+      <div class="label"><span class="num">04</span>&nbsp; THE STUDIO</div>
       <h2>Proven in Sport and Combat</h2>
     </div>
     <div class="body">
-      <p>Studio IOS builds the design systems that carry sports IP into lifestyle. For Fuji we delivered
-      the brand guide and style guide governing how the brand is drawn and extended, including
-      fighter led artwork grounded in research, such as the Rickson Gracie graphic built from his own
-      fight material. For ESPN we translated broadcast storytelling into a fashion first style guide,
-      reframing a sports broadcaster as a lifestyle brand embedded in the everyday culture of sport.</p>
-      <p>The same work runs through Chelsea, Ferrari, LA28 and the FIA World Endurance Championship,
-      alongside seasonal trend reporting for Scramble and Phalanx. Combat sports fluency and premium
-      licensing discipline in one studio.</p>
+      <p>For Fuji we delivered the brand guide and style guide, including fighter led artwork grounded in
+      research such as the Rickson Gracie graphic built from his own fight material. For ESPN we
+      translated broadcast storytelling into a fashion first style guide, reframing a sports broadcaster
+      as a lifestyle brand embedded in the everyday culture of sport. The same work runs through Chelsea,
+      Ferrari, LA28 and the FIA World Endurance Championship, alongside seasonal trend reporting for
+      Scramble and Phalanx.</p>
     </div>
   </div>
 
