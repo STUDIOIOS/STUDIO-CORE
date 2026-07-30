@@ -6,12 +6,12 @@
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
   /* ------------------------------------------------------------------
-     STUDIO IOS one page document, A4 portrait.
+     STUDIO IOS one page document, landscape, 1091 x 615 pt house canvas.
      Type substitutions: Shapiro 65 Light Heavy Wide -> DisplaySub,
      Apercu Mono Pro Medium -> MonoSub. Install the house fonts locally
      and the stacks below pick them up automatically on re-render.
      ------------------------------------------------------------------ */
-  @page { size: A4 portrait; margin: 0; }
+  @page { size: 1091pt 615pt; margin: 0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
@@ -20,22 +20,22 @@
     --paper: #FFFFFF;
     --grey: #6A6A6A;
     --hair: #D8D8D8;
-    --pad: 14mm;
+    --pad: 34pt;
   }
 
-  html, body { width: 210mm; height: 297mm; overflow: hidden; }
+  html, body { width: 1091pt; height: 615pt; overflow: hidden; }
   body {
     background: var(--paper);
     color: var(--ink);
     font-family: 'Apercu Mono Pro', 'MonoSub', monospace;
-    font-size: 7pt;
-    line-height: 1.46;
+    font-size: 7.2pt;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     display: flex;
     flex-direction: column;
   }
 
-  h1, h2, h3, .display {
+  h1, h2, h3 {
     font-family: 'Shapiro 65 Light Heavy Wide', 'Shapiro', 'DisplaySub', sans-serif;
     font-weight: 700;
     font-stretch: 125%;
@@ -48,122 +48,89 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.09em;
-    font-size: 5.9pt;
+    font-size: 6pt;
   }
 
   /* ---------------- header band ---------------- */
-  header {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 7mm var(--pad) 5.2mm;
-  }
+  header { background: var(--ink); color: var(--paper); padding: 16pt var(--pad) 17pt; }
+
   .topbar {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     border-bottom: 0.5pt solid rgba(255,255,255,0.32);
-    padding-bottom: 2.4mm;
-    margin-bottom: 6.8mm;
+    padding-bottom: 7pt;
+    margin-bottom: 18pt;
     color: rgba(255,255,255,0.72);
   }
   .wordmark {
     font-family: 'Shapiro 65 Light Heavy Wide', 'Shapiro', 'DisplaySub', sans-serif;
-    font-weight: 700;
-    font-stretch: 125%;
-    font-size: 8pt;
-    letter-spacing: 0.02em;
-    color: var(--paper);
-    text-transform: uppercase;
+    font-weight: 700; font-stretch: 125%;
+    font-size: 9pt; letter-spacing: 0.02em;
+    color: var(--paper); text-transform: uppercase;
   }
 
-  h1 { font-size: 22pt; line-height: 1.04; color: var(--paper); }
+  .masthead { display: grid; grid-template-columns: 400pt 1fr; gap: 52pt; align-items: start; }
+  h1 { font-size: 30pt; line-height: 1.02; color: var(--paper); }
   h1 .red { color: var(--accent); }
-  .subtitle { margin-top: 3mm; color: rgba(255,255,255,0.62); }
-  .accent-rule {
-    width: 24mm; height: 1.6pt; background: var(--accent);
-    margin: 4.6mm 0 4.2mm;
-  }
-  .standfirst {
-    color: rgba(255,255,255,0.88);
-    font-size: 7.1pt;
-    line-height: 1.55;
-    max-width: 160mm;
-  }
+  .subtitle { margin-top: 9pt; color: rgba(255,255,255,0.62); }
+  .accent-rule { width: 62pt; height: 1.8pt; background: var(--accent); margin-top: 13pt; }
+
+  .standfirst { color: rgba(255,255,255,0.88); font-size: 7.8pt; line-height: 1.62; }
   .standfirst strong { font-weight: 500; color: #fff; }
+  .standfirst p + p { margin-top: 6pt; }
 
   /* ---------------- stat row ---------------- */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-bottom: 0.5pt solid var(--hair);
-  }
-  .stat {
-    padding: 3.6mm 5mm 3.4mm;
-    border-right: 0.5pt solid var(--hair);
-  }
-  .stat:last-child { border-right: 0; padding-right: var(--pad); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 0.5pt solid var(--hair); }
+  .stat { padding: 13pt 15pt 12pt; border-right: 0.5pt solid var(--hair); }
   .stat:first-child { padding-left: var(--pad); }
+  .stat:last-child { border-right: 0; padding-right: var(--pad); }
   .stat .fig {
     font-family: 'Shapiro 65 Light Heavy Wide', 'Shapiro', 'DisplaySub', sans-serif;
     font-weight: 700; font-stretch: 125%;
-    font-size: 12.5pt; line-height: 1;
+    font-size: 17pt; line-height: 1;
   }
-  .stat .cap { color: var(--grey); margin-top: 1.6mm; font-size: 5.9pt; line-height: 1.36; }
+  .stat .cap { color: var(--grey); margin-top: 6pt; font-size: 6.3pt; line-height: 1.44; }
 
-  /* ---------------- body blocks ---------------- */
-  main { flex: 1; padding: 0 var(--pad); display: flex; flex-direction: column; }
-  .block {
-    display: grid;
-    grid-template-columns: 34mm 1fr;
-    gap: 6mm;
-    flex: 1 0 auto;
-    padding: 3.4mm 0 3.2mm;
-    border-bottom: 0.5pt solid var(--hair);
-  }
-  .block:last-of-type { border-bottom: 0; }
-  .block .num { color: var(--accent); }
-  .block h2 { font-size: 7.8pt; line-height: 1.2; margin-top: 1.3mm; }
-  .block p + p { margin-top: 2mm; }
-  .block .body { max-width: 138mm; }
+  /* ---------------- body columns ---------------- */
+  main { flex: 1; padding: 13pt var(--pad) 0; display: flex; flex-direction: column; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30pt; }
+
+  .ladder { margin-top: auto; border-top: 0.5pt solid var(--hair); padding: 9pt 0 10pt; }
+  .ladder > .label { color: var(--grey); display: block; margin-bottom: 8pt; }
+  .rungs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26pt; align-items: start; }
+  .rung .n { color: var(--accent); font-weight: 500; letter-spacing: 0.09em; font-size: 6pt; }
+  .rung h3 { font-size: 7.4pt; margin: 3pt 0 4pt; }
+  .rung p { font-size: 6.4pt; line-height: 1.44; color: var(--grey); }
+  .col { display: flex; flex-direction: column; }
+  .col .num { color: var(--accent); }
+  .col h2 { font-size: 9pt; line-height: 1.18; margin: 4pt 0 9pt; }
+  .col .rule { width: 100%; height: 1.2pt; background: var(--accent); margin-bottom: 9pt; }
+  .col p + p { margin-top: 6pt; }
   em { font-style: normal; font-weight: 500; }
 
-  /* ---------------- proposal strip ---------------- */
-  .proposal {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 5.4mm var(--pad) 5mm;
-  }
-  .proposal > .label { color: rgba(255,255,255,0.55); }
-  .stages {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6.4mm;
-    margin-top: 3.8mm;
-  }
-  .stage { border-top: 1.4pt solid var(--accent); padding-top: 2.4mm; }
-  .stage .n { color: var(--accent); font-weight: 500; letter-spacing: 0.09em; font-size: 5.9pt; }
-  .stage h3 { font-size: 7.2pt; margin: 1.2mm 0 1.6mm; color: var(--paper); }
-  .stage p { color: rgba(255,255,255,0.74); font-size: 6.2pt; line-height: 1.44; }
+  /* ---------------- route strip ---------------- */
+  .route { background: var(--ink); color: var(--paper); padding: 11pt var(--pad) 11pt; }
+  .route-grid { display: grid; grid-template-columns: 96pt 1fr 1fr 1fr; gap: 26pt; align-items: start; }
+  .route-grid > .label { color: rgba(255,255,255,0.55); }
+  .stage .n { color: var(--accent); font-weight: 500; letter-spacing: 0.09em; font-size: 6pt; }
+  .stage h3 { font-size: 7.6pt; margin: 4pt 0 4pt; color: var(--paper); }
+  .stage p { color: rgba(255,255,255,0.72); font-size: 6.6pt; line-height: 1.46; }
 
   .closer {
-    margin-top: 3.4mm;
-    padding-top: 2.6mm;
+    margin-top: 9pt; padding-top: 7pt;
     border-top: 0.5pt solid rgba(255,255,255,0.28);
-    font-size: 7.2pt;
-    color: rgba(255,255,255,0.9);
-    max-width: 176mm;
+    font-size: 8pt; color: rgba(255,255,255,0.92);
   }
 
   /* ---------------- footer ---------------- */
   footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 3mm var(--pad) 3.6mm;
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 7pt var(--pad) 9pt;
     color: var(--grey);
     border-top: 0.5pt solid var(--hair);
   }
-  footer .wordmark { color: var(--ink); font-size: 7pt; }
+  footer .wordmark { color: var(--ink); font-size: 7.5pt; }
 </style>
 </head>
 <body>
@@ -174,133 +141,144 @@
     <span class="label">PFL &nbsp;|&nbsp; MVP &nbsp;|&nbsp; CONSUMER PRODUCTS &nbsp;|&nbsp; 30 JUL 2026</span>
   </div>
 
-  <h1>The Artist Series<br><span class="red">Opportunity</span></h1>
-  <div class="subtitle label">A CONSUMER PRODUCTS AND LICENSING CASE FOR PFL AND MVP</div>
-  <div class="accent-rule"></div>
-  <p class="standfirst">
-    The merger announced on 30 July 2026 puts boxing and MMA under one banner, behind an MMA debut that
-    drew <strong>12.4 million viewers on Netflix</strong> in May. The licensing infrastructure to convert
-    that attention is already in place, with CAA Sports Licensing appointed as exclusive trademark
-    representative and Takedown supplying performance and lifestyle apparel. What sits between the
-    audience and the shelf is a design system: the graphic language, style guide and seasonal creative
-    that turn a fight night into a product drop.
-  </p>
+  <div class="masthead">
+    <div>
+      <h1>The Artist Series<br><span class="red">Opportunity</span></h1>
+      <div class="subtitle label">LICENSED MERCHANDISE FOR PFL AND MVP</div>
+      <div class="accent-rule"></div>
+    </div>
+    <div class="standfirst">
+      <p>PFL and MVP merge with the licensing already built. CAA Sports Licensing holds the trademark
+      rights across categories, Takedown covers performance and lifestyle apparel, and the MMA debut in
+      May pulled <strong>12.4 million viewers on Netflix</strong>.</p>
+      <p>What is missing is the artwork. One commission per card can carry a tee, a print, a trading
+      card, a collectible and a figure. The UFC has been running that model for years, and licensed
+      sport is now the fastest growing category in the licensing industry.</p>
+    </div>
+  </div>
 </header>
 
 <section class="stats">
   <div class="stat">
-    <div class="fig">$40M</div>
-    <div class="cap">MLB's Tokyo Series in fan gear and cards, carrying Murakami artwork. Fanatics' best selling event on record</div>
+    <div class="fig">$44.4BN</div>
+    <div class="cap">Licensed sports merchandise in 2025. The fastest growing property category in licensing, up 8.5 per cent on the year</div>
   </div>
   <div class="stat">
-    <div class="fig">15 MIN</div>
-    <div class="cap">Most of that Murakami collection gone. Sold out inside the hour, after 100,000 app downloads to reach it</div>
+    <div class="fig">$16.3BN</div>
+    <div class="cap">Apparel inside that number. At 38.2 per cent of licensed sports sales it is the largest slice by some distance</div>
   </div>
   <div class="stat">
-    <div class="fig">$136.4M</div>
-    <div class="cap">WWE consumer products licensing in 2025, up 23 per cent on a design and collaboration led programme</div>
+    <div class="fig">86%</div>
+    <div class="cap">Of brand owners name fashion their biggest licensing opportunity for 2026 and 2027</div>
   </div>
   <div class="stat">
-    <div class="fig">$55.0M</div>
-    <div class="cap">UFC consumer products and licensing in 2024, 4 per cent of revenue and down on 2023</div>
+    <div class="fig">$46.4BN</div>
+    <div class="cap">Licensed toys and collectibles in 2025, with adult collectors driving most of the growth</div>
   </div>
 </section>
 
 <main>
 
-  <div class="block">
-    <div>
-      <div class="label"><span class="num">01</span>&nbsp; THE PRECEDENT</div>
-      <h2>UFC Artist Series</h2>
-    </div>
-    <div class="body">
-      <p>The UFC commissions original artwork for its marquee cards and releases it as Artist Series
-      prints, tees and collectibles, extending into designer art toys with Stanc&eacute; and illustrator
-      Tracy Tubera. The economics sit in scarcity and price: framed Artist Series prints retail at
-      <em>$199.99</em>, numbered runs land in the low hundreds, and canvas editions pressed onto used
-      Octagon canvas are made in tens. Each card becomes a dated, collectable drop rather than a restock
-      of the primary logo.</p>
-    </div>
+  <div class="cols">
+
+  <div class="col">
+    <div class="label"><span class="num">01</span>&nbsp; THE MODEL</div>
+    <h2>One Commission,<br>Every Category</h2>
+    <div class="rule"></div>
+    <p>The UFC hands a marquee card to an artist and runs the result across the whole shop. An event tee
+    on the night. A framed print at <em>$199.99</em>. Numbered trading cards in runs of a few hundred.
+    Canvas editions pressed onto used Octagon canvas, ten of each. Designer art toys built with Stancé
+    and stylised by Tracy Tubera.</p>
+    <p>The same drawing runs from an event tee to a $199.99 framed print, and carries into categories
+    apparel cannot reach on its own.</p>
   </div>
 
-  <div class="block">
-    <div>
-      <div class="label"><span class="num">02</span>&nbsp; THE DEMAND</div>
-      <h2>Artist Led Product Sells</h2>
-    </div>
-    <div class="body">
-      <p>MLB ran the same play at scale. Takashi Murakami artwork across jerseys, hoodies and caps sold
-      out on the Fanatics app in under an hour, most of it inside 15 minutes, after more than 100,000
-      fans downloaded the app to reach it. The Tokyo Series took <em>$40 million</em> in fan gear and
-      trading cards, the best selling event on Fanatics' record.</p>
-      <p>Formula 1 shows the pattern holding in apparel. Fashion led collaborations have run to roughly
-      80 per cent sold through at some retailers, apparel sponsorship spend is up 75 per cent in two
-      years, and other revenue covering licensing, merchandising and hospitality rose <em>20 per cent to
-      $787 million</em> in 2025.</p>
-    </div>
+  <div class="col">
+    <div class="label"><span class="num">02</span>&nbsp; THE PROOF</div>
+    <h2>Artwork Moves<br>Merchandise</h2>
+    <div class="rule"></div>
+    <p>UFC 300 sold more merchandise than any arena event in the company's history. The card carried its
+    own Artist Series poster, and the shop carried the tee alongside it.</p>
+    <p>When MLB gave Takashi Murakami the Tokyo Series, the collection sold out on the Fanatics app
+    inside the hour, most of it gone in fifteen minutes, after <em>100,000 fans</em> downloaded the app
+    to get at it. The event took <em>$40 million</em> in gear and cards, a Fanatics record. Artwork is
+    what turns a fan watching into a fan buying.</p>
   </div>
 
-  <div class="block">
-    <div>
-      <div class="label"><span class="num">03</span>&nbsp; THE HEADROOM</div>
-      <h2>Combat Sports Under Trades</h2>
-    </div>
-    <div class="body">
-      <p>UFC consumer products and licensing was $55.0 million in 2024, around 4 per cent of UFC revenue
-      and down on the year before. WWE, under the same owner and the same commercial machine, took
-      $136.4 million and grew 23 per cent on a programme built around design, collaboration and repeat
-      drops. ONE Championship has chased the same ground since 2018 with SBTG and Shoyoroll. Combat
-      sports has the appetite. What it lacks is the creative system feeding the licensees.</p>
-    </div>
+  <div class="col">
+    <div class="label"><span class="num">03</span>&nbsp; THE STUDIO</div>
+    <h2>What We<br>Build</h2>
+    <div class="rule"></div>
+    <p>We make the artwork and the rules that hold it together. For Fuji we delivered the brand guide and
+    the style guide, with fighter artwork researched properly, like the Rickson Gracie graphic drawn from
+    his own fight material.</p>
+    <p>For Scramble and Phalanx we run the seasonal trend work and turn it into collections. Everything
+    is built in vector so it re-colours cleanly, drops into a licensee pack, and scales from a fight kit
+    to a card back without being redrawn.</p>
   </div>
 
-  <div class="block">
-    <div>
-      <div class="label"><span class="num">04</span>&nbsp; THE STUDIO</div>
-      <h2>Proven in Sport and Combat</h2>
+  </div>
+
+  <div class="ladder">
+    <div class="label">WHERE ONE ARTWORK TRAVELS</div>
+    <div class="rungs">
+    <div class="rung">
+      <div class="n">01</div>
+      <h3>Soft Lines</h3>
+      <p>Event tees, fleece, headwear and fan apparel. The volume driver, and 38.2 per cent of every
+      licensed sports sale.</p>
     </div>
-    <div class="body">
-      <p>For Fuji we delivered the brand guide and style guide, including fighter led artwork grounded in
-      research such as the Rickson Gracie graphic built from his own fight material. For ESPN we
-      translated broadcast storytelling into a fashion first style guide, reframing a sports broadcaster
-      as a lifestyle brand embedded in the everyday culture of sport. The same work runs through Chelsea,
-      Ferrari, LA28 and the FIA World Endurance Championship, alongside seasonal trend reporting for
-      Scramble and Phalanx.</p>
+    <div class="rung">
+      <div class="n">02</div>
+      <h3>Hard Lines</h3>
+      <p>Framed prints, canvas editions, drinkware and wall art. Higher ticket, shorter runs, and the
+      margin sits in the artwork.</p>
+    </div>
+    <div class="rung">
+      <div class="n">03</div>
+      <h3>Collectibles</h3>
+      <p>Numbered trading cards and designer figures. UFC's cards run through Fanatics and Topps on an
+      exclusive licence.</p>
+    </div>
+    <div class="rung">
+      <div class="n">04</div>
+      <h3>Games and Digital</h3>
+      <p>In-game kit, console art and digital collectibles. The artwork travels here at almost no unit
+      cost.</p>
+    </div>
     </div>
   </div>
 
 </main>
 
-<section class="proposal">
-  <div class="label">PROPOSED ROUTE</div>
-  <div class="stages">
+<section class="route">
+  <div class="route-grid">
+    <div class="label">PROPOSED<br>ROUTE</div>
     <div class="stage">
       <div class="n">STAGE 01</div>
-      <h3>Brand and Style Guide</h3>
-      <p>One graphic language for the merged business, covering fight kit, fan apparel and the licensee
-      packs CAA already distributes. Vector built for easy re-colouring and territory rollout.</p>
+      <h3>Style Guide</h3>
+      <p>One artwork system for the merged business. Fight kit, fan apparel and the licensee packs CAA
+      already distributes.</p>
     </div>
     <div class="stage">
       <div class="n">STAGE 02</div>
       <h3>Artist Series Pilot</h3>
-      <p>Commissioned fighter artwork around one marquee card, released as a limited drop of prints,
-      tees and collectibles. A contained test with a clear read on sell-through.</p>
+      <p>One marquee card, one commissioned fighter artwork, released across tee, print, card and
+      collectible. A clean read on sell-through by category.</p>
     </div>
     <div class="stage">
       <div class="n">STAGE 03</div>
-      <h3>Seasonal Lifestyle Collection</h3>
-      <p>Trend forecast through to product, two drops a year, built to scale across licensees and
-      territories and to hold shelf space next to streetwear.</p>
+      <h3>Seasonal Collection</h3>
+      <p>Two drops a year, trend led, scaled across licensees and territories and priced to sit next to
+      the streetwear fans already buy.</p>
     </div>
   </div>
-  <p class="closer">
-    Every fight night already produces a poster. The opportunity is to make it something a fan wears home.
-  </p>
+  <p class="closer">Every fight night already makes a poster. We turn it into a season.</p>
 </section>
 
 <footer>
   <span class="wordmark">Studio IOS</span>
-  <span class="label">studioios.com &nbsp;|&nbsp; PFL x MVP &nbsp;|&nbsp; CONSUMER PRODUCTS OPPORTUNITY &nbsp;|&nbsp; 01/01</span>
+  <span class="label">studioios.com &nbsp;|&nbsp; PFL X MVP &nbsp;|&nbsp; CONSUMER PRODUCTS OPPORTUNITY &nbsp;|&nbsp; 01/01</span>
 </footer>
 
 </body>

@@ -1,10 +1,10 @@
 # PFL x MVP — The Artist Series Opportunity
 
 A one page consumer products and licensing case for Carl at PFL, written off the back of the
-PFL and MVP merger announced 30 July 2026.
+PFL and MVP merger announced 30 July 2026. Landscape, 1091 x 615 pt, the Studio IOS house canvas.
 
 ```
-pfl-mvp-artist-series.html    source (A4 portrait, self-contained apart from assets/fonts.css)
+pfl-mvp-artist-series.html    source (landscape, self-contained apart from assets/fonts.css)
 assets/fonts.css              base64 embedded substitute fonts
 STUDIO_IOS_PFL_MVP_ARTIST_SERIES_ONE_PAGER.pdf   the deliverable
 SOURCES.md                    every figure on the page and where it came from
@@ -31,6 +31,6 @@ available here. Swap the two `.wordmark` spans for the PNG before this goes out.
 ./build.sh
 ```
 
-Requires Chromium or Chrome. The script prints to A4 portrait at margin zero and the layout is pinned
+Requires Chromium or Chrome. The script prints at 1091 x 615 pt, margin zero, and the layout is pinned
 to one page, so check the output after any copy edit: content that overruns is clipped rather than
 pushed to a second page.

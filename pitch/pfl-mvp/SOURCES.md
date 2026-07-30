@@ -7,15 +7,18 @@ _Compiled 30 July 2026._
 
 ## Read this first
 
-There is no published revenue figure for the UFC Artist Series. UFC and TKO do not break the programme
-out in their reporting, and the searches below turned up nothing at drop level. Anyone claiming a
-specific Artist Series sales number in a meeting is guessing.
+**There is still no published revenue figure for the UFC Artist Series.** UFC and TKO do not break the
+programme out, and four separate searches turned up nothing at drop level. Anyone quoting an Artist
+Series sales number in a meeting is guessing. What is public is the shape of the programme, the price
+points and the print runs, and that is what block 01 uses.
 
-What is public is more useful anyway, and it points the other way from the obvious pitch. UFC's whole
-consumer products and licensing line was **$55.0m in 2024, around 4 per cent of UFC revenue, and down
-from $57.4m in 2023**. WWE, same owner and same commercial machine, took **$136.4m in 2025, up 23 per
-cent**. So the page argues headroom rather than a UFC success story, and it proves demand with drops
-that do have hard numbers attached. That framing is honest and it is the stronger commercial case.
+The closest hard number attached to a UFC event is **UFC 300, the highest merchandise-selling arena
+event in the company's history**, and that card carried its own Artist Series poster.
+
+Held back for the meeting rather than put on the page: UFC's whole consumer products and licensing line
+was **$55.0m in 2024, around 4 per cent of UFC revenue, and down from $57.4m in 2023**, while WWE under
+the same owner took **$136.4m in 2025, up 23 per cent**. That is the sharpest "why now" argument
+available, but it is a headroom point rather than an Artist Series point, so it sits here as ammunition.
 
 ## The merger
 
@@ -53,48 +56,55 @@ The UFC's own Artist Series page blocks automated fetching, so the price and pri
 the collectibles store and secondary listings. Worth a manual look before sending, and worth pulling two
 or three poster images into any follow-up deck.
 
-The point the block makes is about price architecture, not volume: a $199.99 framed print against a $30
-tee, on runs deliberately kept short. That is the margin story, and it survives the absence of a
-disclosed revenue figure.
+The point the block makes is price architecture rather than volume: one drawing running from an event
+tee up to a $199.99 framed print, on runs deliberately kept short. That is the margin story, and it
+survives the absence of a disclosed revenue figure. The page no longer quotes a tee price, because UFC
+does not publish a consistent one.
 
-## Block 02 — proof of demand
+## Stat band — the licensed merchandise opportunity
 
-| Claim | Source |
-|---|---|
-| Murakami x MLB collection sold out on the Fanatics app in under an hour, most inside 15 minutes | [WWD](https://wwd.com/pop-culture/new-fashion-releases/fanatics-murakami-merch-collection-1237037714/) · [Complex](https://www.complex.com/style/a/complexstaff3/takashi-murakami-mlb-world-tour-tokyo-series-collection-sold-out-minutes) |
-| More than 100,000 fans downloaded the Fanatics app to reach the drop | WWD, as above |
-| Tokyo Series took $40m in fan gear and trading cards, Fanatics' best selling event on record | [Fox Business](https://www.foxbusiness.com/sports/mlb-tokyo-series-sets-fanatics-company-record-merchandise-trading-card-sales) · [WWD](https://wwd.com/fashion-news/fashion-scoops/takashi-murakami-shohei-ohtani-tokyo-series-40-million-fanatics-1237057733/) |
-| F1 fashion collaborations at roughly 80 per cent sold through at some retailers | [WWD, top F1 fashion collaborations](https://wwd.com/business-news/business-features/top-formula-1-fashion-collaborations-2024-1236722672/) — the specific item is a Reiss x McLaren varsity jacket |
-| F1 apparel sponsorship spend up 75 per cent in two years | Ampere Analysis, reported via [Modern Retail](https://www.modernretail.co/marketing/brands-and-retailers-are-finding-a-win-with-formula-one-merchandise/) |
-| F1 other revenue, covering licensing, merchandising and hospitality, up 20 per cent to $787m in 2025 | [SportsPro](https://www.sportspro.com/news/finance-investment/f1-financial-results-liberty-media-revenue-2025-february-2026/) |
-
-The Murakami numbers are the strongest thing on the page. Sport plus a named artist, a short run, an
-app-gated drop, and a company sales record. It is the closest published analogue to what an Artist
-Series pilot would be.
-
-One caution: the $40m Tokyo Series figure covers all fan gear and trading cards at the event, not the
-Murakami collection alone. The page is worded to reflect that. Do not let it drift into "the Murakami
-collection did $40m" in conversation.
-
-The F1 "other revenue" line is a bundle of hospitality, licensing, merchandising and digital. It is
-directional evidence that a lifestyle strategy lifts the commercial line, not a clean merchandise
-number, and it is worded on the page as the bundle it is.
-
-## Block 03 — the headroom
+All four figures come from Licensing International's 2026 Global Licensing Industry Study, covering
+calendar 2025, plus the sports breakdown reported alongside it.
 
 | Claim | Source |
 |---|---|
-| UFC consumer products and licensing $55.0m in 2024, around 4 per cent of UFC revenue, down from $57.4m in 2023 | [TKO 10-K FY2024](https://www.sec.gov/Archives/edgar/data/1973266/000095017025027778/tko-20241231.htm) |
-| WWE consumer products licensing $136.4m in 2025, up $25.3m / 23 per cent | [TKO FY2025 results](https://investor.tkogrp.com/news/news-details/2026/TKO-Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx) |
-| ONE Championship athleisure business since 2018, with SBTG and Shoyoroll | [ONE athleisure launch](https://www.onefc.com/news/one-championship-officially-launches-athleisure-business/) · [SBTG](https://www.onefc.com/press-releases/one-championship-collaborates-with-streetwear-designer-sbtg-to-create-limited-edition-apparel/) · [Shoyoroll](https://www.onefc.com/press-releases/one-championship-and-shoyoroll-announce-special-no-gi-apparel-collaboration/) |
+| Licensed sports merchandise $44.4bn in 2025, fastest growing property category, up 8.5 per cent | [Licensing International 2026 Global Study](https://www.globenewswire.com/news-release/2026/05/19/3297905/0/en/Licensing-International-s-2026-Global-Study-Shows-Licensing-Industry-s-Continued-Growth-Reaching-389-8-Billion-in-Sales.html) |
+| Apparel $16.3bn, 38.2 per cent of licensed sports merchandise | [Grand View Research](https://www.grandviewresearch.com/industry-analysis/licensed-sports-merchandise-market-report) |
+| 86 per cent of brand owners name fashion their biggest licensing opportunity for 2026/27 | [Licensing Magazine](https://www.licensingmagazine.com/2026/06/12/licensing-which-trends-will-shape-the-market-in-the-near-future/) |
+| Licensed toys and collectibles $46.4bn in 2025, growth driven by adult collectors | Licensing International 2026 Global Study, as above |
 
-The UFC decline is attributed in TKO's filing to lower royalties from branded merchandise sales. The two
-figures are a year apart (UFC 2024, WWE 2025) because that is how they are disclosed. The page states
-both years so the comparison is not doing anything quiet.
+Context worth carrying into the room: the whole licensing industry reached **$389.8bn in 2025, up 5.45
+per cent**, ahead of global retail at 4.52 per cent. Sports is now the third-largest property category
+at 11.4 per cent of the market, its highest share ever recorded in the study.
 
-"Combat sports has the appetite. What it lacks is the creative system feeding the licensees." is the
-studio's argument, not a sourced finding. It is the one sentence on the page that is a position rather
-than a record, and it should be defended as such.
+The $44.4bn and $16.3bn figures come from different houses and are not strictly a subset of one another.
+The page words the apparel line as a share of licensed sports merchandise, which is how Grand View
+reports it. Fine as written, but do not present them as one arithmetic.
+
+## Block 02 — proof that artwork moves merchandise
+
+| Claim | Source |
+|---|---|
+| UFC 300 sold more merchandise than any arena event in UFC history | [Black Belt Magazine](https://www.blackbeltmag.com/post/ufc-300-sets-new-records-highest-grossing-and-most-watched-event-in-ufc-history) — second all-time behind UFC 193 across all event types |
+| UFC 300 carried its own Artist Series poster and tee | [UFC 300 merchandise, UFC Store](https://www.ufcstore.com/en/ufc-300/c-2360158743+z-85240-4098753820) |
+| Murakami x MLB sold out on the Fanatics app inside the hour, most in 15 minutes | [WWD](https://wwd.com/pop-culture/new-fashion-releases/fanatics-murakami-merch-collection-1237037714/) · [Complex](https://www.complex.com/style/a/complexstaff3/takashi-murakami-mlb-world-tour-tokyo-series-collection-sold-out-minutes) |
+| More than 100,000 fans downloaded the app to reach the drop | WWD, as above |
+| Tokyo Series took $40m in gear and cards, a Fanatics record | [Fox Business](https://www.foxbusiness.com/sports/mlb-tokyo-series-sets-fanatics-company-record-merchandise-trading-card-sales) · [WWD](https://wwd.com/fashion-news/fashion-scoops/takashi-murakami-shohei-ohtani-tokyo-series-40-million-fanatics-1237057733/) |
+
+The $40m covers all fan gear and trading cards at the Tokyo Series, not the Murakami collection alone.
+The page is worded to reflect that. Do not let it drift into "the Murakami collection did $40m".
+
+## The category ladder
+
+| Rung | Basis |
+|---|---|
+| Soft lines, 38.2 per cent of every licensed sports sale | Grand View Research, as above |
+| Hard lines: framed prints, canvas editions, drinkware, wall art | [UFC Collectibles](https://ufccollectibles.com/collections/ufc-canvas-posters) |
+| Collectibles: UFC trading cards run through Fanatics and Topps on an exclusive licence | [UFC announcement](https://www.ufc.com/news/ufc-and-fanatics-collectibles-announce-exclusive-trading-card-deal) · [ESPN](https://www.espn.com/mma/story/_/id/39427938/fanatics-release-ufc-trading-cards-topps-brand) |
+| Games and digital: in-game kit, console art, digital collectibles | UFC's EA Sports title and the Panini digital collectibles programme |
+
+"The artwork travels here at almost no unit cost" is a commercial observation, not a sourced figure. It
+is defensible and it is the argument for pushing artwork into digital, but it is the studio's line.
 
 ## Market size, held back for the meeting
 
@@ -106,6 +116,9 @@ Not on the page, but useful when a second figure helps:
 
 ## Studio IOS credentials referenced
 
-Fuji brand guide and style guide, including the Rickson Gracie graphic. ESPN Sports Forever style guide.
-Chelsea, Ferrari, LA28, FIA World Endurance Championship. Seasonal trend reporting for Scramble and
-Phalanx. All from the studio's own signed-off deck corpus, no external source needed.
+Fuji brand guide and style guide, including the Rickson Gracie graphic drawn from his own fight
+material. Seasonal trend work for Scramble and Phalanx. Combat sports only, all from the studio's own
+signed-off deck corpus, no external source needed.
+
+Licensing-agency clients are deliberately absent. This is a Studio IOS document and the combat sports
+record is the relevant one for PFL.
