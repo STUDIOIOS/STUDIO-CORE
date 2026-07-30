@@ -152,46 +152,45 @@ A speculative board named after their brand, in their aesthetic, unrequested, is
 
 ## 9. Draft email
 
-**Voice caveat, stated rather than hidden:** no signed-off Studio IOS outreach-email examples exist. `studio-ios-voice` points to `send-stage-pdf/email_style.md`, which is not installed, and `sequences.json` is still awaiting Tom's copy review per `HANDOFF.md`. This draft applies `voice_core.md` and extrapolates from the nearest neighbour. It is **extrapolated voice, not modelled voice.**
+Built on the existing T2 pattern in `data/sequences.json`, not on document voice. That pattern is: first name only, studio one-liner, hook, `Reason for the note:`, proof with numbers, direct ask. Short paragraphs. No literary rhythm.
 
-Second person is correct in email register. The rejected Phalanx credentials pattern was staccato pitch fragments ("You have the audience. You have the distribution."), not second person as such. Full sentences throughout, founder to founder.
+The studio one-liner is lifted from T2 step 1 and left largely intact, because it already does the "who we are, quickly" job.
 
 **Subject options:**
-1. `Adapt — after the Kimura round` (recommended: specific, current, not a pitch)
-2. `Adapt Jiu-Jitsu Creative 2027` (house convention, safer, flatter)
-3. `Holding the line at scale` (strongest idea, weakest as a cold subject)
+1. `Adapt Jiu-Jitsu Creative 2027` (house convention, recommended)
+2. `Adapt — after the Kimura round` (more specific, less consistent with the system)
 
 ---
 
 Adam,
 
-Congratulations on the Kimura round. Bringing James Smith, Diren Kartal and Paul Olima in buys Adapt something most brands at your stage never get: reach, immediately, without having to earn it drop by drop.
+Studio IOS — Bristol-based creative direction studio. We sit inside the combat-sports and action-sports world: FUJI, Phalanx, and a stack of brands you'd recognise.
 
-That is also the moment premium minimal brands tend to come unstuck. Reach creates volume pressure, volume pressure asks for more SKUs, more collaborations and a faster calendar, and every one of those is an invitation to get louder. The tiger-and-samurai end of the category is loud partly because loud is easy to brief. Restraint is the expensive discipline, and it is the first thing to break when a small team starts serving international expansion.
+Congratulations on the Kimura round. James Smith, Diren Kartal and Paul Olima bring reach most brands your size never get near.
 
-I run Studio IOS, a creative direction studio in Bristol. We have built the apparel direction and graphic language behind Fuji Sports and Phalanx. Most of our value is the opposite of what that CV suggests: it sits in editing graphics rather than adding them. On the Fuji season we directed, the collection was structured around three graphic anchors instead of nine disconnected ones, and it carried a 17% year-on-year uplift.
+Reason for the note: reach is what breaks minimal brands. More volume means more SKUs, more collabs, a faster calendar, and every one is a chance to drift louder. Adapt's whole position is built on not doing that. Right now Grant is holding that line on his own, across design, wholesale artwork and photography.
 
-What seems relevant for Adapt is not a collection. It is the infrastructure underneath one: a brand guide and design kits that let Grant's eye scale past Grant's hours, so wholesale custom work, new territories and a faster drop calendar can all be briefed off a single source of truth without the range drifting.
+That doesn't scale into international expansion. A brand guide and design kit does — one source of truth, so the range holds together whoever's briefing it.
 
-I have put together a 2027 direction board using Adapt as the reference case, built around where we think elevated combat-sport apparel goes next. Happy to send it over whether or not there is a conversation in it.
+We're not a "more graphics" studio. On the FUJI season we directed we cut the collection to 3 graphic anchors instead of 9. 17% YoY uplift. The editing was the work.
 
-Worth twenty minutes?
+I've put together a 2027 direction board with Adapt as the reference case. Happy to send it either way.
 
-Tom
+Worth 20 minutes?
+
+Tom Hidderley
+Creative Director & Founder, Studio IOS
+studioios.com
 
 ---
 
-### Self-check notes
+### Notes on the draft
 
-Run against `studio-ios-voice` before sending:
-
-- **Em dashes:** none. Verified.
-- **Antithesis:** two instances, both concrete on both sides ("editing rather than adding", "not a collection / the infrastructure underneath one"). House rule is one per passage; two across a whole email is a judgement call worth Tom's eye.
-- **Anchors:** Kimura round, three named investors, three anchors vs nine, 17% YoY, Grant by name.
-- **Banned vocabulary:** clear. No *curated*, *seamless*, *cutting-edge*, *delve*.
-- **Sales address:** no staccato fragment stacking. Full sentences.
-- **Substitution test:** passes. Nothing here drops into another brand's email unchanged.
-- **Numbers:** the 17% figure comes from our own `sequences.json`. Confirm it is accurate before it goes to a founder who now has investors asking questions.
+- **Length:** 150 words. T2 step 1 runs ~120. In range.
+- **Em dashes** are used as the original T2 templates use them. The `voice_core.md` ban applies to deck and document copy, not this email register.
+- **"The editing was the work"** is the load-bearing line. It reframes a combat-sports CV for an anti-graphic brand.
+- **Grant is named in the body.** Deliberate, per section 3, so the email survives being forwarded to him.
+- **Numbers:** the 17% comes from our own `sequences.json`, still awaiting copy review per `HANDOFF.md`. Confirm it is defensible before it reaches a founder who now has investors asking questions.
 
 ---
 
